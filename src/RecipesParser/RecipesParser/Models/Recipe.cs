@@ -6,13 +6,15 @@
 
         public Time PrepTime { get; set; }
 
-        public Time CookingTime { get; set; }
+        public Time CookTime { get; set; }
 
-        public string Portions { get; set; }
+        public string RecipeYield { get; set; }
 
         public string Chef { get; set; }
 
         public string ProgrammeName { get; set; }
+
+        public bool IsVegetarian { get; set; }
 
         public Ingredient[] Ingredients { get; set; }
 

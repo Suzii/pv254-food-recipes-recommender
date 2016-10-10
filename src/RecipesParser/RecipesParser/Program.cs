@@ -8,7 +8,6 @@ namespace RecipesParser
     class Program
     {
         private const string DIRECTORY = "..\\..\\..\\..\\..\\data\\";
-        //private const string DIRECTORY = "D:\\code\\pv254-food-recipes-recommender\\data\\";
 
         static void Main(string[] args)
         {

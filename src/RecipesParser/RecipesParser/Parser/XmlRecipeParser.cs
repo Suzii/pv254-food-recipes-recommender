@@ -21,16 +21,18 @@ namespace RecipesParser.Parser
             {
                 Title = GetTitle(root),
                 PrepTime = GetPrepTime(root),
-                CookingTime = GetCookingTime(root),
-                Portions = GetPortions(root),
+                CookTime = GetCookingTime(root),
+                RecipeYield = GetPortions(root),
                 Chef = GetChef(root),
                 ProgrammeName = GetProgrammeName(root),
+                IsVegetarian = GetIsVegeratianFlag(root),
                 Ingredients = GetIngredients(root),
                 Instructions = GetInstructions(root)
             };
 
             return result;
         }
+
         private static string GetTitle(XmlElement root)
         {
             var titleNode = root.SelectSingleNode(@"//h1[@itemprop=""name""]");
@@ -84,6 +86,14 @@ namespace RecipesParser.Parser
             var programmeName = programmeNode?.InnerText.Trim();
 
             return programmeName;
+        }
+
+        private bool GetIsVegeratianFlag(XmlElement root)
+        {
+            var dietaryNode = root.SelectSingleNode(@"//div[@class=""recipe-metadata__dietary""]");
+            var dietaryNodeContent = dietaryNode?.FirstChild?.InnerText.Trim();
+
+            return dietaryNodeContent != null && dietaryNodeContent.Equals("Vegetarian");
         }
 
         private static Ingredient[] GetIngredients(XmlElement root)

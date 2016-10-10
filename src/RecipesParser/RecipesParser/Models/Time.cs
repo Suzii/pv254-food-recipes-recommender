@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using RecipesParser.Parser;
+﻿using RecipesParser.Parser;
 
 namespace RecipesParser.Models
 {
