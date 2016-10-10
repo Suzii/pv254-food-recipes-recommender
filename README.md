@@ -15,6 +15,18 @@ School project for course PV245 Recommender Systems (Masaryk University) for sug
         }
 ```
 
+# How to run the site for the first time
+1. git clone https://github.com/Suzii/pv254-food-recipes-recommender
+2. Open in VS2015
+3. Hit F5
+4. Redirect to localhost:{port}/api/recipes ... you should see ugly xml containing 10-minutes-pizza recipe, if this is not the case probably there is some problem with DB (see. 5)
+5. Open *Server Explorer* in VS, click on *DataConnections*
+6. If you do not see any connections, right-click *DataConnections* -> *Add connection*
+7. Enter *Database file name (new or existing)* -> **%repositoryLocation%\pv254-food-recipes-recommender\src\Recipes\\Recipes\App_Data\RecipesDB.mdf**
+8. You should be asked if the file should be created, click Yes
+9. goto: step 3
+
+
 # Current status
 Project currently contains two solutions
 ## RecipeParser
