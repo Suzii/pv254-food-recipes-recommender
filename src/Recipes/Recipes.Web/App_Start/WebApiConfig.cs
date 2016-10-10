@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
+using AutoMapper;
+using Castle.MicroKernel.Registration;
+using Castle.Windsor;
+using Recipes.CastleInstallers;
 
 namespace Recipes.Web
 {
@@ -10,6 +11,14 @@ namespace Recipes.Web
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            var container = new WindsorContainer();
+
+            container.Register(
+                Component.For<IMapper>()
+                    .UsingFactoryMethod(x => Service.Mappings.AutoMapperConfig.GetMapperConfiguration().CreateMapper()));
+
+            container.Install(new RepositoriesInstaller(), new ServicesInstaller(), new ControllerInstaller());
+            config.DependencyResolver = new WindsorHttpDependencyResolver(container);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
