@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipes.Web", "Recipes.Web\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipes.DAL", "Recipes.DAL\Recipes.DAL.csproj", "{7FE5BAD7-B6EC-40E9-A683-BF7E1D52E48F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipes.Service", "Recipes.Service\Recipes.Service.csproj", "{7D1B72EA-3E03-4324-8CC4-EF419718C870}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7FE5BAD7-B6EC-40E9-A683-BF7E1D52E48F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FE5BAD7-B6EC-40E9-A683-BF7E1D52E48F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FE5BAD7-B6EC-40E9-A683-BF7E1D52E48F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D1B72EA-3E03-4324-8CC4-EF419718C870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D1B72EA-3E03-4324-8CC4-EF419718C870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D1B72EA-3E03-4324-8CC4-EF419718C870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D1B72EA-3E03-4324-8CC4-EF419718C870}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
