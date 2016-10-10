@@ -2,7 +2,7 @@
 using AutoMapper;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using Recipes.CastleInstallers;
+using Recipes.Web.CastleInstallers;
 
 namespace Recipes.Web
 {
