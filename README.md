@@ -1,6 +1,20 @@
 # pv254-food-recipes-recommender
 School project for course PV245 Recommender Systems (Masaryk University) for suggesting food recipes.
 
+# Contribution guidelines
+ - Basic stuff as for all .net / C# projects (highly recommend to install ReSharper - student licences available)
+ - Use constructor **Dependency Injection** - castle configuration is set up for all `Recipes.Service` classes that will be found in `Implementation` folder and all `Recipes.DAL` classes that have `Repository` in their name
+ - Use **AutoMapper** - whenever you want to map one entity to another (e.g `DAL.Entity` to `Service.DTOs`) inject `IMapper` via constructor (Castle already set up) and then map it like this
+```
+         public async Task<Recipe> GetRecipeAsync(int id)
+        {
+            var recipe = await _recipesRepository.GetFullRecipeAsync(id);
+            var recipeDto = _mapper.Map<DTOs.Recipe>(recipe);
+
+            return recipeDto;
+        }
+```
+
 # Current status
 Project currently contains two solutions
 ## RecipeParser
