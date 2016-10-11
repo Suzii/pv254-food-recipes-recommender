@@ -40,7 +40,7 @@ Main solution - currently contains projects:
 
  - Recipes.DAL
 Contains folders:
-  - Entitis:  classes to be persisted in database (Recipe, IngredientUsage, Ingredient)
+  - Entities:  classes to be persisted in database (Recipe, IngredientUsage, Ingredient)
   - Repositories: classes to serve as connection between application and DB (right now only very simple RecipesRepository.cs)
 
 Plus Initializer and AppContext files.
@@ -53,5 +53,5 @@ Contains folders:
  
  - Recipes.Web
 Project for all web related stuff and app configuration.
-Right now everythnig there is just boilerplate code + some addition configuration for AutoMapper and Castle Dependency Injection setup.
-The idea is that in the latter stages of tte poject we will have a RESTful WebApi + single page app in react, but thats months away right now.
+Right now everything there is just boilerplate code + some addition configuration for AutoMapper and Castle Dependency Injection setup.
+The idea is that in the latter stages of the project we will have a RESTful WebApi + single page app in react, but that's months away right now.
