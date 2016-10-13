@@ -8,9 +8,13 @@ namespace Recipes.DAL.Entities
 
         public string Title { get; set; }
 
+        public string ImageUrl { get; set; }
+        
         public int PrepTimeInMinutes { get; set; }
 
         public int CookTimeInMinutes { get; set; }
+
+        public bool IsVegetarian { get; set; }
 
         public string RecipeYield { get; set; }
 

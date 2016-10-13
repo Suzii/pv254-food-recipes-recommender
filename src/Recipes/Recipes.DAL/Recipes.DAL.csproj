@@ -55,7 +55,9 @@
     <Compile Include="Entities\Recipe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipesInitializer.cs" />
+    <Compile Include="Repositories\Implementation\IngredientRepository.cs" />
     <Compile Include="Repositories\Implementation\RecipesRepository.cs" />
+    <Compile Include="Repositories\IIngredientsRepository.cs" />
     <Compile Include="Repositories\IRecipesRepository.cs" />
   </ItemGroup>
   <ItemGroup>

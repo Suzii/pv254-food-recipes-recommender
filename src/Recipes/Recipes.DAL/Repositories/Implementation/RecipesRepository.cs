@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading.Tasks;
 using Recipes.DAL.Entities;
@@ -8,6 +9,16 @@ namespace Recipes.DAL.Repositories.Implementation
 {
     public class RecipesRepository : IRecipesRepository
     {
+        public Recipe Save(Recipe recipe)
+        {
+            using (var dbContext = new AppContext())
+            {
+                var result = dbContext.Recipes.Add(recipe);
+
+                return result;
+            }
+        }
+
         public Recipe GetFullRecipe(int id)
         {
             using (var dbContext = new AppContext())
