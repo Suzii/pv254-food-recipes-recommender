@@ -4,6 +4,8 @@
     {
         public string Title { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public Time PrepTime { get; set; }
 
         public Time CookTime { get; set; }

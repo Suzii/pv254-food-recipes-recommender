@@ -20,6 +20,7 @@ namespace RecipesParser.Parser
             var result = new Recipe
             {
                 Title = GetTitle(root),
+                ImageUrl = GetImageUrl(root),
                 PrepTime = GetPrepTime(root),
                 CookTime = GetCookingTime(root),
                 RecipeYield = GetPortions(root),
@@ -31,6 +32,12 @@ namespace RecipesParser.Parser
             };
 
             return result;
+        }
+
+        private string GetImageUrl(XmlElement root)
+        {
+            // TODO
+            return null;
         }
 
         private static string GetTitle(XmlElement root)
