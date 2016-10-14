@@ -34,10 +34,12 @@ namespace RecipesParser.Parser
             return result;
         }
 
-        private string GetImageUrl(XmlElement root)
+        private static string GetImageUrl(XmlElement root)
         {
-            // TODO
-            return null;
+            var imageNode = root.SelectSingleNode(@"//img[@itemprop=""image""]");
+            var imageUrl = imageNode?.Attributes?["src"].Value.Trim();
+
+            return imageUrl;
         }
 
         private static string GetTitle(XmlElement root)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Xml;
 using Newtonsoft.Json;
 using RecipesParser.Parser;
 
@@ -17,7 +18,7 @@ namespace RecipesParser
             foreach (var fileName in fileNames)
             {
                 var recipe = parser.ParseFile(fileName);
-                var serialized = JsonConvert.SerializeObject(recipe, Formatting.Indented);
+                var serialized = JsonConvert.SerializeObject(recipe, Newtonsoft.Json.Formatting.Indented);
 
                 Console.WriteLine(fileName);
                 Console.WriteLine(serialized);
