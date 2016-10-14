@@ -26,6 +26,8 @@ public async Task<Recipe> GetRecipeAsync(int id)
 8. You should be asked if the file should be created, click Yes
 9. goto: step 3
 
+# Data
+Project works with recipes from [BBC Food Website](http://www.bbc.co.uk/food/recipes). Recipes were extracted from this website using a tool [BBC Recipe Web Scraper](https://github.com/xvitovs1/BBC-Recipe-Web-Scraper), original version of this tool can be found [here](https://github.com/Thomas-Rudge/BBC-Recipe-Web-Scraper).
 
 # Current status
 Project currently contains two solutions
