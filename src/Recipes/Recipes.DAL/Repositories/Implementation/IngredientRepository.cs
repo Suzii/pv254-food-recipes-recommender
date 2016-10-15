@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Threading.Tasks;
 using Recipes.DAL.Entities;
 
@@ -9,22 +10,40 @@ namespace Recipes.DAL.Repositories.Implementation
     {
         public Ingredient Save(Ingredient ingredient)
         {
-            throw new NotImplementedException();
+            using (var dbContext = new AppContext())
+            {
+                var result = dbContext.Ingredients.Add(ingredient);
+
+                return result;
+            }
         }
 
-        public Task<Ingredient> GetAsync(int id)
+        public async Task<Ingredient> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            using (var dbContext = new AppContext())
+            {
+                var result = dbContext.Ingredients
+                    .SingleAsync(i => i.Id == id);
+
+                return  await result;
+            }
         }
 
-        public Task<List<Ingredient>> GetAllAsync()
+        public async Task<List<Ingredient>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            using (var dbContext = new AppContext())
+            {
+                var result = dbContext.Ingredients
+                    .ToListAsync();
+
+                return await result;
+            }
         }
 
         public Ingredient Exists(string name)
         {
-            throw new NotImplementedException();
+            //TODO
+            return null;
         }
     }
 }
