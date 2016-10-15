@@ -14,7 +14,7 @@ namespace Recipes.Import.Services.Implementation
 
         public int SaveRecipe(Recipe recipe)
         {
-            throw new System.NotImplementedException();
+            return _recipesRepository.Save(recipe).Id;
         }
     }
 }

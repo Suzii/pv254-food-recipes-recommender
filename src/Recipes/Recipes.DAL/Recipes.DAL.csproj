@@ -53,6 +53,7 @@
     <Compile Include="Entities\Ingredient.cs" />
     <Compile Include="Entities\IngredientUsage.cs" />
     <Compile Include="Entities\Recipe.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipesInitializer.cs" />
     <Compile Include="Repositories\Implementation\IngredientRepository.cs" />

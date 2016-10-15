@@ -21,5 +21,10 @@ namespace Recipes.DAL.Repositories.Implementation
         {
             throw new NotImplementedException();
         }
+
+        public Ingredient Exists(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

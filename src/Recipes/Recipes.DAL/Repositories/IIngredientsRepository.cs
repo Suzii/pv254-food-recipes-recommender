@@ -11,5 +11,7 @@ namespace Recipes.DAL.Repositories
         Task<Ingredient> GetAsync(int id);
 
         Task<List<Ingredient>> GetAllAsync();
+
+        Ingredient Exists(string name);
     }
 }
