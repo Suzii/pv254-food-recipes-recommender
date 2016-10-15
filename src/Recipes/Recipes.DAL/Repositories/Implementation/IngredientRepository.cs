@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Recipes.DAL.Entities;
@@ -14,6 +15,8 @@ namespace Recipes.DAL.Repositories.Implementation
             using (var dbContext = new AppContext())
             {
                 var result = dbContext.Ingredients.Add(ingredient);
+
+                dbContext.SaveChanges();
 
                 return result;
             }
@@ -41,12 +44,12 @@ namespace Recipes.DAL.Repositories.Implementation
             }
         }
 
-        public Ingredient Exists(string name)
+        public Ingredient GetByName(string name)
         {
             using (var dbContext = new AppContext())
             {
                 var result = dbContext.Ingredients
-                    .Single(i => i.Name.Equals(name));
+                    .SingleOrDefault(i => i.Name.Equals(name));
 
                 return result;
             }

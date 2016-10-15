@@ -13,7 +13,14 @@ namespace Recipes.DAL.Repositories.Implementation
         {
             using (var dbContext = new AppContext())
             {
+                // NOTE: this needs to be done in order to prevent EF
+                // from trying to insert ingredients more times
+                foreach (var ingredientUsage in recipe.IngredientUsages)
+                {
+                    ingredientUsage.Ingredient = null;
+                }
                 var result = dbContext.Recipes.Add(recipe);
+                dbContext.SaveChanges();
 
                 return result;
             }
