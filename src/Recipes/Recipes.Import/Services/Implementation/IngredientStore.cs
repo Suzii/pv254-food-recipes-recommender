@@ -14,6 +14,7 @@ namespace Recipes.Import.Services.Implementation
 
         public int GetOrSave(Ingredient ingredient)
         {
+            if(_ingredientsRepository.)
             throw new System.NotImplementedException();
         }
     }

@@ -53,6 +53,10 @@
     <Compile Include="Entities\Ingredient.cs" />
     <Compile Include="Entities\IngredientUsage.cs" />
     <Compile Include="Entities\Recipe.cs" />
+    <Compile Include="Migrations\201610150945216_AddIngredientNameIndex.cs" />
+    <Compile Include="Migrations\201610150945216_AddIngredientNameIndex.Designer.cs">
+      <DependentUpon>201610150945216_AddIngredientNameIndex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipesInitializer.cs" />
@@ -64,6 +68,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201610150945216_AddIngredientNameIndex.resx">
+      <DependentUpon>201610150945216_AddIngredientNameIndex.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
