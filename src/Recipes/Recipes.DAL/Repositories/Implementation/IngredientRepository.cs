@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using Recipes.DAL.Entities;
 
@@ -42,8 +43,13 @@ namespace Recipes.DAL.Repositories.Implementation
 
         public Ingredient Exists(string name)
         {
-            //TODO
-            return null;
+            using (var dbContext = new AppContext())
+            {
+                var result = dbContext.Ingredients
+                    .Single(i => i.Name.Equals(name));
+
+                return result;
+            }
         }
     }
 }
