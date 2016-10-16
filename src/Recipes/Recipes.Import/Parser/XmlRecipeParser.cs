@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 using Recipes.DAL.Entities;
 
@@ -118,9 +119,14 @@ namespace Recipes.Import.Parser
                     FreeText = ParsingHelper.GetAllStrippedText(ingredientNode),
                     Ingredient = new Ingredient
                     {
-                        Name = ingredientNode.SelectSingleNode("./span")?.InnerText.Trim(),
+                        Name = ingredientNode.SelectSingleNode("./span")?.InnerText.Trim()
                     }
                 };
+
+                if (String.IsNullOrEmpty(ingredient.Ingredient.Name))
+                {
+                    ingredient.Ingredient.Name = "other";
+                }
 
                 result.Add(ingredient);
             }

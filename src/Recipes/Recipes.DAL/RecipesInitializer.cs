@@ -7,10 +7,10 @@ namespace Recipes.DAL
     {
         protected override void Seed(AppContext context)
         {
-            var recipes = new List<Recipe> { GetPizzaRecipe() };
+            /*var recipes = new List<Recipe> { GetPizzaRecipe() };
 
             recipes.ForEach(r => context.Recipes.Add(r));
-            context.SaveChanges();
+            context.SaveChanges();*/
         }
 
         private static Recipe GetPizzaRecipe()

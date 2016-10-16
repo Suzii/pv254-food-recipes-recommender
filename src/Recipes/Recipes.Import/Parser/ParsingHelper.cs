@@ -25,6 +25,9 @@ namespace Recipes.Import.Parser
 
         public static int GetTimeInMinutes(string code)
         {
+            if (String.IsNullOrEmpty(code))
+                return 0;
+
             var metric = ParseTimeMetric(code);
             var time = ParseTimeValue(code);
 

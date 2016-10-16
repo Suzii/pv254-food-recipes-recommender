@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Recipes.DAL.Entities;
 using Recipes.Import.Parser;
 
 namespace Recipes.Import.Services.Implementation
@@ -24,13 +25,18 @@ namespace Recipes.Import.Services.Implementation
             foreach (var fileName in fileNames)
             {
                 var recipe = parser.ParseFile(fileName);
-                foreach (var ingredientUsage in recipe.IngredientUsages)
-                {
-                    var id = _ingredientStore.GetOrSave(ingredientUsage.Ingredient);
-                    ingredientUsage.IngredientId = id;
-                }
+                ImportIngredients(recipe);
 
                 _recipesStore.SaveRecipe(recipe);
+            }
+        }
+
+        private void ImportIngredients(Recipe recipe)
+        {
+            foreach (var ingredientUsage in recipe.IngredientUsages)
+            {
+                var id = _ingredientStore.GetOrSave(ingredientUsage.Ingredient);
+                ingredientUsage.IngredientId = id;
             }
         }
 
