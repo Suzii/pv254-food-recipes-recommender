@@ -4,13 +4,16 @@ import logo from './../../logo.svg';
 const Home = (props) => {
     return (
         <div className="App">
-            <div className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <h2>Welcome to React</h2>
+            <div className="jumbotron">
+                <h1>Navbar example</h1>
+                <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar
+                    work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+                <p>
+                    <a className="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar
+                        docs &raquo;</a>
+                </p>
             </div>
-            <p className="App-intro">
-                To get started, edit <code>src/App.js</code> and save to reload.
-            </p>
+
         </div>);
 };
 
