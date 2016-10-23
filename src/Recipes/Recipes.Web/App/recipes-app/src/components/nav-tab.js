@@ -1,5 +1,6 @@
 import React from 'react';
 import Tab from './tab';
+import logo from '../../public/img/logo2.png';
 
 const NavTab = () => {
     return (
@@ -13,7 +14,7 @@ const NavTab = () => {
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                     </button>
-                    <a className="navbar-brand" href="/Home">Recipes recommender</a>
+                    <a className="navbar-brand" href="/Home"><img src={logo} alt="Logo" height={50}/></a>
                 </div>
                 <div id="navbar" className="navbar-collapse collapse">
                     <ul className="nav navbar-nav">
