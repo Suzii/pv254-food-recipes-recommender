@@ -1,46 +1,81 @@
 import React from 'react';
-import SafeDiv from './../../components/SafeDiv';
+import Div from '../../components/Div';
 
-const Ingredients = (props) => {
-    if(!props.ingredients) {
-        return null;
+const Ingredients = ({ ingredients }) => {
+    // make important part of ingredient bold
+    const getIngredient = (ingredient, index) => {
+        return <li key={index}>{ ingredient.fullText }</li>;
     }
 
-    const getIngredient = (ingredient) => {
-        return <li>{ ingredient.fullText }</li>;
-    }
+    const ingredientsCode = (ingredients)
+        ? <ul>{ ingredients.map((ingredient, index) => getIngredient(ingredient, index)) }</ul>
+        : 'Nothing found... :(';
 
     return (
-        <ul>
-            { props.ingredients.map(i => getIngredient(i)) }
-        </ul>
+        <div className="ingredients" id="ingredients">
+            <h2>Ingredients </h2>
+            { ingredientsCode }
+        </div>
     );
 }
 
-const Instructions = (props) => {
-    if(!props.instructions) {
-        return null;
-    }
-
-    const getInstruction = (instruction, index) => {
-        return <li key={index}>{instruction} </li>;
-    }
+const Instructions = ({ instructions }) => {
+    const instructionsCode = (instructions)
+        ? <ol> { instructions.map((instruction, index) => <li key={index}>{instruction} </li>) } </ol>
+        : 'No instructions found... :(';
 
     return (
-        <ol>
-            {props.instructions.map((instruction, index) => getInstruction(instruction, index))}
-        </ol>
+        <div className="instructions" id="instructions">
+            <h2>Instructions</h2>
+            { instructionsCode }
+        </div>
     );
 }
 
+const RecipeMetadata = ({ cookTimeInMinutes, prepTimeInMinutes, chef, programmeName, recipeYield, isVegetarian }) => {
 
-class Recipe extends  React.Component {
+    let calculateTime = (timeInMinutes) => {
+        if(timeInMinutes >= 60) {
+            let time = timeInMinutes%60;
+            return `${time} to ${time+1} hours`;
+        } else {
+            return `less than ${timeInMinutes} minutes`
+        }
+    }
+
+    let preparationTime = calculateTime(prepTimeInMinutes);
+    let cookTime = calculateTime(cookTimeInMinutes);
+    let diet = (isVegetarian)
+        ? <p className="veggie"> Vegetarian </p>
+        : null;
+    let serves = <p className="serves">{ recipeYield } portions</p>;
+
+    return (
+        <div className="metadata" id="metadata">
+            <dl>
+                <dt>Preparation time</dt>
+                <dd>{ preparationTime }</dd>
+
+                <dt>Cook time</dt>
+                <dd>{ cookTime }</dd>
+
+                <dt>By</dt>
+                <dd>{ chef }</dd>
+
+                <dt>From</dt>
+                <dd> { programmeName } </dd>
+            </dl>
+
+            { serves }
+            { diet }
+        </div>
+    )
+}
+
+class Recipe extends React.Component {
 
     static propTypes = {
-        recipeId: React.PropTypes.number.isRequired
-    }
-    static defaultProps = {
-        recipeId: 6
+        params: React.PropTypes.shape({ recipeId: React.PropTypes.number })
     }
     state = {
         isLoading: true
@@ -48,14 +83,15 @@ class Recipe extends  React.Component {
 
     constructor(props) {
         super(props);
-        fetch(`/api/recipes/${props.recipeId}`, {accept: 'application/json'})
+        console.log(props);
+        fetch(`/api/recipes/${props.params.recipeId}`, {accept: 'application/json'})
             .then(response => response.json())
             .then(data => {
-                setTimeout(() => this.recipeRecieved(data), 1100);
+                setTimeout(() => this.recipeReceived(data), 1100);
             });
     }
 
-    recipeRecieved(data) {
+    recipeReceived(data) {
         console.log(data);
         this.setState({
             isLoading: false,
@@ -67,25 +103,32 @@ class Recipe extends  React.Component {
         var recipe = this.state.recipe;
         console.log(recipe);
 
-        if(!recipe) {
-            return <SafeDiv isLoading={true}/>
+        if (!recipe) {
+            return <Div isLoading={true}/>
         }
 
         return (
-            <SafeDiv isLoading={this.state.isLoading}>
+            <Div isLoading={this.state.isLoading} className="recipe" id="recipe">
                 <h1>{ recipe.title }</h1>
-                <div>
-                    <h2>Ingredients </h2>
-                    <Ingredients ingredients={ recipe.inredients }/>
+                <div className="row">
+                    <div className="col-xs-12 col-sm-8 col-md-8 col-lg-6">
 
+                        <Ingredients ingredients={ recipe.inredients }/>
 
-                    <h2>Instructions</h2>
-                    <Instructions instructions={ recipe.instructions }/>
+                    </div>
+
+                    <div className="col-xs-12 col-sm-4 col-md-4 col-lg-6">
+                        <RecipeMetadata { ...recipe } />
+                    </div>
                 </div>
 
-
-            </SafeDiv>);
+                <div className="row">
+                    <div className="col-xs-12">
+                        <Instructions instructions={ recipe.instructions }/>
+                    </div>
+                </div>
+            </Div>);
     }
-};
+}
 
 export default Recipe;
