@@ -18,6 +18,10 @@ namespace Recipes.Service.DTOs
 
         public string ProgrammeName { get; set; }
 
+        public bool IsVegetarian { get; set; }
+
+        public string ImageUrl { get; set; }
+
         public List<IngredientUsage> Ingredients { get; set; }
 
         public List<string> Instructions { get; set; }

@@ -31,7 +31,7 @@ namespace Recipes.DAL.Repositories.Implementation
             using (var dbContext = new AppContext())
             {
                 var result = dbContext.Recipes
-                    .Include(r => r.IngredientUsages)
+                    .Include(r => r.IngredientUsages.Select(iu => iu.Ingredient))
                     .Single(r => r.Id == id);
 
                 return result;
@@ -43,7 +43,7 @@ namespace Recipes.DAL.Repositories.Implementation
             using (var dbContext = new AppContext())
             {
                 var result = dbContext.Recipes
-                    .Include(r => r.IngredientUsages)
+                    .Include(r => r.IngredientUsages.Select(iu => iu.Ingredient))
                     .SingleAsync(r => r.Id == id);
 
                 return await result;

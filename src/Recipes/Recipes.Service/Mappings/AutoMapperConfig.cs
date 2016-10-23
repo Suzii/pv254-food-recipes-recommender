@@ -9,8 +9,8 @@ namespace Recipes.Service.Mappings
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<RecipeProfile>();
-                cfg.AddProfile<IngredientProfile>();
                 cfg.AddProfile<IngredientUsageProfile>();
+                cfg.AddProfile<IngredientProfile>();
             });
 
             return config;
