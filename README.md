@@ -8,6 +8,7 @@ School project for course PV245 Recommender Systems (Masaryk University) for sug
 4. Open [{projectLocation}\pv254-food-recipes-recommender\src\WebApp\recipes-app\package.json](https://github.com/Suzii/pv254-food-recipes-recommender/blob/master/src/WebApp/recipes-app/package.json) and change the last line `"proxy": "http://localhost:13451"` to the actual port
 5. Open command line or bash and run these commands:
  - `cd {projectLocation}\pv254-food-recipes-recommender\src\WebApp\recipes-app`
+ - `npm install`
  - `npm start`
 6. Browser should open the `localhost:3000/` and you should see the app
 7. Enjoy...
