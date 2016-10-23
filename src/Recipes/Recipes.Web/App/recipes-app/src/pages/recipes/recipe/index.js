@@ -1,9 +1,9 @@
 import React from 'react';
-import Div from '../../../components/Div';
+import Div from '../../../components/div';
 import Recipe from './recipe';
-import SimilarRecipes from './../recommendations/similar-recipes';
-import YouMayLike from './../recommendations/you-may-like';
-import Critique from './../recommendations/critiquing';
+import SimilarRecipes from './recommendations/similar-recipes';
+import YouMayLike from './recommendations/you-may-like';
+import Critique from './recommendations/critiquing';
 
 class Index extends React.Component {
 
@@ -23,13 +23,13 @@ class Index extends React.Component {
                         <div className="col-xs-12 col-sm-2 col-md-4">
                             <div className="row">
                                 <div className="col-xs-12">
-                                    <SimilarRecipes />
+                                    <SimilarRecipes { ...this.props }/>
                                 </div>
                             </div>
 
                             <div className="row">
                                 <div className="col-xs-12">
-                                    <YouMayLike/>
+                                    <YouMayLike { ...this.props }/>
                                 </div>
                             </div>
                         </div>

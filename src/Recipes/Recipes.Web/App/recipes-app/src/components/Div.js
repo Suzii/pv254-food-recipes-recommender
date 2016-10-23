@@ -4,10 +4,15 @@ import classNames from 'classnames';
 
 const Div = (props) => {
     const classnames = classNames(props.className);
+    const overlayStyles = {
+        paddingTop: props.loadingOffset,
+        paddingBottom: props.loadingOffset
+    };
+
     const overlay = (props.isLoading)
-        ? (<div className="text-center">
-            <Spinner spinnerName='tree-bounce' noFadeIn={true}/>
-        </div>)
+        ? (<div className="text-center" style={ overlayStyles }>
+        <Spinner spinnerName='tree-bounce' noFadeIn={true}/>
+    </div>)
         : null;
 
     return (

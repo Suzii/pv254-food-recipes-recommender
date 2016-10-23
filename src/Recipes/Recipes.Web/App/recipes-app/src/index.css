@@ -1,10 +1,18 @@
+/*General*/
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 }
 
+.navbar-brand {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+/*Recipe header with image*/
 .recipe-img {
+  max-height: 750px;
   width: 100%;
 }
 
@@ -25,7 +33,34 @@ body {
   text-overflow: ellipsis;
 }
 
-.navbar-brand {
-  padding-top: 0px !important;
-  padding-bottom: 0px !important;
+
+/* Recommendations */
+.recommendation {
+  padding: 8px;
 }
+.recommendation:hover {
+  background: rgba(240,240,240,0.95);
+
+}
+.recommendation .teaser-image {
+  max-height: 50px;
+  background-image: url('../public/img/no-image.png');
+  /*border-radius: 50%;*/
+}
+
+.recommendation .title {
+  font-weight: bolder;
+  text-overflow: ellipsis;
+}
+
+.recommendation p {
+  margin: 0px 0px 1px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+/*General*/
+.veggie:after {
+  padding: 5px;
+  content: url('../public/img/veggie-small.png');
+}
+

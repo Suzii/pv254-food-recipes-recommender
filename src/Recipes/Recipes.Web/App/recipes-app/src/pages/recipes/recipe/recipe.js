@@ -1,7 +1,7 @@
 import React from 'react';
+import noImage from '../../../../public/img/no-image.png';
 
-import Div from '../../../components/Div';
-
+import Div from '../../../components/div';
 import Ingredients from './ingredients';
 import Instructions from './instructions';
 import RecipeMetadata from './recipe-metadata';
@@ -35,14 +35,14 @@ class Recipe extends React.Component {
     render() {
         var recipe = this.state.recipe;
         if (!recipe) {
-            return <Div isLoading={true}/>;
+            return <Div isLoading={true} loadingOffset="150px"/>;
         }
 
         return (
-            <Div isLoading={this.state.isLoading} className="recipe" id="recipe">
+            <Div isLoading={this.state.isLoading} loadingOffset="150px" className=" container-fluid recipe" id="recipe">
                 <div className="row">
                     <div className="recipe-teaser">
-                        <img src={ recipe.imageUrl } alt="Recipe teaser." className="img-responsive recipe-img" />
+                        <img src={ recipe.imageUrl || noImage } alt="Recipe teaser." className="img-responsive recipe-img" />
                             <div className="caption">
                                 <h1>{ recipe.title }</h1>
                             </div>
