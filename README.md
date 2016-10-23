@@ -1,6 +1,19 @@
 # pv254-food-recipes-recommender
 School project for course PV245 Recommender Systems (Masaryk University) for suggesting food recipes.
 
+# Running React app in develoment mode
+1. Install [Node.js](https://nodejs.org/en/download/)
+2. Run the .net application (Recipes.sln) simply by hitting F5 in VisualStudio
+3. Check out the port that this .net application is currently running at
+4. Open [{projectLocation}\pv254-food-recipes-recommender\src\WebApp\recipes-app\package.json](https://github.com/Suzii/pv254-food-recipes-recommender/blob/master/src/WebApp/recipes-app/package.json) and change the last line `"proxy": "http://localhost:13451"` to the actual port
+5. Open command line or bash and run these commands:
+ - `cd {projectLocation}\pv254-food-recipes-recommender\src\WebApp\recipes-app`
+ - `npm start`
+6. Browser should open the `localhost:3000/` and you should see the app
+7. Enjoy...
+
+**Note:**  Web Application is written using `react-create-app` boilerplate. Lern more [here](https://github.com/facebookincubator/create-react-app)
+
 # Contribution guidelines
  - Basic stuff as for all .net / C# projects (highly recommend to install ReSharper - student licences available)
  - Use constructor **Dependency Injection** - castle configuration is set up for all `Recipes.Service` classes that will be found in `Implementation` folder and all `Recipes.DAL` classes that have `Repository` in their name
