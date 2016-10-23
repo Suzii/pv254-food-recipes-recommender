@@ -1,14 +1,18 @@
 import React from 'react';
 import Div from '../../components/Div';
 
-const Ingredients = ({ ingredients }) => {
-    // make important part of ingredient bold
-    const getIngredient = (ingredient, index) => {
-        return <li key={index}>{ ingredient.fullText }</li>;
-    }
+const Ingredient = ({ id, subcategory, freeText, ingredient }) => {
+    var ingredientName = ingredient.name;
+    let text = freeText.replace(ingredientName, `<b>${ingredientName}</b>`);
 
+    return (
+        <li dangerouslySetInnerHTML={ {__html: text} }/>
+    );
+}
+
+const Ingredients = ({ ingredients }) => {
     const ingredientsCode = (ingredients)
-        ? <ul>{ ingredients.map((ingredient, index) => getIngredient(ingredient, index)) }</ul>
+        ? <ul>{ ingredients.map((ingredient, index) => <Ingredient key={index} { ...ingredient } />) }</ul>
         : 'Nothing found... :(';
 
     return (
@@ -17,7 +21,7 @@ const Ingredients = ({ ingredients }) => {
             { ingredientsCode }
         </div>
     );
-}
+};
 
 const Instructions = ({ instructions }) => {
     const instructionsCode = (instructions)
@@ -30,18 +34,23 @@ const Instructions = ({ instructions }) => {
             { instructionsCode }
         </div>
     );
-}
+};
 
 const RecipeMetadata = ({ cookTimeInMinutes, prepTimeInMinutes, chef, programmeName, recipeYield, isVegetarian }) => {
 
     let calculateTime = (timeInMinutes) => {
-        if(timeInMinutes >= 60) {
-            let time = timeInMinutes%60;
-            return `${time} to ${time+1} hours`;
-        } else {
-            return `less than ${timeInMinutes} minutes`
+        if(timeInMinutes == 60) {
+            return 'up to 1 hour';
         }
-    }
+
+        if(timeInMinutes >= 60) {
+            let time = Math.floor(timeInMinutes/60);
+            return `${time} to ${time+1} hours`;
+        }
+
+        return `less than ${timeInMinutes} minutes`
+
+    };
 
     let preparationTime = calculateTime(prepTimeInMinutes);
     let cookTime = calculateTime(cookTimeInMinutes);
@@ -69,13 +78,13 @@ const RecipeMetadata = ({ cookTimeInMinutes, prepTimeInMinutes, chef, programmeN
             { serves }
             { diet }
         </div>
-    )
-}
+    );
+};
 
 class Recipe extends React.Component {
 
     static propTypes = {
-        params: React.PropTypes.shape({ recipeId: React.PropTypes.number })
+        params: React.PropTypes.shape({ recipeId: React.PropTypes.string })
     }
     state = {
         isLoading: true
@@ -113,7 +122,7 @@ class Recipe extends React.Component {
                 <div className="row">
                     <div className="col-xs-12 col-sm-8 col-md-8 col-lg-6">
 
-                        <Ingredients ingredients={ recipe.inredients }/>
+                        <Ingredients ingredients={ recipe.ingredients }/>
 
                     </div>
 
