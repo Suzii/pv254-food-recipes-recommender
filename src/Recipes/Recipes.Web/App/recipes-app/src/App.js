@@ -3,10 +3,22 @@ import NavTab from './components/nav-tab';
 
 const App = (props) => {
     return (
-        <div className="container">
-            <NavTab/>
+        <div>
+            <header>
+                <NavTab/>
+            </header>
 
-            {props.children}
+            <div className="container-fluid">
+                {props.children}
+            </div>
+
+            <footer className="footer">
+                <div className="container">
+                    <p className="text-muted">
+                        Lorem ipsum
+                    </p>
+                </div>
+            </footer>
         </div>
     )
 };

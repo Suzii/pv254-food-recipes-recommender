@@ -1,4 +1,5 @@
 import './index.css';
+import './sticky-footer.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import React from 'react';

@@ -4,7 +4,7 @@ import Div from '../../../components/Div';
 
 import Ingredients from './ingredients';
 import Instructions from './instructions';
-import RecipeMetadata from './recipeMetadata';
+import RecipeMetadata from './recipe-metadata';
 
 class Recipe extends React.Component {
 
