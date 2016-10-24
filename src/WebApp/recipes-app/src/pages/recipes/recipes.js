@@ -2,7 +2,7 @@ import React from 'react';
 
 const Recipes = (props) => {
     return (
-        <div>
+        <div className="container">
             {props.children}
         </div>);
 };

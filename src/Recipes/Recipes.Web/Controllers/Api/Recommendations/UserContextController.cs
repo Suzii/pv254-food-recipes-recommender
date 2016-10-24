@@ -18,11 +18,13 @@ namespace Recipes.Web.Controllers.Api.Recommendations
 
         // TODO add more parameters to the request
         // GET: api/reecommendations/UserContext
-        public async Task<RecipeRecommendation[]> Get(int currentRecipeId)
+        public async Task<RecipeRecommendation[]> Get(int currentRecipeId, int pageSize = 10, int pageNumber = 1)
         {
             var filter = new ContextBasedFilter
             {
-                RecipeId = currentRecipeId
+                RecipeId = currentRecipeId,
+                PageNumber = pageNumber, 
+                PageSize = pageSize
             };
 
             var result = await _userContextRecommendations.Get(filter);

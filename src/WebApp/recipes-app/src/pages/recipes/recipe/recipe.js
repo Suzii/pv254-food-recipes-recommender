@@ -1,6 +1,6 @@
 import React from 'react';
 import noImage from '../../../../public/img/no-image.png';
-
+import * as AjaxUtils from '../../../utils/ajax';
 import Div from '../../../components/div';
 import Ingredients from './ingredients';
 import Instructions from './instructions';
@@ -17,15 +17,26 @@ class Recipe extends React.Component {
 
     constructor(props) {
         super(props);
-        fetch(`/api/recipes/${props.params.recipeId}`, {accept: 'application/json'})
-            .then(response => response.json())
+        this.loadRecipe(props.params.recipeId);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('Recipe.componentWillReciveProps', nextProps);
+        this.setState({ isLoading: true });
+        this.loadRecipe(nextProps.params.recipeId);
+    }
+
+    loadRecipe(id) {
+        fetch(`/api/recipes/${id}`, {accept: 'application/json'})
+            .then(AjaxUtils.processStatus)
+            .then(AjaxUtils.parseJson)
             .then(data => {
                 setTimeout(() => this.recipeReceived(data), 1100);
-            });
+            })
+            .catch(AjaxUtils.logNetworkError);
     }
 
     recipeReceived(data) {
-        console.log('Recipe: ', data);
         this.setState({
             isLoading: false,
             recipe: data

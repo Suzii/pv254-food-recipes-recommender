@@ -1,5 +1,3 @@
-'use strict';
-
 function getTimeForUI(timeInMinutes) {
     if (timeInMinutes === 60) {
         return 'up to 1 hour';

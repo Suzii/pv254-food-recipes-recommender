@@ -1,7 +1,7 @@
 import React from 'react';
 import RecipeOverview from './../../../../components/recipe-overview';
 import Div from '../../../../components/div';
-
+import * as AjaxUtils from '../../../../utils/ajax';
 
 class SimilarRecipes extends React.Component {
     static propTypes = {
@@ -15,15 +15,23 @@ class SimilarRecipes extends React.Component {
     constructor(props) {
         super(props);
         //TODO change to proper endpoint and move to Redux
-        fetch(`/api/recipes/${props.params.recipeId}`, {accept: 'application/json'})
-            .then(response => response.json())
+        let params = {
+            currentRecipeId: props.params.recipeId,
+            pageSize: 5
+        };
+
+        let paramsString = AjaxUtils.getQueryParameters(params);
+
+        fetch(`/api/recommendations/SimilarRecipes?${paramsString}`, {accept: 'application/json'})
+            .then(AjaxUtils.processStatus)
+            .then(AjaxUtils.parseJson)
             .then(data => {
-                setTimeout(() => this.recipeReceived([data, data, data, data, data, data]), 1100);
-            });
+                setTimeout(() => this.recipeReceived(data), 1100);
+            })
+            .catch(AjaxUtils.logNetworkError);
     }
 
     recipeReceived(data) {
-        console.log('Recipe: ', data);
         this.setState({
             isLoading: false,
             recipes: data
@@ -32,7 +40,6 @@ class SimilarRecipes extends React.Component {
 
     render() {
         const recipes = this.state.recipes.map((recipe, index) => <RecipeOverview key={index} {...recipe} />);
-        console.log(this.state.recipes);
 
         return (
             <div>

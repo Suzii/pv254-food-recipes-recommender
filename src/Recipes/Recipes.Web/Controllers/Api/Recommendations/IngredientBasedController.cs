@@ -19,7 +19,7 @@ namespace Recipes.Web.Controllers.Api.Recommendations
         }
 
         // GET: api/Recommendations/IngredientBased?ingredientIds=1&ingredientIds=2
-        public async Task<RecipeRecommendation[]> Get([FromUri] int[] ingredientIds, int? totalTimeFrom = null, int? totalTimeTo = null)
+        public async Task<RecipeRecommendation[]> Get([FromUri] int[] ingredientIds, int? totalTimeFrom = null, int? totalTimeTo = null, int pageSize = 10, int pageNumber = 1)
         {
             if (ingredientIds == null || ingredientIds.Length == 0)
             {
@@ -31,8 +31,8 @@ namespace Recipes.Web.Controllers.Api.Recommendations
                 IngredientIds = ingredientIds,
                 TotalTimeFrom = totalTimeFrom,
                 TotalTimeTo = totalTimeTo,
-                PageNumber = 1,
-                PageSize = 10
+                PageNumber = pageNumber,
+                PageSize = pageSize
             };
 
             var result = await _ingredientRecommendations.Get(filter);
