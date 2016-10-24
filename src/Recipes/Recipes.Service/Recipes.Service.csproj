@@ -44,14 +44,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\Filters\RecipeMetadataBasedFilter.cs" />
+    <Compile Include="DTOs\Filters\ContextBasedFilter.cs" />
+    <Compile Include="DTOs\Filters\PagerFilter.cs" />
+    <Compile Include="DTOs\Filters\IngredientBasedFilter.cs" />
     <Compile Include="DTOs\Ingredient.cs" />
     <Compile Include="DTOs\IngredientUsage.cs" />
     <Compile Include="DTOs\Recipe.cs" />
+    <Compile Include="DTOs\RecipeRecommendation.cs" />
     <Compile Include="Mappings\AutoMapperConfig.cs" />
     <Compile Include="Mappings\IngredientProfile.cs" />
     <Compile Include="Mappings\IngredientUsageProfile.cs" />
+    <Compile Include="Mappings\RecipeRecommendationProfile.cs" />
     <Compile Include="Mappings\RecipeProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recommendations\Fakes\IngredientRecommendations.cs" />
+    <Compile Include="Recommendations\Fakes\RecipeMetadataRecommendations.cs" />
+    <Compile Include="Recommendations\Fakes\UserContextRecommendations.cs" />
+    <Compile Include="Recommendations\IIngredientRecommendations.cs" />
+    <Compile Include="Recommendations\Implementation\IngredientRecommendations.cs" />
+    <Compile Include="Recommendations\Implementation\RecipeMetadataRecommendations.cs" />
+    <Compile Include="Recommendations\Implementation\UserContextRecommendations.cs" />
+    <Compile Include="Recommendations\IUserContextRecommendations.cs" />
+    <Compile Include="Recommendations\IRecipeMetadataRecommendations.cs" />
     <Compile Include="Stores\Implementation\RecipeStore.cs" />
     <Compile Include="Stores\IRecipeStore.cs" />
   </ItemGroup>
