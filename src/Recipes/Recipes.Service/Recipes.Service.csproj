@@ -58,6 +58,7 @@
     <Compile Include="Mappings\RecipeRecommendationProfile.cs" />
     <Compile Include="Mappings\RecipeProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recommendations\Fakes\BaseRecommendations.cs" />
     <Compile Include="Recommendations\Fakes\IngredientRecommendations.cs" />
     <Compile Include="Recommendations\Fakes\RecipeMetadataRecommendations.cs" />
     <Compile Include="Recommendations\Fakes\UserContextRecommendations.cs" />

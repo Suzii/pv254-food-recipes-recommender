@@ -50,12 +50,36 @@ namespace Recipes.DAL.Repositories.Implementation
             }
         }
 
+        public async Task<IList<Recipe>> GetRecipesAsync(IList<int> ids)
+        {
+            using (var dbContext = new AppContext())
+            {
+                var result = dbContext.Recipes
+                    .Where(r => ids.Contains(r.Id))
+                    .ToListAsync();
+
+                return await result;
+            }
+        }
+
         public async Task<List<Recipe>> GetAllAsync()
         {
             using (var dbContext = new AppContext())
             {
                 var result = dbContext.Recipes
                     .Include(r => r.IngredientUsages)
+                    .ToListAsync();
+
+                return await result;
+            }
+        }
+
+        public async Task<IList<int>> GetAllIdsAsync()
+        {
+            using (var dbContext = new AppContext())
+            {
+                var result = dbContext.Recipes
+                    .Select(r => r.Id)
                     .ToListAsync();
 
                 return await result;

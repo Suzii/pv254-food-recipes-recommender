@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
+using Recipes.DAL.Repositories;
 using Recipes.Service.DTOs;
 using Recipes.Service.DTOs.Filters;
 
@@ -10,11 +12,15 @@ namespace Recipes.Service.Recommendations.Fakes
     /// 
     /// See how Castle Dependency injection is configured in Recipes.Web.CastleInstallers.ServiceInstallers
     /// </summary>
-    public class UserContextRecommendations : IUserContextRecommendations
+    public class UserContextRecommendations : BaseRecommendations, IUserContextRecommendations
     {
-        public Task<IList<RecipeRecommendation>> Get(ContextBasedFilter filter)
+        public UserContextRecommendations(IRecipesRepository recipesRepository, IMapper mapper) : base(recipesRepository, mapper)
         {
-            throw new System.NotImplementedException();
+        }
+
+        public async Task<IList<RecipeRecommendation>> Get(ContextBasedFilter filter)
+        {
+            return await base.Get(filter);
         }
     }
 }
