@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Recipes.Service.DTOs;
@@ -16,9 +18,14 @@ namespace Recipes.Web.Controllers.Api.Recommendations
             _ingredientRecommendations = ingredientRecommendations;
         }
 
-        // GET: api/recommendations/IngredientBased
-        public async Task<RecipeRecommendation[]> Get(int[] ingredientIds, int? totalTimeFrom = null, int? totalTimeTo = null)
+        // GET: api/Recommendations/IngredientBased?ingredientIds=1&ingredientIds=2
+        public async Task<RecipeRecommendation[]> Get([FromUri] int[] ingredientIds, int? totalTimeFrom = null, int? totalTimeTo = null)
         {
+            if (ingredientIds == null || ingredientIds.Length == 0)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
             var filter = new IngredientBasedFilter
             {
                 IngredientIds = ingredientIds,
