@@ -8,8 +8,16 @@ namespace Recipes.Web.CastleInstallers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
+            // configuration for Recipes.Service.Stores 
             container.Register(Classes.FromAssemblyNamed("Recipes.Service")
-                .Where(type => type.Namespace.Contains("Implementation"))
+                .InNamespace("Recipes.Service.Stores.Implementation")
+                .WithService.DefaultInterfaces().LifestylePerWebRequest());
+
+            // configuration for Recipes.Service.Recommendations
+            container.Register(Classes.FromAssemblyNamed("Recipes.Service")
+                .InNamespace("Recipes.Service.Recommendations.Fakes")
+#warning use following line instead once all services are ready
+                //.InNamespace("Recipes.Service.Recommendations.Implementation")
                 .WithService.DefaultInterfaces().LifestylePerWebRequest());
         }
     }

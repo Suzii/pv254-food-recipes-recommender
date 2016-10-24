@@ -27,20 +27,5 @@ namespace Recipes.Web.Controllers.Api
             var recipe = _recipeStore.GetRecipeAsync(id);
             return await recipe;
         }
-
-        // POST: api/Recipes
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Recipes/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Recipes/5
-        public void Delete(int id)
-        {
-        }
     }
 }
