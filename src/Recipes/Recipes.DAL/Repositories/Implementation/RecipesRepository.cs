@@ -26,18 +26,6 @@ namespace Recipes.DAL.Repositories.Implementation
             }
         }
 
-        public Recipe GetFullRecipe(int id)
-        {
-            using (var dbContext = new AppContext())
-            {
-                var result = dbContext.Recipes
-                    .Include(r => r.IngredientUsages.Select(iu => iu.Ingredient))
-                    .Single(r => r.Id == id);
-
-                return result;
-            }
-        }
-
         public async Task<Recipe> GetFullRecipeAsync(int id)
         {
             using (var dbContext = new AppContext())

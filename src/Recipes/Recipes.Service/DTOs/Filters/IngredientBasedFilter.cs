@@ -11,12 +11,7 @@ namespace Recipes.Service.DTOs.Filters
         /// Ids of <see cref="Ingredient"/>
         /// </summary>
         public IList<int> IngredientIds { get; set; }
-
-        /// <summary>
-        /// Lower limit on Total (preparation + cooking) time
-        /// </summary>
-        public int? TotalTimeFrom { get; set; }
-
+        
         /// <summary>
         /// Upper limit on Total (preparation + cooking) time
         /// </summary>

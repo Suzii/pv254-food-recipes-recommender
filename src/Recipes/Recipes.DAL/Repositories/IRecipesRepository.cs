@@ -7,9 +7,7 @@ namespace Recipes.DAL.Repositories
     public interface IRecipesRepository
     {
         Recipe Save(Recipe recipe);
-
-        Recipe GetFullRecipe(int id);
-
+        
         Task<Recipe> GetFullRecipeAsync(int id);
 
         Task<IList<Recipe>> GetRecipesAsync(IList<int> ids);
