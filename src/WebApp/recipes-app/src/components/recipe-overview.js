@@ -6,8 +6,6 @@ import { getTimeForUI } from './../utils/utils';
 
 const RecipeOverview = ({ id, title, cookTimeInMinutes, prepTimeInMinutes, imageUrl, isVegetarian }) => {
     var isVegetarianClass = (isVegetarian)? 'veggie' : null;
-    var cookTime = (cookTimeInMinutes === 0)? '-' : getTimeForUI(cookTimeInMinutes);
-    var prepTime = (prepTimeInMinutes === 0)? '-' : getTimeForUI(prepTimeInMinutes);
 
     return (
         <div className="row recommendation">
@@ -16,8 +14,8 @@ const RecipeOverview = ({ id, title, cookTimeInMinutes, prepTimeInMinutes, image
             </div>
             <div className="col-xs-9">
                 <p><Link to={`/Recipes/${id}`} className="title">{ title }</Link><span className={isVegetarianClass}></span></p>
-                <p> Cooking: { cookTime }</p>
-                <p> Preparation: { prepTime }</p>
+                <p> Cooking: { getTimeForUI(cookTimeInMinutes) }</p>
+                <p> Preparation: { getTimeForUI(prepTimeInMinutes) }</p>
             </div>
         </div>
     );

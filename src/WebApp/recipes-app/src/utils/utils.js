@@ -1,4 +1,8 @@
 function getTimeForUI(timeInMinutes) {
+    if (timeInMinutes === 0) {
+        return '-';
+    }
+
     if (timeInMinutes === 60) {
         return 'up to 1 hour';
     }
