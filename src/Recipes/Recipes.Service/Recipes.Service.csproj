@@ -63,6 +63,7 @@
     <Compile Include="Recommendations\Fakes\RecipeMetadataRecommendations.cs" />
     <Compile Include="Recommendations\Fakes\UserContextRecommendations.cs" />
     <Compile Include="Recommendations\IIngredientRecommendations.cs" />
+    <Compile Include="Recommendations\Implementation\BaseRecommendations.cs" />
     <Compile Include="Recommendations\Implementation\IngredientRecommendations.cs" />
     <Compile Include="Recommendations\Implementation\RecipeMetadataRecommendations.cs" />
     <Compile Include="Recommendations\Implementation\UserContextRecommendations.cs" />

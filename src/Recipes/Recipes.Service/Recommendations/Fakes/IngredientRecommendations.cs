@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -16,9 +15,8 @@ namespace Recipes.Service.Recommendations.Fakes
     /// 
     /// See how Castle Dependency injection is configured in Recipes.Web.CastleInstallers.ServiceInstallers
     /// </summary>
-    public class IngredientRecommendations : IIngredientRecommendations
+    public class IngredientRecommendations : Implementation.BaseRecommendations, IIngredientRecommendations
     {
-        private readonly IRecipesRepository _recipesRepository;
         private readonly IIngredientUsagesRepository _usagesRepository;
         private readonly IIngredientsRepository _ingredientsRepository;
 
@@ -28,9 +26,8 @@ namespace Recipes.Service.Recommendations.Fakes
             IRecipesRepository recipesRepository, 
             IIngredientUsagesRepository usagesRepository, 
             IngredientRepository ingredientsRepository,
-             IMapper mapper)
+             IMapper mapper) : base(recipesRepository)
         {
-            _recipesRepository = recipesRepository;
             _usagesRepository = usagesRepository;
             _ingredientsRepository = ingredientsRepository;
             _mapper = mapper;
@@ -53,7 +50,7 @@ namespace Recipes.Service.Recommendations.Fakes
                 return new List<RecipeRecommendation>();
 
             // Get recommendations based on dice coefficient
-            return await DiceCoefficient(filter, filteredIngredients, false, recipeId);
+            return await GetRecommendationsByDiceCoefficient(filter, filteredIngredients, recipeId, false);
         }
 
         /// <summary>
@@ -70,16 +67,17 @@ namespace Recipes.Service.Recommendations.Fakes
                 return new List<RecipeRecommendation>();
 
             // Get recommendations based on dice coefficient
-            return await DiceCoefficient(filter, filteredIngredients);
+            return await GetRecommendationsByDiceCoefficient(filter, filteredIngredients);
         }
 
-        private async Task<IList<RecipeRecommendation>> DiceCoefficient(IngredientBasedFilter filter, 
-            IList<int> filteredIngredients, bool random = true, int? recipeId = null)
+        private async Task<IList<RecipeRecommendation>> GetRecommendationsByDiceCoefficient
+            (IngredientBasedFilter filter, IList<int> filteredIngredients, int? recipeId = null, bool random = true)
         {
             // Get the coefficients
-            var diceCoefficients = await GetCoefficients(filteredIngredients, random);
+            var diceCoefficients = await GetDiceCoefficients(filteredIngredients, random);
 
-            var recommendations = new List<RecipeRecommendation>(filter.PageSize.GetValueOrDefault(10));
+            var pageSize = filter.PageSize.GetValueOrDefault(10);
+            var recommendations = new List<RecipeRecommendation>(pageSize);
 
             // Choose recommendations that suit all the constraints
             foreach (var coef in diceCoefficients)
@@ -91,57 +89,28 @@ namespace Recipes.Service.Recommendations.Fakes
                     continue;
 
                 // Check the total time
-                var recipe = await _recipesRepository.GetSingleRecipeAsync(id);
+                var recipe = await RecipesRepository.GetSingleRecipeAsync(id);
                 if (recipe.PrepTimeInMinutes + recipe.CookTimeInMinutes 
                     <= filter.TotalTimeTo.GetValueOrDefault(int.MaxValue))
                 {
                     recommendations.Add(_mapper.Map<RecipeRecommendation>(recipe));
                 }
 
-                if (recommendations.Count == filter.PageSize.GetValueOrDefault(10))
+                if (recommendations.Count == pageSize)
                     break;
             }
 
             return recommendations;
         }
 
-        private async Task<List<DiceCoefficientHelper>> GetCoefficients(IList<int> filteredIngredients, 
-            bool random)
+        private async Task<List<DiceCoefficientHelper>> GetDiceCoefficients(IList<int> filteredIngredients, bool random)
         {
-            List<DiceCoefficientHelper> diceCoefficients;
-            if (random)
-            {
-                var recipeIds = await GetRecipeIds();
-                diceCoefficients = await _usagesRepository
-                    .GetDiceCoefficients(filteredIngredients, recipeIds);
-            }
-            else
-            {
-                diceCoefficients = await _usagesRepository
-                    .GetDiceCoefficients(filteredIngredients);
-            }
+            // if null, all recipes will be considered
+            var recipeIdsSubset = (random) ? await GetRandomRecipeIds(5000) : null;
+
+            var diceCoefficients = await _usagesRepository.GetDiceCoefficients(filteredIngredients, recipeIdsSubset);
+
             return diceCoefficients;
-        }
-
-        /// <summary>
-        /// Gets ids of all recipes that are going to be used for recommendation selection.
-        /// </summary>
-        /// <param name="random">Determines whether recommendations
-        ///  should be selected from random subset of recipes</param>
-        /// <returns>List of recipes' ids.</returns>
-        private async Task<IList<int>> GetRecipeIds(bool random = false)
-        {
-            var allIds = await _recipesRepository.GetAllIdsAsync();
-            if (!random)
-            {
-                return allIds;
-            }
-
-            var randomSequence = new Random();
-            return allIds
-                .OrderBy(id => randomSequence.Next())
-                .Take(5000) //TODO Decide how many.
-                .ToList();
         }
     }
 }
