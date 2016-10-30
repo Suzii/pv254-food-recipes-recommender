@@ -65,5 +65,17 @@ namespace Recipes.DAL.Repositories.Implementation
                 return result;
             }
         }
+
+        public async Task<IEnumerable<Ingredient>> SearchByNameAsync(string name)
+        {
+            using (var dbContext = new AppContext())
+            {
+                var result = await dbContext.Ingredients
+                    .Where(i => i.Name.Contains(name))
+                    .ToListAsync();
+
+                return result;
+            }
+        }
     }
 }

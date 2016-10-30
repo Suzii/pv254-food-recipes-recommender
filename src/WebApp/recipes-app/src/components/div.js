@@ -18,7 +18,6 @@ const Div = (props) => {
 
     const classnames = classNames(props.className, {faded: hasContent && props.isLoading});
 
-    console.log('Has children:', hasContent, classnames);
     const spinner = (props.isLoading)? (<div className="text-center" style={ overlayStyles }><Spinner spinnerName='tree-bounce' noFadeIn={true} /></div>) : null;
 
     return (

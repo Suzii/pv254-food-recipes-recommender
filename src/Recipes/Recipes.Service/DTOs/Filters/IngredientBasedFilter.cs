@@ -16,5 +16,10 @@ namespace Recipes.Service.DTOs.Filters
         /// Upper limit on Total (preparation + cooking) time
         /// </summary>
         public int? TotalTimeTo { get; set; }
+
+        /// <summary>
+        /// Restricts recommendarion to vegetarian recipes
+        /// </summary>
+        public bool IsVegetarian { get; set; }
     }
 }

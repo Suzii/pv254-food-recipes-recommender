@@ -196,6 +196,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\Recommendations\IngredientsController.cs" />
     <Compile Include="Controllers\Api\Recommendations\IngredientBasedController.cs" />
     <Compile Include="Controllers\Api\Recommendations\SimilarRecipesController.cs" />
     <Compile Include="Controllers\Api\Recommendations\UserContextController.cs" />

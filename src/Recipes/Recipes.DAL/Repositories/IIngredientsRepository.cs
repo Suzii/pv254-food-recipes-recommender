@@ -15,5 +15,7 @@ namespace Recipes.DAL.Repositories
         Task<Ingredient> GetByNameAsync(string name);
 
         Task<int> GetIdByNameAsync(string name);
+
+        Task<IEnumerable<Ingredient>> SearchByNameAsync(string name);
     }
 }

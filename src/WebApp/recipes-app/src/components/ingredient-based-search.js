@@ -2,6 +2,14 @@ import React from 'react';
 
 class IngredientBasedSearch extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.name = null;
+        this.timeFrom = null;
+        this.isVegetarian = null;
+    }
+
     render() {
         return (
             <div className="row ingredient-based-search">
@@ -11,39 +19,49 @@ class IngredientBasedSearch extends React.Component {
                     <div className="form-group">
                         <label htmlFor="ingredient" className="col-sm-2 control-label">Ingredient</label>
                         <div className="col-sm-10">
-                            <input type="ingredient" className="form-control" id="ingredient" placeholder="Spaghetti..."/>
-                        </div>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="availableTimeFrom" className="col-sm-2 control-label">Available time from</label>
-                        <div className="col-sm-10">
-                            <input type="availableTimeFrom" className="form-control" id="availableTimeFrom" placeholder="10"/>
+                            <input type="text" className="form-control" id="ingredient" placeholder="Spaghetti..."
+                                    ref={ (node) => this.name = node }/>
                         </div>
                     </div>
                     <div className="form-group">
                         <label htmlFor="availableTimeTo" className="col-sm-2 control-label">Available time to</label>
                         <div className="col-sm-10">
-                            <input type="availableTimeTo" className="form-control" id="availableTimeTo" placeholder="10"/>
+                            <input type="number" className="form-control" id="availableTimeTo" placeholder="10"
+                                    ref={ (node) => this.timeFrom = node }/>
                         </div>
                     </div>
                     <div className="form-group">
                         <div className="col-sm-offset-2 col-sm-10">
                             <div className="checkbox">
                                 <label>
-                                    <input type="checkbox" />
-                                     Only vegetarian
+                                    <input type="checkbox"
+                                           ref={ (node) => this.isVegetarian = node }/>
+                                    Only vegetarian
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div className="form-group">
                         <div className="col-sm-offset-2 col-sm-10">
-                            <button type="submit" className="btn btn-default">Search</button>
+                            <button type="submit" className="btn btn-default" onClick={(e) => this.submit(e) }>Search</button>
                         </div>
                     </div>
                 </form>
             </div>
         );
+    }
+
+    submit(event) {
+        event.preventDefault();
+
+        var query = {
+            ingredientIds: [],
+            totalTimeTo: this.timeFrom.value,
+            isVegetarian: this.isVegetarian.checked,
+            pageSize: 10
+        };
+
+        console.log('Submitting', query);
     }
 }
 

@@ -69,6 +69,8 @@
     <Compile Include="Recommendations\Implementation\UserContextRecommendations.cs" />
     <Compile Include="Recommendations\IUserContextRecommendations.cs" />
     <Compile Include="Recommendations\IRecipeMetadataRecommendations.cs" />
+    <Compile Include="Stores\IIngredientService.cs" />
+    <Compile Include="Stores\Implementation\IngredientService.cs" />
     <Compile Include="Stores\Implementation\RecipeStore.cs" />
     <Compile Include="Stores\IRecipeStore.cs" />
   </ItemGroup>

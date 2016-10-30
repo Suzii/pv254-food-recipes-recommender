@@ -18,7 +18,7 @@ namespace Recipes.Web.Controllers.Api.Recommendations
         }
 
         // POST: api/Recommendations/IngredientBased?ingredientIds=1&ingredientIds=2
-        public async Task<RecipeRecommendation[]> Post(int[] ingredientIds, int? totalTimeTo = null, int pageSize = 10, int pageNumber = 1)
+        public async Task<RecipeRecommendation[]> Post(int[] ingredientIds, bool isVegetarian = false, int? totalTimeTo = null, int pageSize = 10, int pageNumber = 1)
         {
             if (ingredientIds == null || ingredientIds.Length == 0)
             {
@@ -28,6 +28,7 @@ namespace Recipes.Web.Controllers.Api.Recommendations
             var filter = new IngredientBasedFilter
             {
                 IngredientIds = ingredientIds,
+                IsVegetarian = isVegetarian,
                 TotalTimeTo = totalTimeTo,
                 PageNumber = pageNumber,
                 PageSize = pageSize
