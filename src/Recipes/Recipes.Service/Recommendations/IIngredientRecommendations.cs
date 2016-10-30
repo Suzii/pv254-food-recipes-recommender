@@ -16,5 +16,7 @@ namespace Recipes.Service.Recommendations
         /// <param name="filter">Ingredient filter to be used</param>
         /// <returns>List of appropriate recommendations</returns>
         Task<IList<RecipeRecommendation>> Get(IngredientBasedFilter filter);
+
+        Task<IList<RecipeRecommendation>> Get(IngredientBasedFilter filter, int id);
     }
 }
