@@ -25,7 +25,7 @@ namespace Recipes.Service.Recommendations.Fakes
         public IngredientRecommendations(
             IRecipesRepository recipesRepository, 
             IIngredientUsagesRepository usagesRepository, 
-            IngredientRepository ingredientsRepository,
+            IIngredientsRepository ingredientsRepository,
              IMapper mapper) : base(recipesRepository)
         {
             _usagesRepository = usagesRepository;

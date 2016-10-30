@@ -20,7 +20,7 @@ namespace Recipes.Service.Recommendations.Implementation
         public IngredientRecommendations(
             IRecipesRepository recipesRepository,
             IIngredientUsagesRepository usagesRepository,
-            IngredientRepository ingredientsRepository,
+            IIngredientsRepository ingredientsRepository,
              IMapper mapper) : base(recipesRepository)
         {
             _usagesRepository = usagesRepository;

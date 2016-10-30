@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Recipes.DAL.Entities;
 
 namespace Recipes.DAL.Repositories.Implementation
 {
-    public class IngredientRepository : IIngredientsRepository
+    public class IngredientsRepository : IIngredientsRepository
     {
         public Ingredient Save(Ingredient ingredient)
         {

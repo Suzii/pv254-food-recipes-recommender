@@ -62,7 +62,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipesInitializer.cs" />
     <Compile Include="Repositories\IIngredientUsagesRepository.cs" />
-    <Compile Include="Repositories\Implementation\IngredientRepository.cs" />
+    <Compile Include="Repositories\Implementation\IngredientsRepository.cs" />
     <Compile Include="Repositories\Implementation\IngredientUsagesRepository.cs" />
     <Compile Include="Repositories\Implementation\RecipesRepository.cs" />
     <Compile Include="Repositories\IIngredientsRepository.cs" />
