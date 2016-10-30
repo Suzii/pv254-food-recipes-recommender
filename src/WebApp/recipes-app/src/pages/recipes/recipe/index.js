@@ -1,6 +1,7 @@
 import React from 'react';
 import Div from '../../../components/div';
 import Recipe from './recipe';
+import RecommendationByIngredients from './recommendations/recommendation-by-ingredients';
 import SimilarRecipes from './recommendations/similar-recipes';
 import YouMayLike from './recommendations/you-may-like';
 import Critique from './recommendations/critiquing';
@@ -21,6 +22,12 @@ class Index extends React.Component {
                             <Recipe { ...this.props }/>
                         </div>
                         <div className="col-xs-12 col-sm-2 col-md-4">
+                            <div className="row">
+                                <div className="col-xs-12">
+                                    <RecommendationByIngredients { ...this.props }/>
+                                </div>
+                            </div>
+
                             <div className="row">
                                 <div className="col-xs-12">
                                     <SimilarRecipes { ...this.props }/>

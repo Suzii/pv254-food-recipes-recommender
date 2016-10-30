@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -18,8 +17,8 @@ namespace Recipes.Web.Controllers.Api.Recommendations
             _ingredientRecommendations = ingredientRecommendations;
         }
 
-        // GET: api/Recommendations/IngredientBased?ingredientIds=1&ingredientIds=2
-        public async Task<RecipeRecommendation[]> Get([FromUri] int[] ingredientIds, int? totalTimeTo = null, int pageSize = 10, int pageNumber = 1)
+        // POST: api/Recommendations/IngredientBased?ingredientIds=1&ingredientIds=2
+        public async Task<RecipeRecommendation[]> Post(int[] ingredientIds, int? totalTimeTo = null, int pageSize = 10, int pageNumber = 1)
         {
             if (ingredientIds == null || ingredientIds.Length == 0)
             {
@@ -35,6 +34,20 @@ namespace Recipes.Web.Controllers.Api.Recommendations
             };
 
             var result = await _ingredientRecommendations.Get(filter);
+
+            return result.ToArray();
+        }
+
+        // GET: api/Recommendations/IngredientBased?currentRecipeId=60
+        public async Task<RecipeRecommendation[]> Get(int currentRecipeId, int pageSize = 10, int pageNumber = 1)
+        {
+            var filter = new IngredientBasedFilter
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            var result = await _ingredientRecommendations.Get(filter, currentRecipeId);
 
             return result.ToArray();
         }

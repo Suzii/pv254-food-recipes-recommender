@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Recipes.DAL.Helpers;
 using Recipes.DAL.Repositories;
-using Recipes.DAL.Repositories.Implementation;
 using Recipes.Service.DTOs;
 using Recipes.Service.DTOs.Filters;
 
@@ -21,7 +20,8 @@ namespace Recipes.Service.Recommendations.Implementation
             IRecipesRepository recipesRepository,
             IIngredientUsagesRepository usagesRepository,
             IIngredientsRepository ingredientsRepository,
-             IMapper mapper) : base(recipesRepository)
+            IMapper mapper) 
+            : base(recipesRepository)
         {
             _usagesRepository = usagesRepository;
             _ingredientsRepository = ingredientsRepository;
