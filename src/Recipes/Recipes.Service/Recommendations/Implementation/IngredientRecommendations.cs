@@ -34,7 +34,7 @@ namespace Recipes.Service.Recommendations.Implementation
         public async Task<IList<RecipeRecommendation>> Get(IngredientBasedFilter filter, int recipeId)
         {
             // Get ingredients for given recipe
-            var ingredients = await _usagesRepository.GetIngredientUsagesForRecipe(recipeId);
+            var ingredients = await _usagesRepository.GetUsedIngredientIds(recipeId);
 
             // Get rid of 'other' ingredients
             var otherIngredientId = await _ingredientsRepository.GetIdByNameAsync("other");
@@ -105,7 +105,7 @@ namespace Recipes.Service.Recommendations.Implementation
             {
                 var recipeIds = await GetIds();
                 diceCoefficients = await _usagesRepository
-                    .GetDiceCoefficientsOnRandomRecipes(filteredIngredients, recipeIds);
+                    .GetDiceCoefficients(filteredIngredients, recipeIds);
             }
             else
             {

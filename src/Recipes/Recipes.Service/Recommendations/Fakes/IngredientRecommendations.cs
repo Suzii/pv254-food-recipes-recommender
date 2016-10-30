@@ -24,8 +24,11 @@ namespace Recipes.Service.Recommendations.Fakes
 
         private readonly IMapper _mapper;
 
-        public IngredientRecommendations(IRecipesRepository recipesRepository, IIngredientUsagesRepository usagesRepository, 
-            IngredientRepository ingredientsRepository, IMapper mapper)
+        public IngredientRecommendations(
+            IRecipesRepository recipesRepository, 
+            IIngredientUsagesRepository usagesRepository, 
+            IngredientRepository ingredientsRepository,
+             IMapper mapper)
         {
             _recipesRepository = recipesRepository;
             _usagesRepository = usagesRepository;
@@ -39,7 +42,7 @@ namespace Recipes.Service.Recommendations.Fakes
         public async Task<IList<RecipeRecommendation>> Get(IngredientBasedFilter filter, int recipeId)
         {
             // Get ingredients for given recipe
-            var ingredients = await _usagesRepository.GetIngredientUsagesForRecipe(recipeId);
+            var ingredients = await _usagesRepository.GetUsedIngredientIds(recipeId);
 
             // Get rid of 'other' ingredients
             var otherIngredientId = await _ingredientsRepository.GetIdByNameAsync("other");
@@ -108,9 +111,9 @@ namespace Recipes.Service.Recommendations.Fakes
             List<DiceCoefficientHelper> diceCoefficients;
             if (random)
             {
-                var recipeIds = await GetIds();
+                var recipeIds = await GetRecipeIds();
                 diceCoefficients = await _usagesRepository
-                    .GetDiceCoefficientsOnRandomRecipes(filteredIngredients, recipeIds);
+                    .GetDiceCoefficients(filteredIngredients, recipeIds);
             }
             else
             {
@@ -126,7 +129,7 @@ namespace Recipes.Service.Recommendations.Fakes
         /// <param name="random">Determines whether recommendations
         ///  should be selected from random subset of recipes</param>
         /// <returns>List of recipes' ids.</returns>
-        private async Task<IList<int>> GetIds(bool random = false)
+        private async Task<IList<int>> GetRecipeIds(bool random = false)
         {
             var allIds = await _recipesRepository.GetAllIdsAsync();
             if (!random)

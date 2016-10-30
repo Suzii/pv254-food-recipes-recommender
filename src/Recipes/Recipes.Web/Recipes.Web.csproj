@@ -281,6 +281,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Recipes.Core\Recipes.Core.csproj">
+      <Project>{2ba67cf7-af2a-4854-b308-35b996cd70d4}</Project>
+      <Name>Recipes.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Recipes.Service\Recipes.Service.csproj">
       <Project>{7d1b72ea-3e03-4324-8cc4-ef419718c870}</Project>
       <Name>Recipes.Service</Name>

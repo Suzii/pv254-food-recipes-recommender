@@ -75,6 +75,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Recipes.Core\Recipes.Core.csproj">
+      <Project>{2ba67cf7-af2a-4854-b308-35b996cd70d4}</Project>
+      <Name>Recipes.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Recipes.DAL\Recipes.DAL.csproj">
       <Project>{7fe5bad7-b6ec-40e9-a683-bf7e1d52e48f}</Project>
       <Name>Recipes.DAL</Name>
