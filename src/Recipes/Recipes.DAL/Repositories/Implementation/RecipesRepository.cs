@@ -38,6 +38,17 @@ namespace Recipes.DAL.Repositories.Implementation
             }
         }
 
+        public async Task<Recipe> GetSingleRecipeAsync(int id)
+        {
+            using (var dbContext = new AppContext())
+            {
+                var result = await dbContext.Recipes
+                    .SingleOrDefaultAsync(r => r.Id == id);
+
+                return result;
+            }
+        }
+
         public async Task<IList<Recipe>> GetRecipesAsync(IList<int> ids)
         {
             using (var dbContext = new AppContext())

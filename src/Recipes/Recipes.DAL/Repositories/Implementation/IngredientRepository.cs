@@ -44,12 +44,25 @@ namespace Recipes.DAL.Repositories.Implementation
             }
         }
 
-        public Task<Ingredient> GetByNameAsync(string name)
+        public async Task<Ingredient> GetByNameAsync(string name)
         {
             using (var dbContext = new AppContext())
             {
-                var result = dbContext.Ingredients
+                var result = await dbContext.Ingredients
                     .SingleOrDefaultAsync(i => i.Name.Equals(name));
+
+                return result;
+            }
+        }
+
+        public async Task<int> GetIdByNameAsync(string name)
+        {
+            using (var dbContext = new AppContext())
+            {
+                var result = await dbContext.Ingredients
+                    .Where(i => i.Name.Equals(name))
+                    .Select(i => i.Id)
+                    .SingleOrDefaultAsync();
 
                 return result;
             }

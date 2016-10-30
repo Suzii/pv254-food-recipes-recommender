@@ -15,5 +15,7 @@ namespace Recipes.DAL.Repositories
         Task<List<Recipe>> GetAllAsync();
 
         Task<IList<int>> GetAllIdsAsync();
+
+        Task<Recipe> GetSingleRecipeAsync(int id);
     }
 }

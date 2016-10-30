@@ -53,6 +53,7 @@
     <Compile Include="Entities\Ingredient.cs" />
     <Compile Include="Entities\IngredientUsage.cs" />
     <Compile Include="Entities\Recipe.cs" />
+    <Compile Include="Helpers\DiceCoefficientHelper.cs" />
     <Compile Include="Migrations\201610150945216_AddIngredientNameIndex.cs" />
     <Compile Include="Migrations\201610150945216_AddIngredientNameIndex.Designer.cs">
       <DependentUpon>201610150945216_AddIngredientNameIndex.cs</DependentUpon>
@@ -60,7 +61,9 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipesInitializer.cs" />
+    <Compile Include="Repositories\IIngredientUsagesRepository.cs" />
     <Compile Include="Repositories\Implementation\IngredientRepository.cs" />
+    <Compile Include="Repositories\Implementation\IngredientUsagesRepository.cs" />
     <Compile Include="Repositories\Implementation\RecipesRepository.cs" />
     <Compile Include="Repositories\IIngredientsRepository.cs" />
     <Compile Include="Repositories\IRecipesRepository.cs" />
