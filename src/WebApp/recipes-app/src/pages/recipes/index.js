@@ -1,5 +1,4 @@
 import React from 'react';
-import YouMayLike from './recipe/recommendations/you-may-like';
 import IngredientBasedSearch from './../../components/ingredient-based-search';
 
 const Index = (props) => {
@@ -13,7 +12,7 @@ const Index = (props) => {
                 </div>
 
                 <div className="col-xs-12 col-sm-4 col-md-4">
-                    <YouMayLike params={ { recipeId: "0" } }/>
+                    TODO
                 </div>
             </div>
         </div>
