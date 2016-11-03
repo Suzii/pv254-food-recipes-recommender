@@ -50,13 +50,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppContext.cs" />
+    <Compile Include="Constants\RecommenderType.cs" />
     <Compile Include="Entities\Ingredient.cs" />
     <Compile Include="Entities\IngredientUsage.cs" />
     <Compile Include="Entities\Recipe.cs" />
+    <Compile Include="Entities\RecommendationUsed.cs" />
     <Compile Include="Helpers\DiceCoefficientHelper.cs" />
     <Compile Include="Migrations\201610150945216_AddIngredientNameIndex.cs" />
     <Compile Include="Migrations\201610150945216_AddIngredientNameIndex.Designer.cs">
       <DependentUpon>201610150945216_AddIngredientNameIndex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611032026014_Add_RecommendationUsed_Table.cs" />
+    <Compile Include="Migrations\201611032026014_Add_RecommendationUsed_Table.Designer.cs">
+      <DependentUpon>201611032026014_Add_RecommendationUsed_Table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,8 +70,10 @@
     <Compile Include="Repositories\IIngredientUsagesRepository.cs" />
     <Compile Include="Repositories\Implementation\IngredientsRepository.cs" />
     <Compile Include="Repositories\Implementation\IngredientUsagesRepository.cs" />
+    <Compile Include="Repositories\Implementation\RecommendationUsedRepository.cs" />
     <Compile Include="Repositories\Implementation\RecipesRepository.cs" />
     <Compile Include="Repositories\IIngredientsRepository.cs" />
+    <Compile Include="Repositories\IRecomendationUsedRepository.cs" />
     <Compile Include="Repositories\IRecipesRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +83,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201610150945216_AddIngredientNameIndex.resx">
       <DependentUpon>201610150945216_AddIngredientNameIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611032026014_Add_RecommendationUsed_Table.resx">
+      <DependentUpon>201611032026014_Add_RecommendationUsed_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

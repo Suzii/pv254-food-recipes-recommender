@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Recipes.DAL.Helpers;
 using Recipes.DAL.Repositories;
+using Recipes.Service.Constants;
 using Recipes.Service.DTOs;
 using Recipes.Service.DTOs.Filters;
 
@@ -93,7 +94,9 @@ namespace Recipes.Service.Recommendations.Fakes
                 if (recipe.PrepTimeInMinutes + recipe.CookTimeInMinutes 
                     <= filter.TotalTimeTo.GetValueOrDefault(int.MaxValue))
                 {
-                    recommendations.Add(_mapper.Map<RecipeRecommendation>(recipe));
+                    var recipeRecommendation = _mapper.Map<RecipeRecommendation>(recipe);
+                    recipeRecommendation.RecommenderType = RecommenderType.IngredientBased;;
+                    recommendations.Add(recipeRecommendation);
                 }
 
                 if (recommendations.Count == pageSize)

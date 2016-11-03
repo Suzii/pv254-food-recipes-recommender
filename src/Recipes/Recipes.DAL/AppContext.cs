@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using Recipes.DAL.Entities;
 
 namespace Recipes.DAL
@@ -15,12 +16,18 @@ namespace Recipes.DAL
 
         public DbSet<IngredientUsage> IngredientUsages { get; set; }
 
+        public DbSet<RecommendationUsed> RecommendationUseds { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Recipe>().ToTable("Recipe");
             modelBuilder.Entity<IngredientUsage>().ToTable("IngredientUsage");
             modelBuilder.Entity<Ingredient>().ToTable("Ingredient");
+            modelBuilder.Entity<RecommendationUsed>().ToTable("RecommendationUsed");
+
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
     }
 }

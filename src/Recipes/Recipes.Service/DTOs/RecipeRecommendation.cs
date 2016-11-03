@@ -1,8 +1,12 @@
-﻿namespace Recipes.Service.DTOs
+﻿using Recipes.Service.Constants;
+
+namespace Recipes.Service.DTOs
 {
     public class RecipeRecommendation
     {
         public int Id { get; set; }
+
+        public RecommenderType RecommenderType { get; set; }
 
         public string Title { get; set; }
 

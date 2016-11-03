@@ -18,7 +18,7 @@ namespace Recipes.Service.DTOs.Filters
         public int? TotalTimeTo { get; set; }
 
         /// <summary>
-        /// Restricts recommendarion to vegetarian recipes
+        /// Restricts recommendation to vegetarian recipes
         /// </summary>
         public bool IsVegetarian { get; set; }
     }

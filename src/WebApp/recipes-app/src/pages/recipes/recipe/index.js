@@ -38,7 +38,7 @@ class Index extends React.Component {
     }
 
     render() {
-        console.debug('Index.render()', this.props.youMayLike);
+        var recipeId = parseInt(this.props.params.recipeId);
         return (
             <Div>
 
@@ -50,19 +50,19 @@ class Index extends React.Component {
                         <div className="col-xs-12 col-sm-2 col-md-4">
                             <div className="row">
                                 <div className="col-xs-12">
-                                    <RecommendationByIngredients recipes={ this.props.ingredientBased } />
+                                    <RecommendationByIngredients currentRecipeId={ recipeId } recipes={ this.props.ingredientBased } />
                                 </div>
                             </div>
 
                             <div className="row">
                                 <div className="col-xs-12">
-                                    <SimilarRecipes recipes={ this.props.similarRecipes } />
+                                    <SimilarRecipes currentRecipeId={ recipeId }  recipes={ this.props.similarRecipes } />
                                 </div>
                             </div>
 
                             <div className="row">
                                 <div className="col-xs-12">
-                                    <YouMayLike recipes={ this.props.youMayLike } />
+                                    <YouMayLike currentRecipeId={ recipeId } recipes={ this.props.youMayLike } />
                                 </div>
                             </div>
                         </div>

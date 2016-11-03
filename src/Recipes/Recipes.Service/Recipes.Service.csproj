@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\RecommenderType.cs" />
     <Compile Include="DTOs\Filters\RecipeMetadataBasedFilter.cs" />
     <Compile Include="DTOs\Filters\ContextBasedFilter.cs" />
     <Compile Include="DTOs\Filters\PagerFilter.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="DTOs\IngredientUsage.cs" />
     <Compile Include="DTOs\Recipe.cs" />
     <Compile Include="DTOs\RecipeRecommendation.cs" />
+    <Compile Include="DTOs\UserActivity\RecommendationUsed.cs" />
     <Compile Include="Mappings\AutoMapperConfig.cs" />
     <Compile Include="Mappings\IngredientProfile.cs" />
     <Compile Include="Mappings\IngredientUsageProfile.cs" />
@@ -72,7 +74,9 @@
     <Compile Include="Stores\IIngredientService.cs" />
     <Compile Include="Stores\Implementation\IngredientService.cs" />
     <Compile Include="Stores\Implementation\RecipeStore.cs" />
+    <Compile Include="Stores\Implementation\RecommendationsUsedService.cs" />
     <Compile Include="Stores\IRecipeStore.cs" />
+    <Compile Include="Stores\IRecommendationsUsedService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

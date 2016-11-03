@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Recipes.DAL.Repositories;
+using Recipes.Service.Constants;
 using Recipes.Service.DTOs;
 using Recipes.Service.DTOs.Filters;
 
@@ -20,7 +21,13 @@ namespace Recipes.Service.Recommendations.Fakes
 
         public async Task<IList<RecipeRecommendation>> Get(RecipeMetadataBasedFilter filter)
         {
-            return await base.Get(filter);
+            var recipeRecommendations = await base.Get(filter);
+            foreach (var recipeRecommendation in recipeRecommendations)
+            {
+                recipeRecommendation.RecommenderType = RecommenderType.RecipeMetadata;
+            }
+
+            return recipeRecommendations;
         }
     }
 }
