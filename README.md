@@ -1,7 +1,7 @@
 # pv254-food-recipes-recommender
 School project for course PV245 Recommender Systems (Masaryk University) for suggesting food recipes.
 
-# Running React app in develoment mode
+# Running React app in development mode
 1. Install [Node.js](https://nodejs.org/en/download/)
 2. Run the .net application (Recipes.sln) simply by hitting F5 in VisualStudio
 3. Check out the port that this .net application is currently running at
