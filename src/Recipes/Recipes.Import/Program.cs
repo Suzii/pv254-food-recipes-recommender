@@ -11,7 +11,7 @@ namespace Recipes.Import
         static void Main(string[] args)
         {
             // NOTE : I know this is totally terrible but I did not figure out yet how to set up dependency injection in console application
-            var ingredientsRepository = new IngredientRepository();
+            var ingredientsRepository = new IngredientsRepository();
             var recipesRepository = new RecipesRepository();
             var ingredientStore = new IngredientStore(ingredientsRepository);
             var recipesStore = new RecipeStore(recipesRepository);
