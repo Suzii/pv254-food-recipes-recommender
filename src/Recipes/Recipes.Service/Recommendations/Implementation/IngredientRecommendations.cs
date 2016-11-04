@@ -83,10 +83,11 @@ namespace Recipes.Service.Recommendations.Implementation
                 if (id == recipeId.GetValueOrDefault(-1))
                     continue;
 
-                // Check the total time
+                // Check the total time and isVegetarian
                 var recipe = await RecipesRepository.GetSingleRecipeAsync(id);
                 if (recipe.PrepTimeInMinutes + recipe.CookTimeInMinutes
-                    <= filter.TotalTimeTo.GetValueOrDefault(int.MaxValue))
+                    <= filter.TotalTimeTo.GetValueOrDefault(int.MaxValue) && 
+                    !(filter.IsVegetarian && !recipe.IsVegetarian))
                 {
                     recommendations.Add(_mapper.Map<RecipeRecommendation>(recipe));
                 }
