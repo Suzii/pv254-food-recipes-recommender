@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -107,6 +108,23 @@ namespace Recipes.Service.Recommendations.Implementation
             var diceCoefficients = await _usagesRepository.GetDiceCoefficients(filteredIngredients, recipeIdsSubset);
 
             return diceCoefficients;
+        }
+
+        /// <summary>
+        /// Randomly selects recommendations from recipes with the highest coefficients.
+        /// </summary>
+        /// <param name="recipes">Recipes with the highest coefficients.</param>
+        /// <param name="size">Number of recipes to be chosen.</param>
+        /// <returns>List of recommendations.</returns>
+        private List<RecipeRecommendation> getRecommendationsRandom(IList<RecipeRecommendation> recipes, int size)
+        {
+            var randomSequence = new Random();
+            var randomlySelectedRecommendations = recipes
+                .OrderBy(id => randomSequence.Next())
+                .Take(size)
+                .ToList();
+
+            return randomlySelectedRecommendations;
         }
     }
 }
