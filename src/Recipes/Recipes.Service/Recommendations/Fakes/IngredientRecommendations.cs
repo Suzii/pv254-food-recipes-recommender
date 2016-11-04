@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -23,10 +24,10 @@ namespace Recipes.Service.Recommendations.Fakes
         private readonly IMapper _mapper;
 
         public IngredientRecommendations(
-            IRecipesRepository recipesRepository, 
-            IIngredientUsagesRepository usagesRepository, 
+            IRecipesRepository recipesRepository,
+            IIngredientUsagesRepository usagesRepository,
             IIngredientsRepository ingredientsRepository,
-            IMapper mapper) 
+            IMapper mapper)
             : base(recipesRepository)
         {
             _usagesRepository = usagesRepository;
@@ -51,7 +52,7 @@ namespace Recipes.Service.Recommendations.Fakes
                 return new List<RecipeRecommendation>();
 
             // Get recommendations based on dice coefficient
-            return await GetRecommendationsByDiceCoefficient(filter, filteredIngredients, recipeId, false);
+            return await GetRecommendationsByDiceCoefficient(filter, filteredIngredients, recipeId);
         }
 
         /// <summary>
@@ -75,10 +76,10 @@ namespace Recipes.Service.Recommendations.Fakes
             (IngredientBasedFilter filter, IList<int> filteredIngredients, int? recipeId = null, bool random = true)
         {
             // Get the coefficients
-            var diceCoefficients = await GetDiceCoefficients(filteredIngredients, random);
+            var diceCoefficients = await _usagesRepository.GetDiceCoefficients(filteredIngredients);
 
-            var pageSize = filter.PageSize.GetValueOrDefault(10);
-            var recommendations = new List<RecipeRecommendation>(pageSize);
+            const int candidatesSize = 50; //TODO decide
+            var candidates = new List<RecipeRecommendation>(candidatesSize);
 
             // Choose recommendations that suit all the constraints
             foreach (var coef in diceCoefficients)
@@ -89,31 +90,38 @@ namespace Recipes.Service.Recommendations.Fakes
                 if (id == recipeId.GetValueOrDefault(-1))
                     continue;
 
-                // Check the total time
+                // Check the total time and isVegetarian
                 var recipe = await RecipesRepository.GetSingleRecipeAsync(id);
-                if (recipe.PrepTimeInMinutes + recipe.CookTimeInMinutes 
-                    <= filter.TotalTimeTo.GetValueOrDefault(int.MaxValue))
+                if (recipe.PrepTimeInMinutes + recipe.CookTimeInMinutes
+                    <= filter.TotalTimeTo.GetValueOrDefault(int.MaxValue) &&
+                    !(filter.IsVegetarian && !recipe.IsVegetarian))
                 {
-                    var recipeRecommendation = _mapper.Map<RecipeRecommendation>(recipe);
-                    recipeRecommendation.RecommenderType = RecommenderType.IngredientBased;;
-                    recommendations.Add(recipeRecommendation);
+                    candidates.Add(_mapper.Map<RecipeRecommendation>(recipe));
                 }
 
-                if (recommendations.Count == pageSize)
+                if (candidates.Count == candidatesSize)
                     break;
             }
 
-            return recommendations;
+            return random ? GetRecommendationsRandomly(candidates, filter.PageSize.GetValueOrDefault(10))
+                : candidates.Take(filter.PageSize.GetValueOrDefault(10)).ToList();
         }
 
-        private async Task<List<DiceCoefficientHelper>> GetDiceCoefficients(IList<int> filteredIngredients, bool random)
+        /// <summary>
+        /// Randomly selects recommendations from recipes with the highest coefficients.
+        /// </summary>
+        /// <param name="recipes">Recipes with the highest coefficients.</param>
+        /// <param name="size">Number of recipes to be chosen.</param>
+        /// <returns>List of recommendations.</returns>
+        private List<RecipeRecommendation> GetRecommendationsRandomly(IList<RecipeRecommendation> recipes, int size)
         {
-            // if null, all recipes will be considered
-            var recipeIdsSubset = (random) ? await GetRandomRecipeIds(5000) : null;
+            var randomSequence = new Random();
+            var randomlySelectedRecommendations = recipes
+                .OrderBy(id => randomSequence.Next())
+                .Take(size)
+                .ToList();
 
-            var diceCoefficients = await _usagesRepository.GetDiceCoefficients(filteredIngredients, recipeIdsSubset);
-
-            return diceCoefficients;
+            return randomlySelectedRecommendations;
         }
     }
 }
