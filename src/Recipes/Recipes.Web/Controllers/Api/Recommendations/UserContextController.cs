@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Recipes.Service.DTOs;
@@ -16,8 +15,7 @@ namespace Recipes.Web.Controllers.Api.Recommendations
         {
             _userContextRecommendations = userContextRecommendations;
         }
-
-        // TODO add more parameters to the request
+        
         // GET: api/recommendations/UserContext
         public async Task<RecipeRecommendation[]> Get([FromUri]int[] visitedRecipeIds, int pageSize = 10, int pageNumber = 1)
         {

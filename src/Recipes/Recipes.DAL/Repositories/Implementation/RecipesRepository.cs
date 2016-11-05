@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading.Tasks;
+using Recipes.Core.Models;
 using Recipes.DAL.Entities;
+using Recipes.DAL.Helpers;
 
 namespace Recipes.DAL.Repositories.Implementation
 {
@@ -58,6 +59,34 @@ namespace Recipes.DAL.Repositories.Implementation
                     .ToListAsync();
 
                 return await result;
+            }
+        }
+
+        public async Task<IList<Recipe>> GetRecipesAsync(IList<int> excludedRecipeIds, bool onlyVegetarian, MinutesInterval? totalTimeInterval, IList<string> chefs)
+        {
+            using (var appContext = new AppContext())
+            {
+                var recipes = appContext.Recipes.Where(r => !excludedRecipeIds.Contains(r.Id));
+                if (onlyVegetarian)
+                {
+                    recipes = recipes.Where(r => r.IsVegetarian);
+                }
+
+                if (totalTimeInterval != null)
+                {
+                    var moreThan = totalTimeInterval.Value.Start.GetValueOrDefault();
+                    var lessThan = totalTimeInterval.Value.End.GetValueOrDefault(int.MaxValue);
+                    recipes = recipes.Where(r =>
+                        (r.CookTimeInMinutes + r.PrepTimeInMinutes) >= moreThan
+                        && (r.CookTimeInMinutes + r.PrepTimeInMinutes) <= lessThan);
+                }
+
+                if (chefs != null && chefs.Count > 0)
+                {
+                    recipes = recipes.Where(r => chefs.Contains(r.Chef));
+                }
+
+                return await recipes.ToListAsync();
             }
         }
 

@@ -16,18 +16,15 @@ namespace Recipes.Service.Recommendations.Implementation
         private readonly IIngredientUsagesRepository _usagesRepository;
         private readonly IIngredientsRepository _ingredientsRepository;
 
-        private readonly IMapper _mapper;
-
         public IngredientRecommendations(
             IRecipesRepository recipesRepository,
             IIngredientUsagesRepository usagesRepository,
             IIngredientsRepository ingredientsRepository,
             IMapper mapper) 
-            : base(recipesRepository)
+            : base(recipesRepository, mapper)
         {
             _usagesRepository = usagesRepository;
             _ingredientsRepository = ingredientsRepository;
-            _mapper = mapper;
         }
 
         /// <summary>
@@ -91,7 +88,7 @@ namespace Recipes.Service.Recommendations.Implementation
                     <= filter.TotalTimeTo.GetValueOrDefault(int.MaxValue) && 
                     !(filter.IsVegetarian && !recipe.IsVegetarian))
                 {
-                    var recommendation = _mapper.Map<RecipeRecommendation>(recipe);
+                    var recommendation = Mapper.Map<RecipeRecommendation>(recipe);
                     recommendation.RecommenderType = RecommenderType.IngredientBased;
                     candidates.Add(recommendation);
                 }
@@ -100,7 +97,7 @@ namespace Recipes.Service.Recommendations.Implementation
                     break;
             }
 
-            return random ? GetRecommendationsRandomly(candidates, filter.PageSize.GetValueOrDefault(10)) 
+            return random ? SelectRecommendationsRandomly(candidates, filter.PageSize.GetValueOrDefault(10)) 
                 : candidates.Take(filter.PageSize.GetValueOrDefault(10)).ToList();
         }
     }

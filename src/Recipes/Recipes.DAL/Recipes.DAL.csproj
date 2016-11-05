@@ -56,6 +56,7 @@
     <Compile Include="Entities\Recipe.cs" />
     <Compile Include="Entities\RecommendationUsed.cs" />
     <Compile Include="Helpers\DiceCoefficientHelper.cs" />
+    <Compile Include="Helpers\RecipeExtensions.cs" />
     <Compile Include="Migrations\201610150945216_AddIngredientNameIndex.cs" />
     <Compile Include="Migrations\201610150945216_AddIngredientNameIndex.Designer.cs">
       <DependentUpon>201610150945216_AddIngredientNameIndex.cs</DependentUpon>

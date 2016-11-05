@@ -10,30 +10,16 @@ using Recipes.Service.DTOs.Filters;
 
 namespace Recipes.Service.Recommendations.Implementation
 {
-    public class RecipeMetadataRecommendations : IRecipeMetadataRecommendations
+    public class RecipeMetadataRecommendations : BaseRecommendations, IRecipeMetadataRecommendations
     {
-        private readonly IRecipesRepository _recipesRepository;
-        private readonly IMapper _mapper;
-
         public RecipeMetadataRecommendations(IRecipesRepository recipesRepository, IMapper mapper)
+            : base(recipesRepository, mapper)
         {
-            _recipesRepository = recipesRepository;
-            _mapper = mapper;
         }
 
         public async Task<IList<RecipeRecommendation>> Get(RecipeMetadataBasedFilter filter)
         {
-            var randomSequence = new Random();
-            var allIds = await _recipesRepository.GetAllIdsAsync();
-            var randomlySelectedIds = allIds
-                .OrderBy(id => randomSequence.Next())
-                .Take(filter.PageSize.GetValueOrDefault(10))
-                .ToList();
-
-            var recipeEntities = await _recipesRepository.GetRecipesAsync(randomlySelectedIds);
-            var recommendations = recipeEntities
-                .Select(r => _mapper.Map<RecipeRecommendation>(r))
-                .ToList();
+            var recommendations = await GetRandomRecommendations(filter.PageSize.GetValueOrDefault(10));
 
             recommendations.ForEach(r => r.RecommenderType = RecommenderType.RecipeMetadata);
 
