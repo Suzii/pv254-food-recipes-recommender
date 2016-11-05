@@ -7,6 +7,7 @@ import RecommendationByIngredients from './recommendations/recommendation-by-ing
 import SimilarRecipes from './recommendations/similar-recipes';
 import YouMayLike from './recommendations/you-may-like';
 import Critique from './recommendations/critiquing';
+import PureComponent from '../../../components/PureComponent.js';
 
 import { fetchRecipeIfNeeded, fetchIngredientBased, fetchSimilarRecipes, fetchYouMayLike } from './../../../redux/actionCreators';
 
@@ -102,4 +103,4 @@ const mapStateToProps = (store) => {
 
 const IndexWrapper = connect(mapStateToProps, mapDispatchToProps)(Index);
 
-export default IndexWrapper;
+export default PureComponent(IndexWrapper);
