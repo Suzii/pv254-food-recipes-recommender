@@ -1,6 +1,7 @@
 import React from 'react';
 import RecipeOverview from './../../../../components/recipe-overview';
 import Div from '../../../../components/div';
+import PureComponent from '../../../../components/PureComponent.js';
 
 class SimilarRecipes extends React.Component {
 
@@ -20,4 +21,4 @@ class SimilarRecipes extends React.Component {
     }
 }
 
-export default SimilarRecipes;
+export default PureComponent(SimilarRecipes);

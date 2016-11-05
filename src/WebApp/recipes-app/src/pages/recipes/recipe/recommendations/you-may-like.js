@@ -1,6 +1,7 @@
 import React from 'react';
 import RecipeOverview from './../../../../components/recipe-overview';
 import Div from '../../../../components/div';
+import PureComponent from '../../../../components/PureComponent.js';
 
 class YouMayLike extends React.Component {
 
@@ -19,4 +20,4 @@ class YouMayLike extends React.Component {
     }
 }
 
-export default YouMayLike;
+export default PureComponent(YouMayLike);

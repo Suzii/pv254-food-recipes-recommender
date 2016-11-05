@@ -4,6 +4,7 @@ import Div from '../../../components/div';
 import Ingredients from './ingredients';
 import Instructions from './instructions';
 import RecipeMetadata from './recipe-metadata';
+import PureComponent from '../../../components/PureComponent.js';
 
 class Recipe extends React.Component {
     static propTypes = {
@@ -50,4 +51,4 @@ class Recipe extends React.Component {
     }
 }
 
-export default Recipe;
+export default PureComponent(Recipe);

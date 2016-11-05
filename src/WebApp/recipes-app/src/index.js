@@ -23,7 +23,7 @@ import _404 from './pages/404';
 
 import { appendRecipeIdToCookies } from './utils/cookies.js';
 
-var store = createStore(rootReducer, applyMiddleware(thunk/*, createLogger()*/));
+var store = createStore(rootReducer, applyMiddleware(thunk, createLogger()));
 
 ReactDOM.render(
     <Provider store={store}>

@@ -1,7 +1,7 @@
+import shallowEquals from 'shallow-equals';
+
 function shouldComponentUpdate(nextProps, nextState) {
-    //return !shallowEquals(nextProps, this.props) || !shallowEquals(nextState, this.state);
-    var shouldUpdate = (nextProps !== this.props) || (nextState !== this.state);
-    console.log('should component update', shouldUpdate, this);
+    var shouldUpdate = !shallowEquals(nextProps, this.props) || !shallowEquals(nextState, this.state);
     return shouldUpdate;
 }
 
