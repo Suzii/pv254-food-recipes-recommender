@@ -1,5 +1,5 @@
 import React from 'react';
-import RecipeOverview from './../../../../components/recipe-overview';
+import RecipeOverview from './../../../../components/YouMayLikeRecommendation';
 import Div from '../../../../components/div';
 import PureComponent from '../../../../components/PureComponent.js';
 
@@ -10,11 +10,18 @@ class YouMayLike extends React.Component {
         const recipes = recipesList.map((recipe, index) => <RecipeOverview key={index} {...recipe}  displayedRecipeId={this.props.currentRecipeId} />);
         const isLoading = !this.props.recipes || !this.props.recipes.length;
         return (
-            <div>
-                <h2>You may like</h2>
-                <Div isLoading={isLoading} loadingOffset="100px" className="recommendations recommendations-right">
-                    { recipes }
-                </Div>
+            <div className="container-fluid you-may-like__recommendations">
+                <div className="row">
+                    <h2>You may like -- omg horrible design, move somewhere else</h2>
+                    <Div isLoading={isLoading} loadingOffset="100px" className="">
+                        <div className="row">
+                            { recipes.slice(0,3) }
+                        </div>
+                        <div className="row">
+                            { recipes.slice(3,6) }
+                        </div>
+                    </Div>
+                </div>
             </div>
         );
     }

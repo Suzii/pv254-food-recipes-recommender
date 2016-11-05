@@ -124,7 +124,7 @@ export function fetchYouMayLike(id) {
 
         var visitedRecipeIds = getVisitedRecipeIds();
         let params = {
-            pageSize: 5
+            pageSize: 6
         };
 
         let paramsString1 = AjaxUtils.getQueryParametersFromArray('visitedRecipeIds', visitedRecipeIds);

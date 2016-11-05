@@ -20,7 +20,7 @@ class Recipe extends React.Component {
         }
 
         return (
-            <Div isLoading={ this.props.isFetching } loadingOffset="150px" className=" container-fluid recipe" id="recipe">
+            <Div isLoading={ this.props.isFetching } loadingOffset="150px" className="container-fluid recipe" id="recipe">
                 <div className="row">
                     <div className="recipe-teaser">
                         <img src={ recipe.imageUrl || noImage } alt="Recipe teaser." className="img-responsive recipe-img" />

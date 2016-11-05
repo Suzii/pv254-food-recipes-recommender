@@ -1,4 +1,4 @@
-function getTimeForUI(timeInMinutes) {
+function getTimeForUILonger(timeInMinutes) {
     if (timeInMinutes === 0) {
         return '-';
     }
@@ -15,4 +15,21 @@ function getTimeForUI(timeInMinutes) {
     return `less than ${timeInMinutes} minutes`;
 }
 
-export { getTimeForUI };
+function getTimeForUIShort(timeInMinutes) {
+    if (timeInMinutes === 0) {
+        return '0';
+    }
+
+    if (timeInMinutes === 60) {
+        return '1 hr';
+    }
+
+    if (timeInMinutes >= 60) {
+        let time = Math.floor(timeInMinutes / 60);
+        return `${time} hrs`;
+    }
+
+    return `${timeInMinutes} mins`;
+}
+
+export { getTimeForUILonger, getTimeForUIShort };
