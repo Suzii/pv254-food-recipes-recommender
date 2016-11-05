@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Recipes.Service.DTOs;
@@ -17,12 +18,12 @@ namespace Recipes.Web.Controllers.Api.Recommendations
         }
 
         // TODO add more parameters to the request
-        // GET: api/reecommendations/UserContext
-        public async Task<RecipeRecommendation[]> Get(int currentRecipeId, int pageSize = 10, int pageNumber = 1)
+        // GET: api/recommendations/UserContext
+        public async Task<RecipeRecommendation[]> Get([FromUri]int[] visitedRecipeIds, int pageSize = 10, int pageNumber = 1)
         {
             var filter = new ContextBasedFilter
             {
-                RecipeId = currentRecipeId,
+                RecipeIds = visitedRecipeIds.ToList(),
                 PageNumber = pageNumber, 
                 PageSize = pageSize
             };

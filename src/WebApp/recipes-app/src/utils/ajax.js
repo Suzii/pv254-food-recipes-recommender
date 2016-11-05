@@ -15,6 +15,15 @@ function getQueryParameters (params) {
     return query;
 }
 
+function getQueryParametersFromArray (paramName, array) {
+    let esc = encodeURIComponent;
+    let query = array
+        .map(val => esc(paramName) + '=' + esc(val) )
+        .join('&');
+
+    return query;
+}
+
 var parseJson = function (response) {
     return response.json();
 };
@@ -37,6 +46,7 @@ var logNetworkError = function (error) {
 
 export {
     getQueryParameters,
+    getQueryParametersFromArray,
     parseJson,
     processStatus,
     logNetworkError

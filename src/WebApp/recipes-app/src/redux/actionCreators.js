@@ -1,6 +1,7 @@
 import * as Actions from './actions';
 import fetch from 'isomorphic-fetch';
 import * as AjaxUtils from './../utils/ajax';
+import {getVisitedRecipeIds} from '../utils/cookies.js';
 
 // --------------------------------- RECIPE ------------------------------------
 function requestRecipe(id) {
@@ -121,7 +122,16 @@ export function fetchYouMayLike(id) {
     return function (dispatch) {
         dispatch(requestYouMayLike(id));
 
-        fetch(`/api/recommendations/UserContext?${getRecommendationsQueryString(id)}`, {accept: 'application/json'})
+        var visitedRecipeIds = getVisitedRecipeIds();
+        let params = {
+            pageSize: 5
+        };
+
+        let paramsString1 = AjaxUtils.getQueryParametersFromArray('visitedRecipeIds', visitedRecipeIds);
+
+        let paramsString2 = AjaxUtils.getQueryParameters(params);
+
+        fetch(`/api/recommendations/UserContext?${paramsString1}&${paramsString2}`, {accept: 'application/json'})
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
             .then(data => {

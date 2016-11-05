@@ -21,7 +21,9 @@ import {default as RecipeIndex} from './pages/recipes/recipe/index';
 import {default as Contact} from './pages/contact/index';
 import _404 from './pages/404';
 
-var store = createStore(rootReducer, applyMiddleware(thunk, createLogger()));
+import { appendRecipeIdToCookies } from './utils/cookies.js';
+
+var store = createStore(rootReducer, applyMiddleware(thunk/*, createLogger()*/));
 
 ReactDOM.render(
     <Provider store={store}>
@@ -31,7 +33,12 @@ ReactDOM.render(
                 <Route path="home" component={Home}/>
                 <Route path="recipes" component={Recipes}>
                     <IndexRoute component={Index}/>
-                    <Route path="/recipes/:recipeId" component={RecipeIndex} />
+                    <Route path="/recipes/:recipeId" component={RecipeIndex} onEnter={(nextState, replace, callback) => {
+                        console.log(nextState);
+                        var nextRecipeId = nextState.params.recipeId;
+                        appendRecipeIdToCookies(nextRecipeId);
+                        callback();
+                    }}/>
                 </Route>
                 <Route path="contact" component={Contact}/>
                 <Route path="*" component={_404}/>

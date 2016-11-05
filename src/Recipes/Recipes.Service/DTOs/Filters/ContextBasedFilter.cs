@@ -1,4 +1,6 @@
-﻿namespace Recipes.Service.DTOs.Filters
+﻿using System.Collections.Generic;
+
+namespace Recipes.Service.DTOs.Filters
 {
     /// <summary>
     /// Filter to be used when suggestion should be based on current context
@@ -6,10 +8,8 @@
     public class ContextBasedFilter : PagerFilter
     {
         /// <summary>
-        /// Id of <see cref="Recipe"/>
+        /// Ids of <see cref="Recipe"/> user has visited within this session
         /// </summary>
-        public int RecipeId { get; set; }
-
-        // TODO some data about current user or his session or whatever
+        public IList<int> RecipeIds { get; set; }
     }
 }
