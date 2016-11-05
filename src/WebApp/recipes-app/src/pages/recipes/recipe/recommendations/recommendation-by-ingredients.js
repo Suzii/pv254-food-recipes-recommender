@@ -6,6 +6,7 @@ class RecommendationByIngredients extends React.Component {
 
     render() {
         const recipesList = this.props.recipes || [];
+        console.log(recipesList);
         const recipes = recipesList.map((recipe, index) => <RecipeOverview key={index} {...recipe} displayedRecipeId={this.props.currentRecipeId} />);
         const isLoading = !this.props.recipes || !this.props.recipes.length;
         return (

@@ -15,9 +15,7 @@ namespace Recipes.Web.CastleInstallers
 
             // configuration for Recipes.Service.Recommendations
             container.Register(Classes.FromAssemblyNamed("Recipes.Service")
-                .InNamespace("Recipes.Service.Recommendations.Fakes")
-#warning use following line instead once all services are ready
-                //.InNamespace("Recipes.Service.Recommendations.Implementation")
+                .InNamespace("Recipes.Service.Recommendations.Implementation")
                 .WithService.DefaultInterfaces().LifestylePerWebRequest());
         }
     }

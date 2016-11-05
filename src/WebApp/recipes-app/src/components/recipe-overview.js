@@ -8,13 +8,12 @@ import userActivityLogger from './../utils/userActivityLogger';
 const RecipeOverview = ({ id, title, cookTimeInMinutes, prepTimeInMinutes, imageUrl, isVegetarian, displayedRecipeId, recommenderType, params }) => {
     var isVegetarianClass = (isVegetarian)? 'veggie' : null;
 
-
     var getObjectToLog = () => {
-        console.log('getObjectToLog.props', params)
+        console.log('getObjectToLog.props', recommenderType);
         return {
             displayedRecipeId: displayedRecipeId,
             clickedRecipeId: id,
-            recommendedBy: recommenderType,
+            recommendedBy: [recommenderType],
             timestamp: new Date().toISOString()
         }
     };

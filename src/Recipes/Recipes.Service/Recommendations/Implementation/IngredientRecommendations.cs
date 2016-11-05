@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Recipes.DAL.Helpers;
 using Recipes.DAL.Repositories;
+using Recipes.Service.Constants;
 using Recipes.Service.DTOs;
 using Recipes.Service.DTOs.Filters;
 
@@ -90,7 +91,9 @@ namespace Recipes.Service.Recommendations.Implementation
                     <= filter.TotalTimeTo.GetValueOrDefault(int.MaxValue) && 
                     !(filter.IsVegetarian && !recipe.IsVegetarian))
                 {
-                    candidates.Add(_mapper.Map<RecipeRecommendation>(recipe));
+                    var recommendation = _mapper.Map<RecipeRecommendation>(recipe);
+                    recommendation.RecommenderType = RecommenderType.IngredientBased;
+                    candidates.Add(recommendation);
                 }
 
                 if (candidates.Count == candidatesSize)
@@ -99,23 +102,6 @@ namespace Recipes.Service.Recommendations.Implementation
 
             return random ? GetRecommendationsRandomly(candidates, filter.PageSize.GetValueOrDefault(10)) 
                 : candidates.Take(filter.PageSize.GetValueOrDefault(10)).ToList();
-        }
-
-        /// <summary>
-        /// Randomly selects recommendations from recipes with the highest coefficients.
-        /// </summary>
-        /// <param name="recipes">Recipes with the highest coefficients.</param>
-        /// <param name="size">Number of recipes to be chosen.</param>
-        /// <returns>List of recommendations.</returns>
-        private List<RecipeRecommendation> GetRecommendationsRandomly(IList<RecipeRecommendation> recipes, int size)
-        {
-            var randomSequence = new Random();
-            var randomlySelectedRecommendations = recipes
-                .OrderBy(id => randomSequence.Next())
-                .Take(size)
-                .ToList();
-
-            return randomlySelectedRecommendations;
         }
     }
 }
