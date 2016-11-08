@@ -8,6 +8,6 @@ namespace Recipes.TFIDF.Services
 {
     public interface ITFIDFImporter
     {
-        void ImportTFIDF(int titlesRepeat, int importValuesCount, int TFIDFnumber = 1);
+        Task ImportTFIDF(int titlesRepeat, int importValuesCount, int TFIDFnumber = 1);
     }
 }

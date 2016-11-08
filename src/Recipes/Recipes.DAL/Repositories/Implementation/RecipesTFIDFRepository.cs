@@ -29,13 +29,12 @@ namespace Recipes.DAL.Repositories.Implementation
             {
                 var recipe = GetRecipeTFIDFAsync(recipeTFIDF.RecipeId).Result;
                 RecipeTFIDF result;
-                if (recipeTFIDF == null)
+                if (recipe == null)
                 {
                     result = dbContext.RecipeTFIDFs.Add(recipeTFIDF);
                 }
                 else
                 {
-                    dbContext.RecipeTFIDFs.Remove(recipe);
                     switch (TFIDFnumber)
                     {
                         case 1:
@@ -49,9 +48,10 @@ namespace Recipes.DAL.Repositories.Implementation
                             break;
                     }
 
-                    result = dbContext.RecipeTFIDFs.Add(recipe);
+                    dbContext.Entry(recipe).State = EntityState.Modified;
+                    result = recipe;
                 }
-
+                dbContext.SaveChanges();
                 return result;
 
             }

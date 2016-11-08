@@ -20,7 +20,7 @@ namespace Recipes.TFIDF.Services.Implementation
             _recipeTFIDFStore = recipeTFIDFStore;
             _recipeService = recipeService;
         }
-        public async void ImportTFIDF(int titlesRepeat, int importValuesCount, int TFIDFnumber = 1)
+        public async Task ImportTFIDF(int titlesRepeat, int importValuesCount, int TFIDFnumber = 1)
         {
             var recipeDocuments = await _recipeService.GetAllRecipeDocumentsAsync(titlesRepeat);
 

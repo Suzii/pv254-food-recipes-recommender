@@ -21,7 +21,7 @@ namespace Recipes.TFIDF
 
             Console.WriteLine("This is gonna take a while...");
             //choosing default column TFIDF and 10xtitleRepeat
-            importer.ImportTFIDF(10, 100);
+            importer.ImportTFIDF(10, 100).GetAwaiter().GetResult();
             Console.WriteLine("Finally..it's done!");
             Console.ReadLine();
 
