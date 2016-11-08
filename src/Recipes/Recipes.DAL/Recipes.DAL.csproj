@@ -54,8 +54,10 @@
     <Compile Include="Entities\Ingredient.cs" />
     <Compile Include="Entities\IngredientUsage.cs" />
     <Compile Include="Entities\Recipe.cs" />
+    <Compile Include="Entities\RecipeTFIDF.cs" />
     <Compile Include="Entities\RecommendationUsed.cs" />
     <Compile Include="Helpers\DiceCoefficientHelper.cs" />
+    <Compile Include="Helpers\RecipeDocumentHelper.cs" />
     <Compile Include="Helpers\RecipeExtensions.cs" />
     <Compile Include="Migrations\201610150945216_AddIngredientNameIndex.cs" />
     <Compile Include="Migrations\201610150945216_AddIngredientNameIndex.Designer.cs">
@@ -71,9 +73,11 @@
     <Compile Include="Repositories\IIngredientUsagesRepository.cs" />
     <Compile Include="Repositories\Implementation\IngredientsRepository.cs" />
     <Compile Include="Repositories\Implementation\IngredientUsagesRepository.cs" />
+    <Compile Include="Repositories\Implementation\RecipesTFIDFRepository.cs" />
     <Compile Include="Repositories\Implementation\RecommendationUsedRepository.cs" />
     <Compile Include="Repositories\Implementation\RecipesRepository.cs" />
     <Compile Include="Repositories\IIngredientsRepository.cs" />
+    <Compile Include="Repositories\IRecipesTFIDFRepository.cs" />
     <Compile Include="Repositories\IRecomendationUsedRepository.cs" />
     <Compile Include="Repositories\IRecipesRepository.cs" />
   </ItemGroup>

@@ -18,6 +18,7 @@ namespace Recipes.DAL
 
         public DbSet<RecommendationUsed> RecommendationUseds { get; set; }
 
+        public DbSet<RecipeTFIDF> RecipeTFIDFs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -25,6 +26,7 @@ namespace Recipes.DAL
             modelBuilder.Entity<IngredientUsage>().ToTable("IngredientUsage");
             modelBuilder.Entity<Ingredient>().ToTable("Ingredient");
             modelBuilder.Entity<RecommendationUsed>().ToTable("RecommendationUsed");
+            modelBuilder.Entity<RecipeTFIDF>().ToTable("RecipeTFIDF");
 
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();

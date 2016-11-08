@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace Recipes.DAL.Entities
 {
-    class RecipeTFIDF
+    public class RecipeTFIDF
     {
+        public int Id { get; set; }
+
+        public int RecipeId { get; set; }
+
+        public string TFIDF { get; set; }
+
+        public string TFIDF2 { get; set; }
+
+        public string TFIDF3 { get; set; }
+
     }
 }
