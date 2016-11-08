@@ -14,7 +14,7 @@ namespace Recipes.Import.Services.Implementation
 
         public int GetOrSave(Ingredient ingredient)
         {
-            var foundIngredient = _ingredientsRepository.GetByName(ingredient.Name);
+            var foundIngredient = _ingredientsRepository.GetByNameAsync(ingredient.Name);
             if (foundIngredient != null)
             {
                 return foundIngredient.Id;

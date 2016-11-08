@@ -129,7 +129,7 @@ namespace Recipes.TFIDF.TFIDF
 
                 docIndex++;
 
-                string[] parts = Tokenize(doc.RecipeText);
+                string[] parts = Tokenize(doc.Document);
 
                 List<string> words = new List<string>();
                 foreach (string part in parts)

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Recipes.Core.Models;
 using Recipes.DAL.Entities;
+using Recipes.DAL.Helpers;
 
 namespace Recipes.DAL.Repositories
 {
@@ -20,6 +21,8 @@ namespace Recipes.DAL.Repositories
         Task<List<Recipe>> GetAllAsync();
 
         Task<IList<int>> GetAllIdsAsync();
+
+        Task<IList<RecipeDocumentHelper>> GetAllRecipeDocumentsAsync(int titlesRepeat = 1);
 
     }
 }

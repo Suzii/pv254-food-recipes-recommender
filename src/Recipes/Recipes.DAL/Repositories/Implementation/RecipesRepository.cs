@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Recipes.Core.Models;
 using Recipes.DAL.Entities;
 using Recipes.DAL.Helpers;
+using System.Data.Entity.SqlServer;
 
 namespace Recipes.DAL.Repositories.Implementation
 {
@@ -112,6 +113,21 @@ namespace Recipes.DAL.Repositories.Implementation
 
                 return await result;
             }
+        }
+
+        public async Task<IList<RecipeDocumentHelper>> GetAllRecipeDocumentsAsync(int titlesRepeat = 1)
+        {
+            using (var dbContext = new AppContext())
+            {
+                var result = dbContext.Recipes.Select(r => new RecipeDocumentHelper
+                {
+                    RecipeId = r.Id,
+                    Document = SqlFunctions.Replicate(r.Title + "#", titlesRepeat) + r.Instructions
+
+                }).ToListAsync();
+                return await result;
+            }
+
         }
     }
 }
