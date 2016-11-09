@@ -53,7 +53,11 @@ namespace Recipes.Service.Recommendations.Implementation
             foreach (var item in TFIDFData.Split(';'))
             {
                 var tmp = item.Split(':');
-                recipeTFIDFValues.Add(Convert.ToInt32(tmp[0]), Convert.ToDouble(tmp[1]));
+           
+                if(tmp.Length == 2)
+                {
+                    recipeTFIDFValues.Add(Convert.ToInt32(tmp[0]), Convert.ToDouble(tmp[1]));
+                }
             }
 
             //NOTE: here we could use some threshold, that is the dictionary for (but we do not at the moment)

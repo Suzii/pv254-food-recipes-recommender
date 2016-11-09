@@ -26,7 +26,7 @@ namespace Recipes.Web.Controllers.Api.Recommendations
                  PageSize = pageSize
              };
 
-             var result = await _metadataRecommendations.Get(filter);
+             var result = await _metadataRecommendations.Get(filter, currentRecipeId);
 
              return result.ToArray();
          }
