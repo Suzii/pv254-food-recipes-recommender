@@ -31,6 +31,7 @@ namespace Recipes.TFIDF.Services.Implementation
 
             foreach (var outer in normalizedRecipeVectors)
             {
+                Console.WriteLine("Processing Recipe with Id: " + outer.Key);
                 Dictionary<int, double> cosSimOfRecipe = new Dictionary<int, double>();
                 foreach (var inner in normalizedRecipeVectors)
                 {
@@ -44,6 +45,7 @@ namespace Recipes.TFIDF.Services.Implementation
                     Console.Write(item.Key + ": " + item.Value + "; ");
                     recipeTFIDFValue += item.Key + ":" + item.Value + ";";
                 }
+                Console.WriteLine();
                 RecipeTFIDF recipeTFIDF = new RecipeTFIDF();
                 recipeTFIDF.RecipeId = outer.Key;
                 switch(TFIDFnumber)
