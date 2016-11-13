@@ -11,7 +11,7 @@ namespace Recipes.DAL.Repositories.Implementation
     public class IngredientUsagesRepository : IIngredientUsagesRepository
     {
 
-        public async Task<List<DiceCoefficientHelper>> GetDiceCoefficients(IList<int> ingredientIds, IList<int> recipeIdsToBeConsidered = null)
+        public async Task<List<CoefficientHelper>> GetDiceCoefficients(IList<int> ingredientIds, IList<int> recipeIdsToBeConsidered = null)
         {
             using (var dbContext = new AppContext())
             {
@@ -23,11 +23,36 @@ namespace Recipes.DAL.Repositories.Implementation
 
                 var result = ingredientUsages.GroupBy(ui => ui.RecipeId)
                     .Select(
-                        g => new DiceCoefficientHelper
+                        g => new CoefficientHelper
                         {
                             RecipeId = g.Key,
                             Coefficient = 2*g.Count(r => ingredientIds.Contains(r.IngredientId))
                                           /(double) (g.Count() + ingredientIds.Count)
+                        })
+                    .OrderByDescending(r => r.Coefficient)
+                    .ToListAsync();
+
+                return await result;
+            }
+        }
+
+        public async Task<List<CoefficientHelper>> GetJaccardCoefficients(IList<int> ingredientIds, IList<int> recipeIdsToBeConsidered = null)
+        {
+            using (var dbContext = new AppContext())
+            {
+                var ingredientUsages = (IQueryable<IngredientUsage>)dbContext.IngredientUsages;
+                if (!recipeIdsToBeConsidered.IsNullOrEmpty())
+                {
+                    ingredientUsages = ingredientUsages.Where(r => recipeIdsToBeConsidered.Contains(r.RecipeId));
+                }
+
+                var result = ingredientUsages.GroupBy(ui => ui.RecipeId)
+                    .Select(
+                        g => new CoefficientHelper
+                        {
+                            RecipeId = g.Key,
+                            Coefficient = g.Count(r => ingredientIds.Contains(r.IngredientId))
+                                          / (double) g.Select(k => k.IngredientId).Union(ingredientIds).Count()
                         })
                     .OrderByDescending(r => r.Coefficient)
                     .ToListAsync();

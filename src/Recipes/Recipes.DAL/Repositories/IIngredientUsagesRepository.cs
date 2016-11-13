@@ -23,7 +23,18 @@ namespace Recipes.DAL.Repositories
         /// <param name="ingredientIds">List of ingredient ids to be checked.</param>
         /// <param name="recipeIdsToBeConsidered">List of recipes to be checked.</param>
         /// <returns>List of {recipeId, coefficient} ordered by coefficient.</returns>
-        Task<List<DiceCoefficientHelper>> GetDiceCoefficients
+        Task<List<CoefficientHelper>> GetDiceCoefficients
+            (IList<int> ingredientIds, IList<int> recipeIdsToBeConsidered = null);
+
+        /// <summary>
+        /// Gets Jaccard coefficients for each recipe from recipeIdsToBeConsidered based on given ingredients set.
+        /// If no <param name="recipeIdsToBeConsidered"></param> are provided, chooses from all available recipes.
+        /// Returns list of {recipeId, coefficient} ordered by coefficient (descending).
+        /// </summary>
+        /// <param name="ingredientIds">List of ingredient ids to be checked.</param>
+        /// <param name="recipeIdsToBeConsidered">List of recipes to be checked.</param>
+        /// <returns>List of {recipeId, coefficient} ordered by coefficient.</returns>
+        Task<List<CoefficientHelper>> GetJaccardCoefficients
             (IList<int> ingredientIds, IList<int> recipeIdsToBeConsidered = null);
     }
 }
