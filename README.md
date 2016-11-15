@@ -1,6 +1,20 @@
 # pv254-food-recipes-recommender
 School project for course PV245 Recommender Systems (Masaryk University) for suggesting food recipes.
 
+# Running last stable React app
+Simply hit `F5` in VisualStudio whete you have `Recipes.sln` open. This launches the browser and you should see the homepage of React single page application. This is the last version that was "manually deployed".
+
+To actually change something in client application do the following:
+
+1. Change what you need in `WebApp/recipes-app`
+2. Test your change by running app in development mode (see next section)
+3. Run `npm run build` command in this folder
+4. Manually copy conents of generated `src\WebApp\recipes-app\build` folder to the root of `src\Recipes\Recipes.Web` project. Namely:
+ - copy contents of `img` folder to `img` folder
+ - copy contents of `static` folder to `static` folder
+ - copy contents of `index.html` file to `Views\Home\Index.cshtml` file
+5. Try out your solution by hitting `F5`
+
 # Running React app in development mode
 1. Install [Node.js](https://nodejs.org/en/download/)
 2. Run the .net application (Recipes.sln) simply by hitting F5 in VisualStudio
