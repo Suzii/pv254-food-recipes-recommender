@@ -18,5 +18,7 @@ namespace Recipes.DAL.Entities
 
         public string TFIDF3 { get; set; }
 
+        public virtual Recipe Recipe { get; set; }
+
     }
 }

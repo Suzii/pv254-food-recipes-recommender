@@ -16,7 +16,5 @@ namespace Recipes.Service.Recommendations
         /// <param name="filter">Recipe metadata filter to be used</param>
         /// <returns>List of appropriate recommendations</returns>
         Task<IList<RecipeRecommendation>> Get(RecipeMetadataBasedFilter filter);
-
-        Task<IList<RecipeRecommendation>> Get(RecipeMetadataBasedFilter filter, int recipeId, int TFIDFnumber = 1);
     }
 }

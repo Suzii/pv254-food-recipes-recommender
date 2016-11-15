@@ -17,16 +17,17 @@ namespace Recipes.Web.Controllers.Api.Recommendations
          }
 
          // GET: api/recommendations/SimilarRecipes
-         public async Task<RecipeRecommendation[]> Get(int currentRecipeId, int pageSize = 10, int pageNumber = 1)
+         public async Task<RecipeRecommendation[]> Get(int currentRecipeId, int TFIDFnumber = 1, int pageSize = 10, int pageNumber = 1)
          {
              var filter = new RecipeMetadataBasedFilter
              {
                  RecipeId = currentRecipeId,
+                 TFIDFnumber = TFIDFnumber,
                  PageNumber = pageNumber,
                  PageSize = pageSize
              };
 
-             var result = await _metadataRecommendations.Get(filter, currentRecipeId);
+             var result = await _metadataRecommendations.Get(filter);
 
              return result.ToArray();
          }

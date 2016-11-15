@@ -9,5 +9,10 @@
         /// Id of <see cref="Recipe"/>
         /// </summary>
         public int RecipeId { get; set; }
+
+        /// <summary>
+        /// TFIDF column number we use in recommendation
+        /// </summary>
+        public int TFIDFnumber { get; set; }
     }
 }

@@ -54,8 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\DocumentStemmedHelper.cs" />
-    <Compile Include="Helpers\DocumentVectorsHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Implementation\RecipeStore.cs" />
@@ -66,7 +64,6 @@
     <Compile Include="Services\ITFIDFImporter.cs" />
     <Compile Include="TFIDF\StopWords.cs" />
     <Compile Include="TFIDF\TFIDFHelper.cs" />
-    <Compile Include="TFIDF\TFIDFHelperCopy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

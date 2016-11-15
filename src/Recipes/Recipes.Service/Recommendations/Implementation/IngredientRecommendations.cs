@@ -70,7 +70,6 @@ namespace Recipes.Service.Recommendations.Implementation
             // Get the coefficients
             var diceCoefficients = await _usagesRepository.GetDiceCoefficients(filteredIngredients);
 
-            const int candidatesSize = 50; //TODO decide
             var candidates = new List<RecipeRecommendation>(candidatesSize);
 
             // Choose recommendations that suit all the constraints

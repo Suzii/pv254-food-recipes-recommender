@@ -21,19 +21,10 @@ namespace Recipes.Service.Recommendations.Implementation
 
         public async Task<IList<RecipeRecommendation>> Get(RecipeMetadataBasedFilter filter)
         {
-            var recommendations = await GetRandomRecommendations(filter.PageSize.GetValueOrDefault(10));
-
-            recommendations.ForEach(r => r.RecommenderType = RecommenderType.RecipeMetadata);
-
-            return recommendations;
-        }
-
-        public async Task<IList<RecipeRecommendation>> Get(RecipeMetadataBasedFilter filter, int recipeId, int TFIDFnumber = 1)
-        {
-            var recipeTFIDF = await _recipesTFIDFRepository.GetRecipeTFIDFAsync(recipeId);
+            var recipeTFIDF = await _recipesTFIDFRepository.GetRecipeTFIDFAsync(filter.RecipeId);
             string TFIDFData = "";
 
-            switch(TFIDFnumber)
+            switch(filter.TFIDFnumber)
             {
                 case 1:
                     TFIDFData = recipeTFIDF.TFIDF;
@@ -62,18 +53,13 @@ namespace Recipes.Service.Recommendations.Implementation
 
             //NOTE: here we could use some threshold, that is the dictionary for (but we do not at the moment)
 
-            const int candidatesSize = 50; //NOTE for now it is same as for Ingredients
-            var candidates = new List<RecipeRecommendation>(candidatesSize);
-
             var recipes = await RecipesRepository.GetRecipesAsync(recipeTFIDFValues.Keys.ToList());
-            foreach(var recipe in recipes)
-            {
-                var recommendation = Mapper.Map<RecipeRecommendation>(recipe);
-                recommendation.RecommenderType = RecommenderType.RecipeMetadata;
-                candidates.Add(recommendation);
+            var candidates = recipes
+                .Select(r => Mapper.Map<RecipeRecommendation>(r))
+                .Take(candidatesSize)
+                .ToList();
 
-                if (candidates.Count == candidatesSize) break;
-            }
+            candidates.ForEach(recommendation => recommendation.RecommenderType = RecommenderType.RecipeMetadata);
 
             return SelectRecommendationsRandomly(candidates, filter.PageSize.GetValueOrDefault(10));
 

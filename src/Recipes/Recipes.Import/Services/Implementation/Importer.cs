@@ -25,17 +25,17 @@ namespace Recipes.Import.Services.Implementation
             foreach (var fileName in fileNames)
             {
                 var recipe = parser.ParseFile(fileName);
-                ImportIngredients(recipe);
+                ImportIngredientsAsync(recipe);
 
                 _recipesStore.SaveRecipe(recipe);
             }
         }
 
-        private void ImportIngredients(Recipe recipe)
+        private async void ImportIngredientsAsync(Recipe recipe)
         {
             foreach (var ingredientUsage in recipe.IngredientUsages)
             {
-                var id = _ingredientStore.GetOrSave(ingredientUsage.Ingredient);
+                var id = await _ingredientStore.GetOrSaveAsync(ingredientUsage.Ingredient);
                 ingredientUsage.IngredientId = id;
             }
         }

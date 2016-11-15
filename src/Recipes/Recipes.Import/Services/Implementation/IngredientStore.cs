@@ -1,5 +1,6 @@
 ﻿using Recipes.DAL.Entities;
 using Recipes.DAL.Repositories;
+using System.Threading.Tasks;
 
 namespace Recipes.Import.Services.Implementation
 {
@@ -12,9 +13,9 @@ namespace Recipes.Import.Services.Implementation
             _ingredientsRepository = ingredientsRepository;
         }
 
-        public int GetOrSave(Ingredient ingredient)
+        public async Task<int> GetOrSaveAsync(Ingredient ingredient)
         {
-            var foundIngredient = _ingredientsRepository.GetByNameAsync(ingredient.Name);
+            var foundIngredient = await _ingredientsRepository.GetByNameAsync(ingredient.Name);
             if (foundIngredient != null)
             {
                 return foundIngredient.Id;

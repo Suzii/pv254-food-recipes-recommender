@@ -15,6 +15,8 @@ namespace Recipes.Service.Recommendations.Implementation
 
         protected readonly IMapper Mapper;
 
+        protected const int candidatesSize = 50;
+
 
         public BaseRecommendations(IRecipesRepository recipesRepository, IMapper mapper)
         {

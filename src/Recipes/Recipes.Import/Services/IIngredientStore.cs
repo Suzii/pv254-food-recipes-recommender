@@ -1,4 +1,5 @@
 ﻿using Recipes.DAL.Entities;
+using System.Threading.Tasks;
 
 namespace Recipes.Import.Services
 {
@@ -11,6 +12,6 @@ namespace Recipes.Import.Services
         /// </summary>
         /// <param name="ingredient">Ingredient to be looked up or stored</param>
         /// <returns>Id of the ingredient</returns>
-        int GetOrSave(Ingredient ingredient);
+        Task<int> GetOrSaveAsync(Ingredient ingredient);
     }
 }
