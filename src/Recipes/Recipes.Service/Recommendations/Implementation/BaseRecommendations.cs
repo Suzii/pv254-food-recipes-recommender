@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Recipes.DAL.Repositories;
-using Recipes.Service.Constants;
 using Recipes.Service.DTOs;
 
 namespace Recipes.Service.Recommendations.Implementation

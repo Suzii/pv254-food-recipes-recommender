@@ -237,7 +237,6 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
     <Content Include="static\css\main.251595c1.css.map" />
     <Content Include="static\js\main.5e9bce35.js.map" />
     <Content Include="static\media\glyphicons-halflings-regular.448c34a5.woff2" />

@@ -1,6 +1,5 @@
 namespace Recipes.DAL.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
     
     public partial class Add_RecipeTFIDF_Table : DbMigration

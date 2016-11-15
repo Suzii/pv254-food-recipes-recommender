@@ -1,12 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Threading.Tasks;
 using Recipes.DAL.Entities;
-using Recipes.DAL.Helpers;
-using System.Data.Entity.SqlServer;
-using System;
 
 namespace Recipes.DAL.Repositories.Implementation
 {
