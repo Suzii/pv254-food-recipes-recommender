@@ -4,7 +4,6 @@ import Div from '../../../../components/div';
 import PureComponent from '../../../../components/PureComponent.js';
 
 class YouMayLike extends React.Component {
-
     render() {
         const recipesList = this.props.recipes || [];
         const recipes = recipesList.map((recipe, index) => <RecipeOverview key={index} {...recipe}  displayedRecipeId={this.props.currentRecipeId} />);
@@ -12,7 +11,7 @@ class YouMayLike extends React.Component {
         return (
             <div className="container-fluid you-may-like__recommendations">
                 <div className="row">
-                    <h2>You may like -- omg horrible design, move somewhere else</h2>
+                    <h2>You may like</h2>
                     <Div isLoading={isLoading} loadingOffset="100px" className="">
                         <div className="row">
                             { recipes.slice(0,3) }
