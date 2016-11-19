@@ -14,7 +14,7 @@ const RecipeOverview = ({ id, title, cookTimeInMinutes, prepTimeInMinutes, image
                 <img src={ imageUrl || noImage } className="img-responsive img-circle img-polaroid teaser-image" alt="recipe"/>
             </div>
             <div className="col-xs-9">
-                <p><Link to={`/Recipes/${id}`} className="title" onClick={() => userActivityLogger(userActivityLogger(displayedRecipeId, id, [recommenderType]))}>{ title }</Link><span className={isVegetarianClass}></span></p>
+                <p><Link to={`/Recipes/${id}`} className="title" onClick={() => userActivityLogger(displayedRecipeId, id, [recommenderType])}>{ title }</Link><span className={isVegetarianClass}></span></p>
                 <p> Cooking: { getTimeForUILonger(cookTimeInMinutes) }</p>
                 <p> Preparation: { getTimeForUILonger(prepTimeInMinutes) }</p>
             </div>

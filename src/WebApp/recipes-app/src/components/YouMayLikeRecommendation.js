@@ -1,7 +1,7 @@
 import noImage from '../../public/img/no-image.png';
 
 import React from 'react';
-import { Link }from 'react-router';
+import { Link } from 'react-router';
 import { getTimeForUIShort } from './../utils/utils';
 import userActivityLogger from './../utils/userActivityLogger';
 
