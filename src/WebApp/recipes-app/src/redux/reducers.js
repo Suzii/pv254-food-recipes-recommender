@@ -59,12 +59,38 @@ function ingredientBased(state = [], action) {
     }
 }
 
- const rootReducer = combineReducers({
+function recipeDatabase(state = [], action) {
+    switch(action.type) {
+        case actions.RECIPES_SEARCH_REQUEST:
+        case actions.RECIPES_SEARCH_FAILURE:
+            return [];
+        case actions.RECIPES_SEARCH_SUCCESS:
+            return action.response;
+        default:
+            return state;
+    }
+}
+
+function ingredientDatabase(state = [], action) {
+    switch(action.type) {
+        case actions.INGREDIENT_SEARCH_REQUEST:
+        case actions.INGREDIENT_SEARCH_FAILURE:
+            return [];
+        case actions.INGREDIENT_SEARCH_SUCCESS:
+            return action.response;
+        default:
+            return state;
+    }
+}
+
+const rootReducer = combineReducers({
      currentRecipe,
      recipes,
      youMayLike,
      similarRecipes,
-     ingredientBased
+     ingredientBased,
+     recipeDatabase,
+     ingredientDatabase
  });
 
 export default rootReducer;

@@ -1,6 +1,7 @@
 import React from 'react';
 import Tab from './tab';
 import logo from '../../public/img/logo-inversed.png';
+import RecipesSearch from './RecipesSearch';
 
 const NavTab = () => {
     return (
@@ -22,6 +23,7 @@ const NavTab = () => {
                         <Tab to="/Recipes">Recipes</Tab>
                         <Tab to="/Contact">Contact</Tab>
                     </ul>
+                    <RecipesSearch />
                 </div>
             </div>
         </nav>

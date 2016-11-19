@@ -59,7 +59,7 @@ namespace Recipes.Service.Recommendations.Implementation
                 .Take(candidatesSize)
                 .ToList();
 
-            candidates.ForEach(recommendation => recommendation.RecommenderType = RecommenderType.RecipeMetadata);
+            candidates.ForEach(recommendation => recommendation.RecommenderType = RecommenderType.TfIdf);
 
             return SelectRecommendationsRandomly(candidates, filter.PageSize.GetValueOrDefault(10));
 

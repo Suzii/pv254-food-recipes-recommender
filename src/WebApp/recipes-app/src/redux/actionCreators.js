@@ -181,6 +181,108 @@ export function fetchIngredientBased(id) {
     }
 }
 
+// --------------------------- INGREDIENT-SEARCH ----------------------------------
+function requestIngredientDatabase() {
+    return {
+        type: Actions.INGREDIENT_BASED_REQUEST,
+    }
+}
+
+function receiveIngredientDatabase(response) {
+    return {
+        type: Actions.INGREDIENT_BASED_SUCCESS,
+        response: response
+    }
+}
+
+function ingredientDatabaseFailed(e) {
+    return {
+        type: Actions.INGREDIENT_BASED_FAILURE,
+        error: e
+    }
+}
+
+function fetchIngredientDatabase() {
+    return function (dispatch) {
+        dispatch(requestIngredientDatabase());
+
+        fetch(`/api/search/IngredientSearch`, {accept: 'application/json'})
+            .then(AjaxUtils.processStatus)
+            .then(AjaxUtils.parseJson)
+            .then(data => {
+                setTimeout(() => {
+                    dispatch(receiveIngredientDatabase(data));
+                }, 1100);
+            })
+            .catch(ingredientDatabaseFailed);
+    }
+}
+
+export function fetchIngredientDatabaseIfNeeded() {
+    return function (dispatch, getState) {
+        var state = getState();
+        var ingredientDatabase = state.ingredientDatabase;
+        var shouldFetch = ingredientDatabase === undefined || ingredientDatabase === null || !ingredientDatabase.length;
+
+        if (shouldFetch) {
+            return dispatch(fetchIngredientDatabase());
+        } else {
+            return Promise.resolve();
+        }
+    }
+}
+
+// --------------------------- RECIPES-SEARCH ----------------------------------
+function requestRecipeDatabase() {
+    return {
+        type: Actions.RECIPES_SEARCH_REQUEST,
+    }
+}
+
+function receiveRecipeDatabase(response) {
+    return {
+        type: Actions.RECIPES_SEARCH_SUCCESS,
+        response: response
+    }
+}
+
+function recipeDatabaseFailed(e) {
+    return {
+        type: Actions.RECIPES_SEARCH_FAILURE,
+        error: e
+    }
+}
+
+function fetchRecipeDatabase() {
+    return function (dispatch) {
+        dispatch(requestRecipeDatabase());
+
+        fetch(`/api/search/RecipeSearch`, {accept: 'application/json'})
+            .then(AjaxUtils.processStatus)
+            .then(AjaxUtils.parseJson)
+            .then(data => {
+                setTimeout(() => {
+                    dispatch(receiveRecipeDatabase(data));
+                }, 1100);
+            })
+            .catch(recipeDatabaseFailed);
+    }
+}
+
+export function fetchRecipeDatabaseIfNeeded() {
+    return function (dispatch, getState) {
+        var state = getState();
+        var recipeDatabase = state.recipeDatabase;
+        var shouldFetch = recipeDatabase === undefined || recipeDatabase === null || !recipeDatabase.length;
+
+        if (shouldFetch) {
+            return dispatch(fetchRecipeDatabase());
+        } else {
+            return Promise.resolve();
+        }
+    }
+}
+
 
 // ------- utils ------
 function getRecommendationsQueryString(id) {

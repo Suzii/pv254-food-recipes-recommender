@@ -91,6 +91,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Recipes.Core\Recipes.Core.csproj">
+      <Project>{2ba67cf7-af2a-4854-b308-35b996cd70d4}</Project>
+      <Name>Recipes.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Migrations\201610150945216_AddIngredientNameIndex.resx">
       <DependentUpon>201610150945216_AddIngredientNameIndex.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,12 +106,6 @@
     <EmbeddedResource Include="Migrations\201611081753383_Add_RecipeTFIDF_Table.resx">
       <DependentUpon>201611081753383_Add_RecipeTFIDF_Table.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Recipes.Core\Recipes.Core.csproj">
-      <Project>{2ba67cf7-af2a-4854-b308-35b996cd70d4}</Project>
-      <Name>Recipes.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
