@@ -34,11 +34,7 @@ function fetchRecipe(id) {
         fetch(`/api/recipes/${id}`, {accept: 'application/json'})
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
-            .then(data => {
-                setTimeout(() => {
-                    dispatch(receiveRecipe(data));
-                }, 1100);
-            })
+            .then(data => dispatch(receiveRecipe(data)))
             .catch(recipesFailed);
     }
 }
@@ -88,11 +84,7 @@ export function fetchSimilarRecipes(id) {
         fetch(`/api/recommendations/SimilarRecipes?${getRecommendationsQueryString(id)}`, {accept: 'application/json'})
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
-            .then(data => {
-                setTimeout(() => {
-                    dispatch(receiveSimilarRecipes(data));
-                }, 1100);
-            })
+            .then(data => dispatch(receiveSimilarRecipes(data)))
             .catch(similarRecipesFailed);
     }
 }
@@ -135,11 +127,7 @@ export function fetchYouMayLike(id) {
         fetch(`/api/recommendations/UserContext?${paramsString1}&${paramsString2}`, {accept: 'application/json'})
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
-            .then(data => {
-                setTimeout(() => {
-                    dispatch(receiveYouMayLike(data));
-                }, 1100);
-            })
+            .then(data => dispatch(receiveYouMayLike(data)))
             .catch(youMayLikeFailed);
     }
 }
@@ -173,11 +161,7 @@ export function fetchIngredientBased(id) {
         fetch(`/api/recommendations/IngredientBased?${getRecommendationsQueryString(id)}`, {accept: 'application/json'})
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
-            .then(data => {
-                setTimeout(() => {
-                    dispatch(receiveIngredientBased(data));
-                }, 1100);
-            })
+            .then(data => dispatch(receiveIngredientBased(data)))
             .catch(ingredientBasedFailed);
     }
 }
@@ -210,11 +194,7 @@ function fetchIngredientDatabase() {
         fetch(`/api/search/IngredientSearch`, {accept: 'application/json'})
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
-            .then(data => {
-                setTimeout(() => {
-                    dispatch(receiveIngredientDatabase(data));
-                }, 1100);
-            })
+            .then(data => dispatch(receiveIngredientDatabase(data)))
             .catch(ingredientDatabaseFailed);
     }
 }
@@ -261,11 +241,7 @@ function fetchRecipeDatabase() {
         fetch(`/api/search/RecipeSearch`, {accept: 'application/json'})
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
-            .then(data => {
-                setTimeout(() => {
-                    dispatch(receiveRecipeDatabase(data));
-                }, 1100);
-            })
+            .then(data => dispatch(receiveRecipeDatabase(data)))
             .catch(recipeDatabaseFailed);
     }
 }
@@ -312,11 +288,7 @@ export function searchByRecipeName(q) {
         fetch(`/api/search/RecipeSearch?q=${q}`, {accept: 'application/json'})
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
-            .then(data => {
-                setTimeout(() => {
-                    dispatch(searchReceived(data));
-                }, 1100);
-            })
+            .then(data => dispatch(searchReceived(data)))
             .catch(searchFailed);
     }
 }
@@ -340,11 +312,7 @@ export function searchByIngredientFilter(formData) {
         })
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
-            .then(data => {
-                setTimeout(() => {
-                    dispatch(searchReceived(data));
-                }, 1100);
-            })
+            .then(data => dispatch(searchReceived(data)))
             .catch(searchFailed);
     }
 }

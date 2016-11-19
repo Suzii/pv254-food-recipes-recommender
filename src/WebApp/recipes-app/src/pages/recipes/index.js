@@ -9,8 +9,6 @@ const Index = (props) => {
 
             <div className="row">
                 <div className="col-xs-12 col-sm-8 col-md-8">
-                    <h2>Search recipes</h2>
-                    <RecipeSearchAutocomplete/>
                     <IngredientBasedSearch/>
                 </div>
 

@@ -13,6 +13,9 @@ class AutosuggestSearch extends React.Component {
             name: React.PropTypes.string.isRequired
         })),
         isFetching: React.PropTypes.bool.isRequired,
+        name: React.PropTypes.string.isRequired,
+        id: React.PropTypes.string.isRequired,
+        className: React.PropTypes.string.isRequired,
         onSelected: React.PropTypes.func.isRequired,
         fetchAllSuggestions: React.PropTypes.func.isRequired,
         placeholder: React.PropTypes.string
@@ -68,8 +71,11 @@ class AutosuggestSearch extends React.Component {
 
     render() {
         const inputProps = {
+            name: this.props.name,
+            id: this.props.id,
+            type: 'text',
             placeholder: this.props.placeholder || 'Search...',
-            className: 'form-control',
+            className: this.props.className || 'form-control',
             value: this.state.value,
             disabled: this.props.isFetching,
             onChange: (e, { newValue }) => this.setState({value: newValue})

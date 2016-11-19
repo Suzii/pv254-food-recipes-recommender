@@ -29,13 +29,17 @@ class RecipeSearchAutocomplete extends React.Component {
     render() {
         return (
             <form className="form" onSubmit={e => e.preventDefault()}>
-                <AutosuggestSearch
-                    isFetching={this.props.isFetching}
-                    onSelected={(id) => this._onRecipeSelected(id)}
-                    fetchAllSuggestions={ this.props.fetchRecipeDatabase }
-                    allSuggestions={this.props.recipeDatabase}
-                    placeholder="Search for recipes..."
-                />
+                    <label hidden htmlFor="searchByName">Search by name autocomplete</label>
+                    <AutosuggestSearch
+                        name="searchByName"
+                        id="searchByName"
+                        className="form-control col-lg-3"
+                        isFetching={this.props.isFetching}
+                        onSelected={(id) => this._onRecipeSelected(id)}
+                        fetchAllSuggestions={ this.props.fetchRecipeDatabase }
+                        allSuggestions={this.props.recipeDatabase}
+                        placeholder="Search for recipes..."
+                    />
             </form>
         );
     }
