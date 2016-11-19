@@ -321,7 +321,7 @@ export function searchByIngredientFilter(formData) {
 function getRecommendationsQueryString(id) {
     let params = {
         currentRecipeId: id,
-        pageSize: 5
+        pageSize: 10
     };
 
     let paramsString = AjaxUtils.getQueryParameters(params);

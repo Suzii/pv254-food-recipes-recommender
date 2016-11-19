@@ -1,5 +1,5 @@
 function getTimeForUILonger(timeInMinutes) {
-    if (timeInMinutes === 0) {
+    if (!timeInMinutes) {
         return '-';
     }
 
@@ -16,7 +16,7 @@ function getTimeForUILonger(timeInMinutes) {
 }
 
 function getTimeForUIShort(timeInMinutes) {
-    if (timeInMinutes === 0) {
+    if (!timeInMinutes) {
         return '0';
     }
 

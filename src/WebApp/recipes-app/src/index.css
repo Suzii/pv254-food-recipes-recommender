@@ -74,7 +74,7 @@ body {
 
 .you-may-like__recommendation .teaser-image {
   max-height: 80px;
-  /*min-width: 100px;*/
+  max-width: 100px;
   background-image: url('../public/img/no-image.png');
   clip-path: circle(30px at center);
 }
@@ -105,4 +105,24 @@ body {
   /*height: 100%;*/
 }
 
+.recommender-type {
+  float: left;
+  width: 5px; /* must never add up to more than 100% */
+}
 
+
+.recommender-type-0 {
+  background-color: red;
+}
+
+.recommender-type-1 {
+  background-color: blue;
+}
+
+.recommender-type-2 {
+  background-color: green;
+}
+
+.recommender-type-3 {
+  background-color: yellow;
+}

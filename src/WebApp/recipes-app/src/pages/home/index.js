@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-import IngredientBasedSearch from '../../components/IngredientBasedSearchForm';
 import RecipeSearchAutocomplete from '../../components/RecipesSearchAutocomplete';
 
 const Index = (props) => {

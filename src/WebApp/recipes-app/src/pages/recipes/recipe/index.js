@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 
 import Div from '../../../components/Div';
 import Recipe from './Recipe';
-import RecommendationByIngredients from './recommendations/RecommendationByIngredients';
 import SimilarRecipes from './recommendations/SimilarRecipes';
 import YouMayLike from './recommendations/YouMayLike';
 import PureComponent from '../../../components/PureComponent.js';
@@ -21,9 +20,9 @@ class Index extends React.Component {
         params: React.PropTypes.shape({recipeId: React.PropTypes.string}),
         isFetching: React.PropTypes.bool.isRequired,
         recipe: React.PropTypes.any,
-        youMayLike: React.PropTypes.any.isRequired,
-        similarRecipes: React.PropTypes.any.isRequired,
-        ingredientBased: React.PropTypes.any.isRequired,
+        youMayLikeRecommendations: React.PropTypes.any.isRequired,
+        similarRecipesRecommendations: React.PropTypes.any.isRequired,
+        ingredientBasedRecommendations: React.PropTypes.any.isRequired,
         fetchRecipe: React.PropTypes.func.isRequired,
         fetchAllRecommendations: React.PropTypes.func.isRequired
     };
@@ -53,14 +52,11 @@ class Index extends React.Component {
                     <div className="col-xs-12 col-sm-2 col-md-4">
                         <div className="row">
                             <div className="col-xs-12">
-                                <RecommendationByIngredients currentRecipeId={ recipeId }
-                                                             recipes={ this.props.ingredientBased }/>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-xs-12">
-                                <SimilarRecipes currentRecipeId={ recipeId } recipes={ this.props.similarRecipes }/>
+                                <SimilarRecipes
+                                    currentRecipeId={ recipeId }
+                                    similarRecipesRecommendations={ this.props.similarRecipesRecommendations }
+                                    ingredientBasedRecommendations={ this.props.ingredientBasedRecommendations }
+                                />
                             </div>
                         </div>
                     </div>
@@ -69,7 +65,9 @@ class Index extends React.Component {
                 <hr/>
                 <div className="row">
                     <div className="col-xs-12">
-                        <YouMayLike currentRecipeId={ recipeId } recipes={ this.props.youMayLike }/>
+                        <YouMayLike
+                            currentRecipeId={ recipeId }
+                            recipes={ this.props.youMayLikeRecommendations }/>
                     </div>
                 </div>
             </Div>);
@@ -91,9 +89,9 @@ const mapStateToProps = (store) => {
     return {
         isFetching: store.currentRecipe.isFetching,
         recipe: store.recipes[store.currentRecipe.id],
-        youMayLike: store.youMayLike,
-        similarRecipes: store.similarRecipes,
-        ingredientBased: store.ingredientBased
+        youMayLikeRecommendations: store.youMayLike,
+        similarRecipesRecommendations: store.similarRecipes,
+        ingredientBasedRecommendations: store.ingredientBased
     }
 };
 
