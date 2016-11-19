@@ -1,9 +1,9 @@
 import React from 'react';
 import noImage from '../../../../public/img/no-image.png';
-import Div from '../../../components/div';
-import Ingredients from './ingredients';
-import Instructions from './instructions';
-import RecipeMetadata from './recipe-metadata';
+import Div from '../../../components/Div';
+import Ingredients from './Ingredients';
+import Instructions from './Instructions';
+import RecipeMetadata from './RecipeMetadata';
 import PureComponent from '../../../components/PureComponent.js';
 
 class Recipe extends React.Component {

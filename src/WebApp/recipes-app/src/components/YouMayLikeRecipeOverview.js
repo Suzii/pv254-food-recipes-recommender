@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import { getTimeForUIShort } from './../utils/utils';
 import userActivityLogger from './../utils/userActivityLogger';
 
-const YouMayLikeRecommendation = ({ id, title, cookTimeInMinutes, prepTimeInMinutes, imageUrl, isVegetarian, chef, displayedRecipeId, recommenderType, params }) => {
+const YouMayLikeRecipeOverview = ({ id, title, cookTimeInMinutes, prepTimeInMinutes, imageUrl, isVegetarian, chef, displayedRecipeId, recommenderType, params }) => {
     var isVegetarianClass = (isVegetarian)? 'veggie' : null;
 
     return (
@@ -22,4 +22,4 @@ const YouMayLikeRecommendation = ({ id, title, cookTimeInMinutes, prepTimeInMinu
     );
 };
 
-export default YouMayLikeRecommendation;
+export default YouMayLikeRecipeOverview;

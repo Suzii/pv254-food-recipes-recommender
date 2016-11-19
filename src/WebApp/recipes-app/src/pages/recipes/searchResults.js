@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import Div from '../../components/div';
+import Div from '../../components/Div';
 import RecipeOverview from '../../components/RecipeOverview.js';
 import {isNullOrEmpty} from '../../utils/arrays.js';
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import RecipeOverview from './../../../../components/YouMayLikeRecommendation';
-import Div from '../../../../components/div';
+import RecipeOverview from '../../../../components/YouMayLikeRecipeOverview';
+import Div from '../../../../components/Div';
 import PureComponent from '../../../../components/PureComponent.js';
 
 class YouMayLike extends React.Component {

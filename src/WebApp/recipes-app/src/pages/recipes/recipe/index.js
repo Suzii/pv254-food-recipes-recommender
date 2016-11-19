@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import Div from '../../../components/div';
-import Recipe from './recipe';
+import Div from '../../../components/Div';
+import Recipe from './Recipe';
 import RecommendationByIngredients from './recommendations/RecommendationByIngredients';
 import SimilarRecipes from './recommendations/SimilarRecipes';
 import YouMayLike from './recommendations/YouMayLike';

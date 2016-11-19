@@ -15,12 +15,12 @@ import { Provider } from 'react-redux';
 import rootReducer from './redux/reducers';
 
 import App from './App';
-import {default as Home} from './pages/home/index';
-import Recipes from './pages/recipes/recipes';
-import Index from './pages/recipes/index';
-import Search from './pages/recipes/searchResults';
-import {default as RecipeIndex} from './pages/recipes/recipe/index';
-import {default as Contact} from './pages/contact/index';
+import {default as Home} from './pages/home/Index';
+import Recipes from './pages/recipes/Recipes';
+import Index from './pages/recipes/Index';
+import Search from './pages/recipes/SearchResults';
+import {default as RecipeIndex} from './pages/recipes/recipe/Index';
+import {default as Contact} from './pages/contact/Index';
 import _404 from './pages/404';
 
 import { appendRecipeIdToCookies } from './utils/cookies.js';

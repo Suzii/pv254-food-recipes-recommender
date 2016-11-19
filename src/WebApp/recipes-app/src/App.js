@@ -1,5 +1,5 @@
 import React from 'react';
-import NavTab from './components/nav-tab';
+import NavTab from './components/NavTab';
 
 const App = (props) => {
     return (

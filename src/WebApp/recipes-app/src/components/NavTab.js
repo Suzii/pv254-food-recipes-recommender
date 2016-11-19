@@ -1,5 +1,5 @@
 import React from 'react';
-import Tab from './tab';
+import Tab from './Tab';
 import logo from '../../public/img/logo-inversed.png';
 import NavBarRecipeSearchForm from './NavBarRecipeSearchForm';
 

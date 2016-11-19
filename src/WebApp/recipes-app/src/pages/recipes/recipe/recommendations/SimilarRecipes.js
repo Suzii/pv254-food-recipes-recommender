@@ -1,6 +1,6 @@
 import React from 'react';
 import RecipeOverview from '../../../../components/RecipeOverview';
-import Div from '../../../../components/div';
+import Div from '../../../../components/Div';
 import PureComponent from '../../../../components/PureComponent.js';
 
 class SimilarRecipes extends React.Component {
