@@ -1,5 +1,5 @@
 import React from 'react';
-import RecipeOverview from './../../../../components/recipe-overview';
+import RecipeOverview from '../../../../components/RecipeOverview';
 import Div from '../../../../components/div';
 import PureComponent from '../../../../components/PureComponent.js';
 

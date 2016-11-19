@@ -132,6 +132,18 @@ namespace Recipes.DAL.Repositories.Implementation
             }
         }
 
+        public async Task<IList<Recipe>> SearchByNameAsync(string name)
+        {
+            using (var dbContext = new AppContext())
+            {
+                var result = await dbContext.Recipes
+                    .Where(r => r.Title.Contains(name))
+                    .ToListAsync();
+
+                return result;
+            }
+        }
+
         public async Task<IList<RecipeDocumentHelper>> GetAllRecipeDocumentsAsync(int titlesRepeat = 1)
         {
             using (var dbContext = new AppContext())

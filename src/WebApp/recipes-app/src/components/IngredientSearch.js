@@ -6,7 +6,7 @@ import PureComponent from './PureComponent';
 import {fetchIngredientDatabaseIfNeeded} from '../redux/actionCreators';
 import {isNullOrEmpty} from './../utils/arrays.js';
 
-class IngredientSearch extends React.Component {
+class IngredientSearchAutocomplete extends React.Component {
     static propTypes = {
         ingredientDatabase: React.PropTypes.arrayOf(React.PropTypes.shape({
             id: React.PropTypes.number.isRequired,
@@ -14,18 +14,14 @@ class IngredientSearch extends React.Component {
         })).isRequired,
         isFetching: React.PropTypes.bool.isRequired,
         fetchIngredientDatabase: React.PropTypes.func.isRequired,
+        onIngredientSelected: React.PropTypes.func.isRequired
     };
-
-    _onIngredientSelected(id) {
-        // TODO
-        console.log('ingredient selected', id);
-    }
 
     render() {
         return (
             <AutosuggestSearch
                 isFetching={this.props.isFetching}
-                onSelected={(id) => this._onIngredientSelected(id)}
+                onSelected={(id) => this.props.onIngredientSelected(id)}
                 fetchAllSuggestions={ this.props.fetchIngredientDatabase }
                 allSuggestions={this.props.ingredientDatabase}
                 placeholder="Spaghetti..."
@@ -47,6 +43,6 @@ const mapStateToProps = (store) => {
     }
 };
 
-const IngredientSearchWrapper = connect(mapStateToProps, mapDispatchToProps)(IngredientSearch);
+const IngredientSearchAutocompleteWrapper = connect(mapStateToProps, mapDispatchToProps)(IngredientSearchAutocomplete);
 
-export default PureComponent(IngredientSearchWrapper);
+export default PureComponent(IngredientSearchAutocompleteWrapper);

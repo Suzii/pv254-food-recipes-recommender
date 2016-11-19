@@ -1,5 +1,6 @@
 import React from 'react';
 import IngredientBasedSearch from '../../components/IngredientBasedSearchForm';
+import RecipeSearchAutocomplete from '../../components/RecipesSearchAutocomplete';
 
 const Index = (props) => {
     return (
@@ -8,11 +9,13 @@ const Index = (props) => {
 
             <div className="row">
                 <div className="col-xs-12 col-sm-8 col-md-8">
+                    <h2>Search recipes</h2>
+                    <RecipeSearchAutocomplete/>
                     <IngredientBasedSearch/>
                 </div>
 
                 <div className="col-xs-12 col-sm-4 col-md-4">
-                    TODO
+                    TODO top 10
                 </div>
             </div>
         </div>

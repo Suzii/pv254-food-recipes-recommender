@@ -20,5 +20,12 @@ namespace Recipes.Web.Controllers.Api.Search
             var recipes = await _recipeSearch.GetAllRecipeNamesAsync();
             return recipes;
         }
+
+        // GET: api/Search/Recipes?q=searchQuery
+        public async Task<IList<Service.DTOs.RecipeRecommendation>> Get(string q)
+        {
+            var recipes = await _recipeSearch.GetRecipeRecommendationsByNamesAsync(q);
+            return recipes;
+        }
     }
 }

@@ -1,12 +1,21 @@
 import React from 'react';
-import IngredientSearchWrapper from './IngredientSearch';
+import {connect} from 'react-redux';
+import {browserHistory} from 'react-router';
+
+import IngredientSearchAutocompleteWrapper from './IngredientSearch';
+import {searchByIngredientFilter} from '../redux/actionCreators.js';
 
 class IngredientBasedSearch extends React.Component {
+
+    static propTypes = {
+        search: React.PropTypes.func.isRequired,
+    };
+
     constructor(props) {
         super(props);
 
-        this.name = null;
-        this.timeFrom = null;
+        this.ingredientId = null;
+        this.timeTo = null;
         this.isVegetarian = null;
     }
 
@@ -19,14 +28,14 @@ class IngredientBasedSearch extends React.Component {
                     <div className="form-group">
                         <label htmlFor="ingredient" className="col-sm-2 control-label">Ingredient</label>
                         <div className="col-sm-10">
-                            <IngredientSearchWrapper />
+                            <IngredientSearchAutocompleteWrapper onIngredientSelected={id => this.ingredientId = id} />
                         </div>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="availableTimeTo" className="col-sm-2 control-label">Available time to</label>
+                        <label htmlFor="availableTimeTo" className="col-sm-2 control-label">Max cooking time</label>
                         <div className="col-sm-10">
-                            <input type="number" className="form-control" id="availableTimeTo" placeholder="10"
-                                    ref={ (node) => this.timeFrom = node }/>
+                            <input type="number" className="form-control" id="availableTimeTo" placeholder="10 minutes"
+                                    ref={ (node) => this.timeTo = node }/>
                         </div>
                     </div>
                     <div className="form-group">
@@ -54,14 +63,23 @@ class IngredientBasedSearch extends React.Component {
         event.preventDefault();
 
         var query = {
-            ingredientIds: [],
-            totalTimeTo: this.timeFrom.value,
+            ingredientIds: [this.ingredientId],
+            totalTimeTo: this.timeTo.value,
             isVegetarian: this.isVegetarian.checked,
             pageSize: 10
         };
 
+        this.props.search(query);
+
         console.log('Submitting', query);
+
+        browserHistory.push('/search')
     }
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        search: (query) => dispatch(searchByIngredientFilter(query)),
+    }
+};
 
-export default IngredientBasedSearch;
+export default connect((store) => { return {}}, mapDispatchToProps)(IngredientBasedSearch);

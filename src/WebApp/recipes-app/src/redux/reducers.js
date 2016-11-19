@@ -83,6 +83,19 @@ function ingredientDatabase(state = [], action) {
     }
 }
 
+function search(state = {isFetching: false, results: []}, action) {
+    switch(action.type) {
+        case actions.SEARCH_REQUEST:
+            return {isFetching: true, results: []}
+        case actions.SEARCH_FAILURE:
+            return {isFetching: false, results: []}
+        case actions.SEARCH_SUCCESS:
+            return {isFetching: false, results: action.response}
+        default:
+            return state;
+    }
+}
+
 const rootReducer = combineReducers({
      currentRecipe,
      recipes,
@@ -90,7 +103,8 @@ const rootReducer = combineReducers({
      similarRecipes,
      ingredientBased,
      recipeDatabase,
-     ingredientDatabase
+     ingredientDatabase,
+     search
  });
 
 export default rootReducer;

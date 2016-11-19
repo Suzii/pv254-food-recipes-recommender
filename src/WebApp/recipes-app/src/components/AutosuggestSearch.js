@@ -60,6 +60,12 @@ class AutosuggestSearch extends React.Component {
         );
     }
 
+    _onSuggestionSelected(event, suggestion) {
+        event.stopPropagation();
+        event.preventDefault();
+        this.props.onSelected(suggestion.id);
+    }
+
     render() {
         const inputProps = {
             placeholder: this.props.placeholder || 'Search...',
@@ -78,7 +84,7 @@ class AutosuggestSearch extends React.Component {
                 renderSuggestion={(suggestion) => this._renderSuggestion(suggestion)}
                 renderSuggestionsContainer={this._renderSuggestionsContainer}
                 inputProps={inputProps}
-                onSuggestionSelected={(event, {suggestion}) => this.props.onSelected(suggestion.id)}
+                onSuggestionSelected={(event, {suggestion}) => this._onSuggestionSelected(event, suggestion)}
                 shouldRenderSuggestions={(value) => value.trim().length > 2}
                 />
         );

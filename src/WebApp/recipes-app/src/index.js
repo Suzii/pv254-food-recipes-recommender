@@ -18,6 +18,7 @@ import App from './App';
 import {default as Home} from './pages/home/index';
 import Recipes from './pages/recipes/recipes';
 import Index from './pages/recipes/index';
+import Search from './pages/recipes/searchResults';
 import {default as RecipeIndex} from './pages/recipes/recipe/index';
 import {default as Contact} from './pages/contact/index';
 import _404 from './pages/404';
@@ -34,6 +35,7 @@ ReactDOM.render(
                 <Route path="home" component={Home}/>
                 <Route path="recipes" component={Recipes}>
                     <IndexRoute component={Index}/>
+                    <Route path="/search" component={Search}/>
                     <Route path="/recipes/:recipeId" component={RecipeIndex} onEnter={(nextState, replace, callback) => {
                         console.log(nextState);
                         var nextRecipeId = nextState.params.recipeId;

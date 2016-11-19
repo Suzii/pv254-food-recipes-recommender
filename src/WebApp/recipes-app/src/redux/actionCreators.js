@@ -284,6 +284,70 @@ export function fetchRecipeDatabaseIfNeeded() {
     }
 }
 
+// --------------------------- SEARCH ----------------------------------
+function searchRequest() {
+    return {
+        type: Actions.SEARCH_REQUEST,
+    }
+}
+
+function searchReceived(response) {
+    return {
+        type: Actions.SEARCH_SUCCESS,
+        response: response
+    }
+}
+
+function searchFailed(e) {
+    return {
+        type: Actions.SEARCH_FAILURE,
+        error: e
+    }
+}
+
+export function searchByRecipeName(q) {
+    return function (dispatch) {
+        dispatch(searchRequest());
+
+        fetch(`/api/search/RecipeSearch?q=${q}`, {accept: 'application/json'})
+            .then(AjaxUtils.processStatus)
+            .then(AjaxUtils.parseJson)
+            .then(data => {
+                setTimeout(() => {
+                    dispatch(searchReceived(data));
+                }, 1100);
+            })
+            .catch(searchFailed);
+    }
+}
+
+export function searchByIngredientFilter(formData) {
+    return function (dispatch) {
+        dispatch(searchRequest());
+
+        //query.ingredientIds, query.isVegetarian, query.totalTimeTo, query.pageSize
+        //let paramsString1 = AjaxUtils.getQueryParametersFromArray('ingredientIds', ingredientIds);
+
+        //let paramsString2 = AjaxUtils.getQueryParameters({isVegetarian, totalTimeTo, pageSize});
+
+        fetch(`/api/recommendations/IngredientBased`, {
+            accept: 'application/json',
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(AjaxUtils.processStatus)
+            .then(AjaxUtils.parseJson)
+            .then(data => {
+                setTimeout(() => {
+                    dispatch(searchReceived(data));
+                }, 1100);
+            })
+            .catch(searchFailed);
+    }
+}
 
 // ------- utils ------
 function getRecommendationsQueryString(id) {

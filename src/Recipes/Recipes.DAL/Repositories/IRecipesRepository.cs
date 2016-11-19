@@ -23,6 +23,8 @@ namespace Recipes.DAL.Repositories
         Task<IList<int>> GetAllIdsAsync();
 
         Task<IList<RecipeName>> GetAllNamesAsync();
+
+        Task<IList<Recipe>> SearchByNameAsync(string name);
             
         Task<IList<RecipeDocumentHelper>> GetAllRecipeDocumentsAsync(int titlesRepeat = 1);
 

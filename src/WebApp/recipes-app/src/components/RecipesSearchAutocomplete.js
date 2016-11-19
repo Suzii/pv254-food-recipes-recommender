@@ -9,7 +9,7 @@ import userActivityLogger from './../utils/userActivityLogger';
 import * as RecommenderTypes from '../utils/recommenderTypes.js';
 import {isNullOrEmpty} from '../utils/arrays.js';
 
-class RecipeSearch extends React.Component {
+class RecipeSearchAutocomplete extends React.Component {
     static propTypes = {
         recipeDatabase: React.PropTypes.arrayOf(React.PropTypes.shape({
             id: React.PropTypes.number.isRequired,
@@ -28,7 +28,7 @@ class RecipeSearch extends React.Component {
 
     render() {
         return (
-            <form className="navbar-form navbar-right" onSubmit={e => e.preventDefault()}>
+            <form className="form" onSubmit={e => e.preventDefault()}>
                 <AutosuggestSearch
                     isFetching={this.props.isFetching}
                     onSelected={(id) => this._onRecipeSelected(id)}
@@ -54,6 +54,6 @@ const mapStateToProps = (store) => {
     }
 };
 
-const RecipeSearchWrapper = connect(mapStateToProps, mapDispatchToProps)(RecipeSearch);
+const RecipeSearchAutocompleteWrapper = connect(mapStateToProps, mapDispatchToProps)(RecipeSearchAutocomplete);
 
-export default PureComponent(RecipeSearchWrapper);
+export default PureComponent(RecipeSearchAutocompleteWrapper);
