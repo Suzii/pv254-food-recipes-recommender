@@ -225,7 +225,9 @@
     <Content Include="static\media\logo-inversed.5f3bbf19.png" />
     <Content Include="static\media\no-image.ca6805af.png" />
     <Content Include="static\media\veggie-small.7c07bdd2.png" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -255,6 +257,9 @@
       <Project>{7d1b72ea-3e03-4324-8cc4-ef419718c870}</Project>
       <Name>Recipes.Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\recipes-recommender - Web Deploy.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
