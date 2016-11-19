@@ -12,6 +12,7 @@ namespace Recipes.Service.Mappings
                 cfg.AddProfile<IngredientUsageProfile>();
                 cfg.AddProfile<IngredientProfile>();
                 cfg.AddProfile<RecipeRecommendationProfile>();
+                cfg.AddProfile<SearchModelsProfiles>();
             });
 
             return config;

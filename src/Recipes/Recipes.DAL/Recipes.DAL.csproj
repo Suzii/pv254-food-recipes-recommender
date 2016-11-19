@@ -59,6 +59,7 @@
     <Compile Include="Helpers\CoefficientHelper.cs" />
     <Compile Include="Helpers\RecipeDocumentHelper.cs" />
     <Compile Include="Helpers\RecipeExtensions.cs" />
+    <Compile Include="Helpers\RecipeName.cs" />
     <Compile Include="Migrations\201610150945216_AddIngredientNameIndex.cs" />
     <Compile Include="Migrations\201610150945216_AddIngredientNameIndex.Designer.cs">
       <DependentUpon>201610150945216_AddIngredientNameIndex.cs</DependentUpon>

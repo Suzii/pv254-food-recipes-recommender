@@ -53,12 +53,14 @@
     <Compile Include="DTOs\IngredientUsage.cs" />
     <Compile Include="DTOs\Recipe.cs" />
     <Compile Include="DTOs\RecipeRecommendation.cs" />
+    <Compile Include="DTOs\SearchModels\RecipeName.cs" />
     <Compile Include="DTOs\UserActivity\RecommendationUsed.cs" />
     <Compile Include="Mappings\AutoMapperConfig.cs" />
     <Compile Include="Mappings\IngredientProfile.cs" />
     <Compile Include="Mappings\IngredientUsageProfile.cs" />
     <Compile Include="Mappings\RecipeRecommendationProfile.cs" />
     <Compile Include="Mappings\RecipeProfile.cs" />
+    <Compile Include="Mappings\SearchModelsProfiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recommendations\IIngredientRecommendations.cs" />
     <Compile Include="Recommendations\Implementation\BaseRecommendations.cs" />
@@ -67,6 +69,8 @@
     <Compile Include="Recommendations\Implementation\UserContextRecommendations.cs" />
     <Compile Include="Recommendations\IUserContextRecommendations.cs" />
     <Compile Include="Recommendations\IRecipeMetadataRecommendations.cs" />
+    <Compile Include="Search\Implementation\RecipeStore.cs" />
+    <Compile Include="Search\IRecipeSearch.cs" />
     <Compile Include="Stores\IIngredientService.cs" />
     <Compile Include="Stores\Implementation\IngredientService.cs" />
     <Compile Include="Stores\Implementation\RecipeStore.cs" />

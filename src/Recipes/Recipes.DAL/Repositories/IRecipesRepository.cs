@@ -22,6 +22,8 @@ namespace Recipes.DAL.Repositories
 
         Task<IList<int>> GetAllIdsAsync();
 
+        Task<IList<RecipeName>> GetAllNamesAsync();
+            
         Task<IList<RecipeDocumentHelper>> GetAllRecipeDocumentsAsync(int titlesRepeat = 1);
 
     }
