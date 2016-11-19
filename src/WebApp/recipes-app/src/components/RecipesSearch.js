@@ -1,77 +1,23 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Autosuggest from 'react-autosuggest';
-import IsolatedScroll from 'react-isolated-scroll';
+import AutosuggestSearch from './AutosuggestSearch';
 import {browserHistory} from 'react-router';
 
 import PureComponent from './PureComponent';
 import {fetchRecipeDatabaseIfNeeded} from '../redux/actionCreators';
 import userActivityLogger from './../utils/userActivityLogger';
-import escapeRegex from '../utils/regex.js';
-import { wrapSubstringInBoldTag } from '../utils/string.js';
 import * as RecommenderTypes from '../utils/recommenderTypes.js';
+import {isNullOrEmpty} from '../utils/arrays.js';
 
 class RecipeSearch extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: '',
-            suggestions: [],
-        };
-    }
-
-    componentWillMount() {
-        this.props.fetchRecipeDatabase();
-    }
-
-    _getSuggestions(value) {
-        const inputValue = escapeRegex(value.trim().toLowerCase());
-        const regex = new RegExp('' + inputValue, 'i');
-        const inputLength = inputValue.length;
-
-        return inputLength === 0 ? [] : this.props.recipeDatabase.filter(recipe => regex.test(recipe.name));
+    static propTypes = {
+        recipeDatabase: React.PropTypes.arrayOf(React.PropTypes.shape({
+            id: React.PropTypes.number.isRequired,
+            name: React.PropTypes.string.isRequired
+        })).isRequired,
+        isFetching: React.PropTypes.bool.isRequired,
+        fetchRecipeDatabase: React.PropTypes.func.isRequired,
     };
-
-    _getSuggestionValue(suggestion) {
-        return suggestion.name;
-    }
-
-    _renderSuggestion(suggestion) {
-        var suggestionText = wrapSubstringInBoldTag(suggestion.name, this.state.value);
-        return (
-            <div dangerouslySetInnerHTML={{__html: suggestionText}} />
-        );
-    }
-
-    _onChange = (event, {newValue}) => {
-        this.setState({
-            value: newValue
-        });
-    };
-
-    _onSuggestionsFetchRequested = (value) => {
-        this.setState({
-            suggestions: this._getSuggestions(value)
-        });
-    };
-
-    _onSuggestionsClearRequested = () => {
-        this.setState({
-            suggestions: []
-        });
-    };
-
-    _renderSuggestionsContainer({ref, ...rest}) {
-        const callRef = isolatedScroll => {
-            if (isolatedScroll !== null) {
-                ref(isolatedScroll.component);
-            }
-        };
-
-        return (
-            <IsolatedScroll {...rest} ref={callRef}/>
-        );
-    }
 
     _onRecipeSelected(id) {
         // note that 6 is id of first recipe in db and this cannot be null,
@@ -80,30 +26,15 @@ class RecipeSearch extends React.Component {
         browserHistory.push(`/recipes/${id}`);
     }
 
-    _shouldRenderSuggestions(value) {
-        return value.trim().length > 2;
-    }
-
     render() {
-        const inputProps = {
-            placeholder: 'Search for recipe...',
-            className: 'form-control',
-            value: this.state.value,
-            onChange: (e, args) => this._onChange(e, args)
-        };
-
         return (
             <form className="navbar-form navbar-right" onSubmit={e => e.preventDefault()}>
-                <Autosuggest
-                    suggestions={this.state.suggestions}
-                    onSuggestionsFetchRequested={({value}) => this._onSuggestionsFetchRequested(value)}
-                    onSuggestionsClearRequested={() => this._onSuggestionsClearRequested}
-                    getSuggestionValue={(suggestion) => this._getSuggestionValue(suggestion)}
-                    renderSuggestion={(suggestion) => this._renderSuggestion(suggestion)}
-                    renderSuggestionsContainer={this._renderSuggestionsContainer}
-                    inputProps={inputProps}
-                    onSuggestionSelected={(event, {suggestion}) => this._onRecipeSelected(suggestion.id)}
-                    shouldRenderSuggestions={this._shouldRenderSuggestions}
+                <AutosuggestSearch
+                    isFetching={this.props.isFetching}
+                    onSelected={(id) => this._onRecipeSelected(id)}
+                    fetchAllSuggestions={ this.props.fetchRecipeDatabase }
+                    allSuggestions={this.props.recipeDatabase}
+                    placeholder="Search for recipes..."
                 />
             </form>
         );
@@ -118,7 +49,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (store) => {
     return {
-        isFetching: store.currentRecipe.isFetching,
+        isFetching: isNullOrEmpty(store.recipeDatabase),
         recipeDatabase: store.recipeDatabase,
     }
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import IngredientBasedSearch from './../../components/ingredient-based-search';
+import IngredientBasedSearch from '../../components/IngredientBasedSearchForm';
 
 const Index = (props) => {
     return (

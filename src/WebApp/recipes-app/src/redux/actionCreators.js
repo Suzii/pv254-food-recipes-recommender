@@ -2,6 +2,7 @@ import * as Actions from './actions';
 import fetch from 'isomorphic-fetch';
 import * as AjaxUtils from './../utils/ajax';
 import {getVisitedRecipeIds} from '../utils/cookies.js';
+import {isNullOrEmpty} from './../utils/arrays';
 
 // --------------------------------- RECIPE ------------------------------------
 function requestRecipe(id) {
@@ -184,20 +185,20 @@ export function fetchIngredientBased(id) {
 // --------------------------- INGREDIENT-SEARCH ----------------------------------
 function requestIngredientDatabase() {
     return {
-        type: Actions.INGREDIENT_BASED_REQUEST,
+        type: Actions.INGREDIENT_SEARCH_REQUEST,
     }
 }
 
 function receiveIngredientDatabase(response) {
     return {
-        type: Actions.INGREDIENT_BASED_SUCCESS,
+        type: Actions.INGREDIENT_SEARCH_SUCCESS,
         response: response
     }
 }
 
 function ingredientDatabaseFailed(e) {
     return {
-        type: Actions.INGREDIENT_BASED_FAILURE,
+        type: Actions.INGREDIENT_SEARCH_FAILURE,
         error: e
     }
 }
@@ -222,7 +223,7 @@ export function fetchIngredientDatabaseIfNeeded() {
     return function (dispatch, getState) {
         var state = getState();
         var ingredientDatabase = state.ingredientDatabase;
-        var shouldFetch = ingredientDatabase === undefined || ingredientDatabase === null || !ingredientDatabase.length;
+        var shouldFetch = isNullOrEmpty(ingredientDatabase);
 
         if (shouldFetch) {
             return dispatch(fetchIngredientDatabase());
@@ -273,7 +274,7 @@ export function fetchRecipeDatabaseIfNeeded() {
     return function (dispatch, getState) {
         var state = getState();
         var recipeDatabase = state.recipeDatabase;
-        var shouldFetch = recipeDatabase === undefined || recipeDatabase === null || !recipeDatabase.length;
+        var shouldFetch = isNullOrEmpty(recipeDatabase);
 
         if (shouldFetch) {
             return dispatch(fetchRecipeDatabase());

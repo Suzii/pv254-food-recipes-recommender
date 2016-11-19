@@ -1,7 +1,7 @@
 import React from 'react';
+import IngredientSearchWrapper from './IngredientSearch';
 
 class IngredientBasedSearch extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -19,8 +19,7 @@ class IngredientBasedSearch extends React.Component {
                     <div className="form-group">
                         <label htmlFor="ingredient" className="col-sm-2 control-label">Ingredient</label>
                         <div className="col-sm-10">
-                            <input type="text" className="form-control" id="ingredient" placeholder="Spaghetti..."
-                                    ref={ (node) => this.name = node }/>
+                            <IngredientSearchWrapper />
                         </div>
                     </div>
                     <div className="form-group">
