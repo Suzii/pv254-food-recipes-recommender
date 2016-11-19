@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'babel-polyfill';
 import './index.css';
 import './sticky-footer.css';
+import './autosuggest.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
