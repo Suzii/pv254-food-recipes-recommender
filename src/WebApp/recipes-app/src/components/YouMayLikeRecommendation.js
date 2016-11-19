@@ -11,7 +11,7 @@ const YouMayLikeRecommendation = ({ id, title, cookTimeInMinutes, prepTimeInMinu
     return (
         <div className="you-may-like__recommendation">
             <div className="col-xs-3 col-md-1">
-                <img src={ imageUrl || noImage } className="img-responsive img-circle img-polaroid teaser-image" alt="recipe"/>
+                <img src={ imageUrl || noImage } className="img-responsive teaser-image" alt="recipe"/>
             </div>
             <div className="col-xs-9 col-md-3">
                 <p><Link to={`/Recipes/${id}`} className="title" onClick={() => userActivityLogger(displayedRecipeId, id, [recommenderType])}>{ title }</Link><span className={isVegetarianClass}></span></p>

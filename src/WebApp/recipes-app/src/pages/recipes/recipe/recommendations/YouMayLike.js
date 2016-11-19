@@ -9,9 +9,9 @@ class YouMayLike extends React.Component {
         const recipes = recipesList.map((recipe, index) => <RecipeOverview key={index} {...recipe}  displayedRecipeId={this.props.currentRecipeId} />);
         const isLoading = !this.props.recipes || !this.props.recipes.length;
         return (
-            <div className="container-fluid you-may-like__recommendations">
+            <div className="you-may-like__recommendations">
                 <div className="row">
-                    <h2>You may like</h2>
+                    <h2 className="text-center">You may like</h2>
                     <Div isLoading={isLoading} loadingOffset="100px" className="">
                         <div className="row">
                             { recipes.slice(0,3) }

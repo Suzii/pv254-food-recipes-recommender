@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 const Index = (props) => {
 
     return (
-        <div>
+        <div className="container">
             <div className="jumbotron">
                 <h1>Recipes Recommender</h1>
                 <p>School project for course PV245 Recommender Systems (Masaryk University) for suggesting food recipes.</p>

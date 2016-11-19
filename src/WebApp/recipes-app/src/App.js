@@ -8,9 +8,9 @@ const App = (props) => {
                 <NavTab/>
             </header>
 
-            <div className="container-fluid">
+            <section id="content">
                 {props.children}
-            </div>
+            </section>
 
             <footer className="footer">
                 <div className="container">
