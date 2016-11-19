@@ -219,8 +219,8 @@
     <Content Include="img\no-image.png" />
     <Content Include="img\veggie-small.png" />
     <Content Include="img\veggie.png" />
-    <Content Include="static\css\main.251595c1.css" />
-    <Content Include="static\js\main.5e9bce35.js" />
+    <Content Include="static\css\main.b7be79b1.css" />
+    <Content Include="static\js\main.0fa231cc.js" />
     <Content Include="static\media\glyphicons-halflings-regular.89889688.svg" />
     <Content Include="static\media\logo-inversed.5f3bbf19.png" />
     <Content Include="static\media\no-image.ca6805af.png" />
@@ -235,15 +235,16 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="packages.config" />
-    <Content Include="static\css\main.251595c1.css.map" />
-    <Content Include="static\js\main.5e9bce35.js.map" />
+    <Content Include="static\css\main.b7be79b1.css.map" />
+    <Content Include="static\js\main.0fa231cc.js.map" />
     <Content Include="static\media\glyphicons-halflings-regular.448c34a5.woff2" />
     <Content Include="static\media\glyphicons-halflings-regular.e18bbf61.ttf" />
     <Content Include="static\media\glyphicons-halflings-regular.f4769f9b.eot" />
     <Content Include="static\media\glyphicons-halflings-regular.fa277232.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Recipes.Core\Recipes.Core.csproj">
