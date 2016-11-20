@@ -20,9 +20,7 @@ class RecipeSearchAutocomplete extends React.Component {
     };
 
     _onRecipeSelected(id) {
-        // note that 6 is id of first recipe in db and this cannot be null,
-        // coz I cant apply stupid migration to make the column nullable
-        userActivityLogger(6, id, [RecommenderTypes.RECIPE_SEARCH])
+        userActivityLogger(null, id, [RecommenderTypes.RECIPE_SEARCH])
         browserHistory.push(`/recipes/${id}`);
     }
 

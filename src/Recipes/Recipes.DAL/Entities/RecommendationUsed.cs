@@ -16,7 +16,10 @@ namespace Recipes.DAL.Entities
 
         public virtual Recipe ClickedRecipe { get; set; }
         
-        public IEnumerable<RecommenderType> RecommendedBy { get; set; }
+        /// <summary>
+        /// Represents RecommenderType numbers separated by #
+        /// </summary>
+        public string RecommendedBy { get; set; }
 
         public DateTime Timestamp { get; set; }
     }

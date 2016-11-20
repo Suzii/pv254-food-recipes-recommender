@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201611201849459_DisplayedRecipeIdNullable.Designer.cs">
       <DependentUpon>201611201849459_DisplayedRecipeIdNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611201859358_AddRecommendedByField.cs" />
+    <Compile Include="Migrations\201611201859358_AddRecommendedByField.Designer.cs">
+      <DependentUpon>201611201859358_AddRecommendedByField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipesInitializer.cs" />
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611201849459_DisplayedRecipeIdNullable.resx">
       <DependentUpon>201611201849459_DisplayedRecipeIdNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611201859358_AddRecommendedByField.resx">
+      <DependentUpon>201611201859358_AddRecommendedByField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

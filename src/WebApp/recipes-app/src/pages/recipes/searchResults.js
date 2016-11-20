@@ -17,7 +17,7 @@ class SearchResults extends React.Component {
             return <Div isLoading={true} loadingOffset="150px"/>;
         }
 
-        const results = this.props.results.map((recipe, index) => <RecipeOverview key={index} {...recipe} recommendedBy={[recipe.recomenderType]} displayedRecipeId={6} />);
+        const results = this.props.results.map((recipe, index) => <RecipeOverview key={index} {...recipe} recommendedBy={[recipe.recommenderType]} displayedRecipeId={null} />);
 
         return (
             <Div isLoading={ this.props.isFetching } loadingOffset="150px" className="container-fluid results" id="results">
