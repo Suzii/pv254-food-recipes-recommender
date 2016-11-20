@@ -1,6 +1,8 @@
 # pv254-food-recipes-recommender
 School project for course PV245 Recommender Systems (Masaryk University) for suggesting food recipes.
 
+Application is running on http://recipes-recommender.azurewebsites.net.
+
 # Running last stable React app
 Simply hit `F5` in VisualStudio whete you have `Recipes.sln` open. This launches the browser and you should see the homepage of React single page application. This is the last version that was "manually deployed".
 
