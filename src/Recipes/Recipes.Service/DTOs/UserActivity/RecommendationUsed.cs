@@ -8,7 +8,7 @@ namespace Recipes.Service.DTOs.UserActivity
     {
         public int Id { get; set; }
 
-        public int DisplayedRecipeId { get; set; }
+        public int? DisplayedRecipeId { get; set; }
 
         public int ClickedRecipeId { get; set; }
 

@@ -60,17 +60,13 @@
     <Compile Include="Helpers\RecipeDocumentHelper.cs" />
     <Compile Include="Helpers\RecipeExtensions.cs" />
     <Compile Include="Helpers\RecipeName.cs" />
-    <Compile Include="Migrations\201610150945216_AddIngredientNameIndex.cs" />
-    <Compile Include="Migrations\201610150945216_AddIngredientNameIndex.Designer.cs">
-      <DependentUpon>201610150945216_AddIngredientNameIndex.cs</DependentUpon>
+    <Compile Include="Migrations\201611201846474_InitialCreate.cs" />
+    <Compile Include="Migrations\201611201846474_InitialCreate.Designer.cs">
+      <DependentUpon>201611201846474_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611032026014_Add_RecommendationUsed_Table.cs" />
-    <Compile Include="Migrations\201611032026014_Add_RecommendationUsed_Table.Designer.cs">
-      <DependentUpon>201611032026014_Add_RecommendationUsed_Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611081753383_Add_RecipeTFIDF_Table.cs" />
-    <Compile Include="Migrations\201611081753383_Add_RecipeTFIDF_Table.Designer.cs">
-      <DependentUpon>201611081753383_Add_RecipeTFIDF_Table.cs</DependentUpon>
+    <Compile Include="Migrations\201611201849459_DisplayedRecipeIdNullable.cs" />
+    <Compile Include="Migrations\201611201849459_DisplayedRecipeIdNullable.Designer.cs">
+      <DependentUpon>201611201849459_DisplayedRecipeIdNullable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,14 +93,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610150945216_AddIngredientNameIndex.resx">
-      <DependentUpon>201610150945216_AddIngredientNameIndex.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611201846474_InitialCreate.resx">
+      <DependentUpon>201611201846474_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611032026014_Add_RecommendationUsed_Table.resx">
-      <DependentUpon>201611032026014_Add_RecommendationUsed_Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611081753383_Add_RecipeTFIDF_Table.resx">
-      <DependentUpon>201611081753383_Add_RecipeTFIDF_Table.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611201849459_DisplayedRecipeIdNullable.resx">
+      <DependentUpon>201611201849459_DisplayedRecipeIdNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

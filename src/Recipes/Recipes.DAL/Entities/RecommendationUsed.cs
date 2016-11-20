@@ -8,7 +8,7 @@ namespace Recipes.DAL.Entities
     {
         public int Id { get; set; }
         
-        public int DisplayedRecipeId { get; set; }
+        public int? DisplayedRecipeId { get; set; }
 
         public virtual Recipe DisplayedRecipe { get; set; }
 

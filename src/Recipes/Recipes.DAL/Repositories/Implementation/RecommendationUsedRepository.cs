@@ -63,7 +63,7 @@ namespace Recipes.DAL.Repositories.Implementation
         {
             using (var dbContext = new AppContext())
             {
-                var result = dbContext.RecommendationUseds.Where(r => recipeIds.Contains(r.DisplayedRecipeId)).ToListAsync();
+                var result = dbContext.RecommendationUseds.Where(r => recipeIds.Contains(r.DisplayedRecipeId.GetValueOrDefault())).ToListAsync();
 
                 return await result;
             }
