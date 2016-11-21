@@ -31,12 +31,12 @@ class RecipeSearchAutocomplete extends React.Component {
                     <AutosuggestSearch
                         name="searchByName"
                         id="searchByName"
-                        className="form-control col-lg-3"
+                        className="form-control col-sm-4"
                         isFetching={this.props.isFetching}
                         onSelected={(id) => this._onRecipeSelected(id)}
                         fetchAllSuggestions={ this.props.fetchRecipeDatabase }
                         allSuggestions={this.props.recipeDatabase}
-                        placeholder="Search for recipes..."
+                        placeholder="Search..."
                     />
             </form>
         );
