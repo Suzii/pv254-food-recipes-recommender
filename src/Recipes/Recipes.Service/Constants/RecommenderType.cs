@@ -11,6 +11,7 @@
         TfIdf = 1,
         UserContext = 2,
         RecipeSearch = 3,
-        IngredientSearch = 4
+        IngredientSearch = 4,
+        MostPopularList = 5,
     }
 }

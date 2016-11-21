@@ -193,6 +193,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\ActivityLog\RecommendationUsedController.cs" />
+    <Compile Include="Controllers\Api\Recommendations\UserContextController - Copy.cs" />
     <Compile Include="Controllers\Api\Search\IngredientSearchController.cs" />
     <Compile Include="Controllers\Api\Recommendations\IngredientBasedController.cs" />
     <Compile Include="Controllers\Api\Recommendations\SimilarRecipesController.cs" />

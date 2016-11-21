@@ -59,6 +59,20 @@ namespace Recipes.DAL.Repositories.Implementation
             }
         }
 
+        public async Task<IList<int>> GetMostClickedRecipesIds(int count)
+        {
+            using (var dbContext = new AppContext())
+            {
+                var result = dbContext.RecommendationUseds
+                    .GroupBy(ru => ru.ClickedRecipeId)
+                    .OrderBy(group => group.Count())
+                    .Select(group => group.Key)
+                    .Take(count);
+
+                return await result.ToListAsync();
+            }
+        }
+
         public async Task<IList<RecommendationUsed>> GetRecommendationsUsedForRecipes(IList<int> recipeIds)
         {
             using (var dbContext = new AppContext())
