@@ -44,7 +44,7 @@ class Index extends React.Component {
     render() {
         var recipeId = parseInt(this.props.params.recipeId, 10);
         return (
-            <Div>
+            <Div className="container">
                 <div className="row">
                     <div className="col-xs-12 col-sm-10 col-md-8">
                         <Recipe { ...this.props }/>

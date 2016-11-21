@@ -25,6 +25,9 @@ class IngredientSearchAutocomplete extends React.Component {
                 fetchAllSuggestions={ this.props.fetchIngredientDatabase }
                 allSuggestions={this.props.ingredientDatabase}
                 placeholder="Spaghetti..."
+                name="ingredient-search"
+                id="ingredient-search"
+                className="form-control"
                 />
         );
     }

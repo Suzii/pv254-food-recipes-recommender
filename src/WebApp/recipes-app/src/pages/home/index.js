@@ -10,19 +10,19 @@ const Index = (props) => {
 
     return (
         <div className="homepage" id="homepage">
-            <div className="homepage-cover">
+            <div className="homepage--cover">
                 <div className="container">
-                    <div className="homepage-cover__content">
-                        <h1 className="homepage-cover__heading">Find perfect recipe for today</h1>
+                    <div className="homepage--cover__content">
+                        <h1 className="homepage--cover__heading">Find perfect recipe for today</h1>
 
-                        <div className="homepage-cover__search">
+                        <div className="homepage--cover__search">
                             <div className="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
                                 <RecipeSearchAutocomplete/>
-                                <p className="homepage-cover__alternative"> - OR - </p>
+                                <p className="homepage--cover__alternative"> - OR - </p>
                             </div>
                         </div>
 
-                        <div className="homepage-cover__button">
+                        <div className="homepage--cover__button">
                             <div className="col-sm-12">
                                 <Link to="recipes" className="btn btn-lg btn-primary" role="button"> Search by ingredients </Link>
                             </div>

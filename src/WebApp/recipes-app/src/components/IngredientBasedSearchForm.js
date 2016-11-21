@@ -22,8 +22,6 @@ class IngredientBasedSearch extends React.Component {
     render() {
         return (
             <div className="row ingredient-based-search">
-                <h2>Search by ingredients and available time</h2>
-
                 <form className="form-horizontal">
                     <div className="form-group">
                         <label htmlFor="ingredient" className="col-sm-2 control-label">Ingredient</label>
