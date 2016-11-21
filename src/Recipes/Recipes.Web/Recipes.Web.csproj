@@ -214,22 +214,21 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="img\homepage-cover.jpg" />
     <Content Include="img\logo-inversed.png" />
     <Content Include="img\logo.png" />
     <Content Include="img\logo2.png" />
     <Content Include="img\no-image.png" />
+    <Content Include="img\search-by-ingredients-cover.png" />
     <Content Include="img\veggie-small.png" />
     <Content Include="img\veggie.png" />
-    <Content Include="static\css\main.b7be79b1.css" />
-    <Content Include="static\css\main.b7be79b1.css.map" />
-    <Content Include="static\js\main.b9cbb2f6.js" />
-    <Content Include="static\media\glyphicons-halflings-regular.448c34a5.woff2" />
+    <Content Include="static\css\main.6afca8c6.css" />
+    <Content Include="static\js\main.69a6dd6b.js" />
     <Content Include="static\media\glyphicons-halflings-regular.89889688.svg" />
-    <Content Include="static\media\glyphicons-halflings-regular.e18bbf61.ttf" />
-    <Content Include="static\media\glyphicons-halflings-regular.f4769f9b.eot" />
-    <Content Include="static\media\glyphicons-halflings-regular.fa277232.woff" />
+    <Content Include="static\media\homepage-cover.46344400.jpg" />
     <Content Include="static\media\logo-inversed.5f3bbf19.png" />
     <Content Include="static\media\no-image.ca6805af.png" />
+    <Content Include="static\media\search-by-ingredients-cover.edff9a4e.png" />
     <Content Include="static\media\veggie-small.7c07bdd2.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -257,8 +256,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\veggie-small.png.uid-zps" />
     <None Include="Properties\PublishProfiles\recipes-recommender - Web Deploy.pubxml" />
-    <Content Include="static\js\main.b9cbb2f6.js.map" />
+    <Content Include="static\css\main.6afca8c6.css.map" />
+    <Content Include="static\js\main.69a6dd6b.js.map" />
+    <Content Include="static\media\glyphicons-halflings-regular.448c34a5.woff2" />
+    <Content Include="static\media\glyphicons-halflings-regular.e18bbf61.ttf" />
+    <Content Include="static\media\glyphicons-halflings-regular.f4769f9b.eot" />
+    <Content Include="static\media\glyphicons-halflings-regular.fa277232.woff" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
