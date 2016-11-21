@@ -96,6 +96,19 @@ function search(state = {isFetching: false, results: []}, action) {
     }
 }
 
+function mostPopular(state = {isFetching: false, results: []}, action) {
+    switch(action.type) {
+        case actions.MOST_POPULAR_REQUEST:
+            return {isFetching: true, results: []}
+        case actions.MOST_POPULAR_FAILURE:
+            return {isFetching: false, results: []}
+        case actions.MOST_POPULAR_SUCCESS:
+            return {isFetching: false, results: action.response}
+        default:
+            return state;
+    }
+}
+
 const rootReducer = combineReducers({
      currentRecipe,
      recipes,
@@ -104,7 +117,8 @@ const rootReducer = combineReducers({
      ingredientBased,
      recipeDatabase,
      ingredientDatabase,
-     search
+     search,
+     mostPopular,
  });
 
 export default rootReducer;

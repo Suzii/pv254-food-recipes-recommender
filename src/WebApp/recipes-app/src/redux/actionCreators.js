@@ -35,7 +35,7 @@ function fetchRecipe(id) {
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
             .then(data => dispatch(receiveRecipe(data)))
-            .catch(recipesFailed);
+            .catch((e => dispatch(recipesFailed(e))));
     }
 }
 
@@ -85,7 +85,7 @@ export function fetchSimilarRecipes(id) {
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
             .then(data => dispatch(receiveSimilarRecipes(data)))
-            .catch(similarRecipesFailed);
+            .catch((e => dispatch(similarRecipesFailed(e))));
     }
 }
 
@@ -128,7 +128,7 @@ export function fetchYouMayLike(id) {
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
             .then(data => dispatch(receiveYouMayLike(data)))
-            .catch(youMayLikeFailed);
+            .catch((e => dispatch(youMayLikeFailed(e))));
     }
 }
 
@@ -162,7 +162,7 @@ export function fetchIngredientBased(id) {
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
             .then(data => dispatch(receiveIngredientBased(data)))
-            .catch(ingredientBasedFailed);
+            .catch(e => dispatch(ingredientBasedFailed(e)));
     }
 }
 
@@ -195,7 +195,7 @@ function fetchIngredientDatabase() {
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
             .then(data => dispatch(receiveIngredientDatabase(data)))
-            .catch(ingredientDatabaseFailed);
+            .catch(e => dispatch(ingredientDatabaseFailed(e)));
     }
 }
 
@@ -242,7 +242,7 @@ function fetchRecipeDatabase() {
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
             .then(data => dispatch(receiveRecipeDatabase(data)))
-            .catch(recipeDatabaseFailed);
+            .catch(e => dispatch(recipeDatabaseFailed()));
     }
 }
 
@@ -297,11 +297,6 @@ export function searchByIngredientFilter(formData) {
     return function (dispatch) {
         dispatch(searchRequest());
 
-        //query.ingredientIds, query.isVegetarian, query.totalTimeTo, query.pageSize
-        //let paramsString1 = AjaxUtils.getQueryParametersFromArray('ingredientIds', ingredientIds);
-
-        //let paramsString2 = AjaxUtils.getQueryParameters({isVegetarian, totalTimeTo, pageSize});
-
         fetch(`/api/recommendations/IngredientBased`, {
             accept: 'application/json',
             method: 'POST',
@@ -313,7 +308,40 @@ export function searchByIngredientFilter(formData) {
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
             .then(data => dispatch(searchReceived(data)))
-            .catch(searchFailed);
+            .catch(e => dispatch(searchFailed(e)));
+    }
+}
+
+// --------------------------- MOST-POPULAR ----------------------------------
+function mostPopularRequest() {
+    return {
+        type: Actions.MOST_POPULAR_REQUEST,
+    }
+}
+
+function mostPopularReceived(response) {
+    return {
+        type: Actions.MOST_POPULAR_SUCCESS,
+        response: response
+    }
+}
+
+function mostPopularFailed(e) {
+    return {
+        type: Actions.MOST_POPULAR_FAILURE,
+        error: e
+    }
+}
+
+export function mostPopularRecipesFetch(count) {
+    return function (dispatch) {
+        dispatch(mostPopularRequest());
+
+        fetch(`/api/recommendations/MostPopular?count=${count}`, {accept: 'application/json'})
+            .then(AjaxUtils.processStatus)
+            .then(AjaxUtils.parseJson)
+            .then(data => dispatch(mostPopularReceived(data)))
+            .catch(e => dispatch(mostPopularFailed(e)));
     }
 }
 

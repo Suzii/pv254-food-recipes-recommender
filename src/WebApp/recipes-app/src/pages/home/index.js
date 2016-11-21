@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 
 import RecipeSearchAutocomplete from '../../components/RecipesSearchAutocomplete';
+import MostPopularRecipes from '../../components/MostPopularRecipes';
 
 const Index = (props) => {
 
@@ -27,7 +28,7 @@ const Index = (props) => {
                 </div>
 
                 <div className="col-xs-12 col-sm-4 col-md-4">
-                    TODO top 10
+                    <MostPopularRecipes count={10}/>
                 </div>
             </div>
 
