@@ -56,7 +56,7 @@ namespace Recipes.Service.Recommendations.Implementation
             var recipes = await RecipesRepository.GetRecipesAsync(recipeTFIDFValues.Keys.ToList());
             var candidates = recipes
                 .Select(r => Mapper.Map<RecipeRecommendation>(r))
-                .Take(candidatesSize)
+                .Take(CANDIDATES_COUNT)
                 .ToList();
 
             candidates.ForEach(recommendation => recommendation.RecommenderType = RecommenderType.TfIdf);

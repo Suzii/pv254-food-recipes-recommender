@@ -68,7 +68,7 @@ namespace Recipes.Service.Recommendations.Implementation
             // Get the coefficients
             var diceCoefficients = await _usagesRepository.GetDiceCoefficients(filteredIngredients);
 
-            var candidates = new List<RecipeRecommendation>(candidatesSize);
+            var candidates = new List<RecipeRecommendation>(CANDIDATES_COUNT);
 
             // Choose recommendations that suit all the constraints
             foreach (var coef in diceCoefficients)
@@ -90,7 +90,7 @@ namespace Recipes.Service.Recommendations.Implementation
                     candidates.Add(recommendation);
                 }
 
-                if (candidates.Count == candidatesSize)
+                if (candidates.Count == CANDIDATES_COUNT)
                     break;
             }
 
