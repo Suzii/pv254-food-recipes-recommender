@@ -37,7 +37,6 @@ ReactDOM.render(
                     <IndexRoute component={Index}/>
                     <Route path="/search" component={Search}/>
                     <Route path="/recipes/:recipeId" component={RecipeIndex} onEnter={(nextState, replace, callback) => {
-                        console.log(nextState);
                         var nextRecipeId = nextState.params.recipeId;
                         appendRecipeIdToCookies(nextRecipeId);
                         callback();

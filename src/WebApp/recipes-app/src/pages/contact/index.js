@@ -10,7 +10,7 @@ const Index = (props) => {
                     <div className="list-group-item">
                       <p className="list-group-item-text">Zuzana Dankovčíková</p>
                       <p className="list-group-item-text">
-                        <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:name@email.com">TODO</a>
+                        <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:410237@mail.muni.cz">410237@mail.muni.cz</a>
                       </p>
                     </div>
                     <div className="list-group-item">

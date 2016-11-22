@@ -59,7 +59,6 @@ class IngredientBasedSearch extends React.Component {
 
     submit(event) {
         event.preventDefault();
-
         var query = {
             ingredientIds: [this.ingredientId],
             totalTimeTo: this.timeTo.value,
@@ -68,8 +67,6 @@ class IngredientBasedSearch extends React.Component {
         };
 
         this.props.search(query);
-
-        console.log('Submitting', query);
 
         browserHistory.push('/search')
     }

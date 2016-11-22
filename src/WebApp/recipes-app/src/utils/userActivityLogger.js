@@ -19,6 +19,6 @@ export default function logUserActivity(displayedRecipeId, clickedRecipeId, reco
         body: JSON.stringify(objectToLog)
     }).then(AjaxUtils.processStatus)
         .then(AjaxUtils.parseJson)
-        .then(r => console.log('Created', r))
+        .then(r => r)
         .catch(e => console.error('Log creation failed', e));
 }

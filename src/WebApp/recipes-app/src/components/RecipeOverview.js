@@ -7,12 +7,16 @@ import userActivityLogger from './../utils/userActivityLogger';
 
 const RecipeOverview = ({ id, title, cookTimeInMinutes, prepTimeInMinutes, imageUrl, isVegetarian, displayedRecipeId, recommendedBy, params }) => {
     var isVegetarianClass = (isVegetarian)? 'veggie' : null;
-    var recommenderType = recommendedBy.map(t => ` recommender-type-${t}`);
+    var recommenderTypes = recommendedBy.map(t => (<div key={t} className={`recommender-type recommender-type-${t}`}>&nbsp;</div>));
+
+    if(recommendedBy.length > 1) {
+        console.log('Hurray, recipe with overlapping recommendations', displayedRecipeId, 'recommends', id);
+    }
 
     return (
         <div className="row recommendation">
             <div className="col-xs-3">
-            <div className={"recommender-type" + recommenderType}>&nbsp;</div>
+                {recommenderTypes}
                 <img src={ imageUrl || noImage } className="img-responsive teaser-image" alt="recipe"/>
             </div>
             <div className="col-xs-9">

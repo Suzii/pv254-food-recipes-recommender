@@ -65,8 +65,6 @@ class SimilarRecipes extends React.Component {
         const recommendationsList = (isLoading)? [] : mergePriorityLists(this.props.ingredientBasedRecommendations, this.props.similarRecipesRecommendations);
         const recommendations = recommendationsList.map((recipe, index) => <RecipeOverview key={index} {...recipe}  displayedRecipeId={this.props.currentRecipeId} />);
 
-        console.log(recommendationsList);
-
         return (
             <div>
                 <h2>Similar recipes</h2>
