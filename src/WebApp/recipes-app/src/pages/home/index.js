@@ -38,7 +38,7 @@ const Index = (props) => {
                         <p className="lead"><b>This app for suggesting food recipes was created as a school project for course PV245 Recommender Systems (Masaryk University).</b></p>
                         <p className="lead">
                           As we need to to evaluate the quality of our recommender system, we collect and process data about your activity on this web page.
-                          No worries, everything is completely annonymous and we only store info about what links were clicked, nothing about who did it.
+                          No worries, everything is completely anonymous and we only store info about what links were clicked, nothing about who did it.
                           We hope you are hungry, because we need you to view as many recipes as possible.
                         </p>
                         <p className="lead">

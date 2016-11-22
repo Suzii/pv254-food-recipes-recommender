@@ -222,8 +222,8 @@
     <Content Include="img\search-by-ingredients-cover.png" />
     <Content Include="img\veggie-small.png" />
     <Content Include="img\veggie.png" />
-    <Content Include="static\css\main.6afca8c6.css" />
-    <Content Include="static\js\main.69a6dd6b.js" />
+    <Content Include="static\css\main.a488b69d.css" />
+    <Content Include="static\js\main.cd1860d0.js" />
     <Content Include="static\media\glyphicons-halflings-regular.89889688.svg" />
     <Content Include="static\media\homepage-cover.46344400.jpg" />
     <Content Include="static\media\logo-inversed.5f3bbf19.png" />
@@ -258,8 +258,8 @@
   <ItemGroup>
     <Content Include="img\veggie-small.png.uid-zps" />
     <None Include="Properties\PublishProfiles\recipes-recommender - Web Deploy.pubxml" />
-    <Content Include="static\css\main.6afca8c6.css.map" />
-    <Content Include="static\js\main.69a6dd6b.js.map" />
+    <Content Include="static\css\main.a488b69d.css.map" />
+    <Content Include="static\js\main.cd1860d0.js.map" />
     <Content Include="static\media\glyphicons-halflings-regular.448c34a5.woff2" />
     <Content Include="static\media\glyphicons-halflings-regular.e18bbf61.ttf" />
     <Content Include="static\media\glyphicons-halflings-regular.f4769f9b.eot" />
