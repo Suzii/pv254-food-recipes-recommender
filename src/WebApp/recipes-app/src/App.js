@@ -15,7 +15,7 @@ const App = (props) => {
             <footer className="footer">
                 <div className="container">
                     <p className="text-muted">
-                        Lorem ipsum
+                        Powered by <a href="http://www.bbc.co.uk/food/recipes/">BBC Food.</a>
                     </p>
                 </div>
             </footer>
