@@ -39,7 +39,7 @@ class MostPopularRecipes extends React.Component {
         const recommendations = recommendationsList.map((recipe, index) => ( <RecipeOverview key={index} {...recipe} recommendedBy={[recipe.recommenderType]} displayedRecipeId={null} />));
         return (
             <div>
-                <h2>Top {this.props.count} recipes</h2>
+                <h2 className="text-center">Top {this.props.count} recipes</h2>
                 <Div isLoading={isLoading} loadingOffset="100px" className="recommendations recommendations-right">
                     { recommendations }
                 </Div>

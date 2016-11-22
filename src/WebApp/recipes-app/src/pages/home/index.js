@@ -34,19 +34,20 @@ const Index = (props) => {
             <div className="container">
                 <div className="row">
                     <div className="col-xs-12 col-sm-8 col-md-8">
-                        <h2>Welcome to our Recipes Recommender!</h2>
-                        <p>This web application for suggesting food recipes was created as a school project for course PV245 Recommender Systems (Masaryk University).</p>
-                        <p>
-                          As we need to to evaluate the quality of our recommender system, we collect and process data abour your actions on this web page. 
-                          We hope you are hungry, because we need you to view as many recipes as possible. 
+                        <h2 className="text-center text-capitalize">You can help us finish the semester</h2>
+                        <p className="lead"><b>This app for suggesting food recipes was created as a school project for course PV245 Recommender Systems (Masaryk University).</b></p>
+                        <p className="lead">
+                          As we need to to evaluate the quality of our recommender system, we collect and process data about your activity on this web page.
+                          No worries, everything is completely annonymous and we only store info about what links were clicked, nothing about who did it.
+                          We hope you are hungry, because we need you to view as many recipes as possible.
                         </p>
-                        <p>
+                        <p className="lead">
                           We would also like to ask you not to click on the recipes randomly,
                           that would not help us at all. To make things easier for you, just imagine your girlfriend/boyfriend is coming for dinner tonight and you want to surprise
                           them with a delicious meal. Therefore you need to choose the recipes carefully. We suggest you find the first recipe with our search tool and then you can
                           start viewing our recommendations. And don't forget, a dessert is a must!
                         </p>
-                        <p>
+                        <p className="lead">
                           We hope you will enjoy our Recipes Recommender. We really appreciate your help and we thank you for your time!
                         </p>
                     </div>

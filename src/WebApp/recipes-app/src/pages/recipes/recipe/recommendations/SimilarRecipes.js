@@ -67,7 +67,7 @@ class SimilarRecipes extends React.Component {
 
         return (
             <div>
-                <h2>Similar recipes</h2>
+                <h2 className="text-center">Similar recipes</h2>
                 <Div isLoading={isLoading} loadingOffset="100px" className="recommendations recommendations-right">
                     { recommendations }
                 </Div>
