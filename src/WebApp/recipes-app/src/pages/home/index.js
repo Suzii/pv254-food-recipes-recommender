@@ -34,8 +34,21 @@ const Index = (props) => {
             <div className="container">
                 <div className="row">
                     <div className="col-xs-12 col-sm-8 col-md-8">
-                        <h2>TODO guidlines for UI testing</h2>
-                        <p>School project for course PV245 Recommender Systems (Masaryk University) for suggesting food recipes.</p>
+                        <h2>Welcome to our Recipes Recommender!</h2>
+                        <p>This web application for suggesting food recipes was created as a school project for course PV245 Recommender Systems (Masaryk University).</p>
+                        <p>
+                          As we need to to evaluate the quality of our recommender system, we collect and process data abour your actions on this web page. 
+                          We hope you are hungry, because we need you to view as many recipes as possible. 
+                        </p>
+                        <p>
+                          We would also like to ask you not to click on the recipes randomly,
+                          that would not help us at all. To make things easier for you, just imagine your girlfriend/boyfriend is coming for dinner tonight and you want to surprise
+                          them with a delicious meal. Therefore you need to choose the recipes carefully. We suggest you find the first recipe with our search tool and then you can
+                          start viewing our recommendations. And don't forget, a dessert is a must!
+                        </p>
+                        <p>
+                          We hope you will enjoy our Recipes Recommender. We really appreciate your help and we thank you for your time!
+                        </p>
                     </div>
 
                     <div className="col-xs-12 col-sm-4 col-md-4">
