@@ -1,6 +1,6 @@
 import cookie from 'react-cookie';
 
-const EXPIRATION_TIME_IN_MINUTES = 60;
+const EXPIRATION_TIME_IN_MINUTES = 60 * 24; // one day
 const VISITED_RECIPES_COOKIE_NAME = 'visited_recipes';
 
 function appendRecipeIdToCookies(recipeId) {
