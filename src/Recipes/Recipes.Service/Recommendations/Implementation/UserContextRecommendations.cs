@@ -18,7 +18,7 @@ namespace Recipes.Service.Recommendations.Implementation
     {
         // Completely random, empirically selected constants
         private const int NumberOfVisitedRecipesForStatisticalSignificance = 4;
-        private const double VegetarianThreshold = 0.65;
+        private const double VegetarianThreshold = 0.79;
         private const double IntervalThreshold = 0.6;
         private const double ChefsThreshold = 0.6;
 
