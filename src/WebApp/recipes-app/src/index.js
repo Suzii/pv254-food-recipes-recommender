@@ -10,7 +10,7 @@ import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import createLogger from 'redux-logger';
+// import createLogger from 'redux-logger';
 import { Provider } from 'react-redux';
 import rootReducer from './redux/reducers';
 
@@ -25,7 +25,7 @@ import _404 from './pages/404';
 
 import { appendRecipeIdToCookies } from './utils/cookies.js';
 
-var store = createStore(rootReducer, applyMiddleware(thunk, createLogger()));
+var store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
     <Provider store={store}>

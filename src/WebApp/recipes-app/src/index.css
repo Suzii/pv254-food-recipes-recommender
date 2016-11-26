@@ -111,31 +111,31 @@ body {
 }
 
 
-/*IngredientBased = 0,*/
-.recommender-type-0 {
-  background-color: red;
-}
+/*!*IngredientBased = 0,*!*/
+/*.recommender-type-0 {*/
+  /*background-color: red;*/
+/*}*/
 
-/*TfIdf = 1,*/
-.recommender-type-1 {
-  background-color: blue;
-}
+/*!*TfIdf = 1,*!*/
+/*.recommender-type-1 {*/
+  /*background-color: blue;*/
+/*}*/
 
-.recommender-type-0.recommender-type-1 {
-  background-color: purple;
-}
+/*.recommender-type-0.recommender-type-1 {*/
+  /*background-color: purple;*/
+/*}*/
 
-/*UserContext = 2,*/
-.recommender-type-2 {
-  background-color: green;
-}
+/*!*UserContext = 2,*!*/
+/*.recommender-type-2 {*/
+  /*background-color: green;*/
+/*}*/
 
-/*RecipeSearch = 3,*/
-.recommender-type-3 {
-  background-color: yellow;
-}
+/*!*RecipeSearch = 3,*!*/
+/*.recommender-type-3 {*/
+  /*background-color: yellow;*/
+/*}*/
 
-/*IngredientSearch = 4,*/
-.recommender-type-4 {
-  background-color: orange;
-}
+/*!*IngredientSearch = 4,*!*/
+/*.recommender-type-4 {*/
+  /*background-color: orange;*/
+/*}*/
