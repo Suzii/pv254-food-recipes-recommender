@@ -61,8 +61,17 @@ class SimilarRecipes extends React.Component {
 
     render() {
         const isLoading = isNullOrEmpty(this.props.similarRecipesRecommendations) || isNullOrEmpty(this.props.ingredientBasedRecommendations);
+        let listA = this.props.ingredientBasedRecommendations;
+        let listB = this.props.similarRecipesRecommendations;
 
-        const recommendationsList = (isLoading)? [] : mergePriorityLists(this.props.ingredientBasedRecommendations, this.props.similarRecipesRecommendations);
+        // randomly choose list that has even vs odd positions in resulting list to make AB testing fair
+        if(Math.random() > 0.5) {
+            const temp = listA;
+            listA = listB;
+            listB = temp;
+        }
+
+        const recommendationsList = (isLoading)? [] : mergePriorityLists(listA, listB);
         const recommendations = recommendationsList.map((recipe, index) => <RecipeOverview key={index} {...recipe}  displayedRecipeId={this.props.currentRecipeId} />);
 
         return (
