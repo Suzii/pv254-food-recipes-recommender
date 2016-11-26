@@ -21,13 +21,14 @@ class IngredientSearchAutocomplete extends React.Component {
         return (
             <AutosuggestSearch
                 isFetching={this.props.isFetching}
-                onSelected={(id) => this.props.onIngredientSelected(id)}
+                onSelected={(id, name) => this.props.onIngredientSelected(id, name)}
                 fetchAllSuggestions={ this.props.fetchIngredientDatabase }
                 allSuggestions={this.props.ingredientDatabase}
-                placeholder="Spaghetti..."
+                placeholder="Avocado, beef and tortillas..."
                 name="ingredient-search"
                 id="ingredient-search"
                 className="form-control"
+                clearAfterSelected={true}
                 />
         );
     }

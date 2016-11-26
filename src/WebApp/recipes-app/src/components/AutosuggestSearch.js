@@ -66,7 +66,7 @@ class AutosuggestSearch extends React.Component {
     _onSuggestionSelected(event, suggestion) {
         event.stopPropagation();
         event.preventDefault();
-        this.props.onSelected(suggestion.id);
+        this.props.onSelected(suggestion.id, suggestion.name);
     }
 
     render() {

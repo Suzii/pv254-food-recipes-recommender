@@ -35,3 +35,16 @@
 .search-by-ingredients--cover__button {
     padding: 2em;
 }
+
+.search-by-ingredients--selected-ingredients {
+    padding: 1em;
+    font-size: 1.5em;
+}
+
+.search-by-ingredients--selected-ingredients__ingredient {
+    margin: 1em;
+}
+
+.glyphicon-remove {
+    cursor: pointer;
+}

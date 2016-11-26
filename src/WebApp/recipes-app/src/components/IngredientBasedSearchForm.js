@@ -4,6 +4,7 @@ import {browserHistory} from 'react-router';
 
 import IngredientSearchAutocompleteWrapper from './IngredientSearch';
 import {searchByIngredientFilter} from '../redux/actionCreators.js';
+import { isNullOrEmpty } from '../utils/arrays.js';
 
 class IngredientBasedSearch extends React.Component {
 
@@ -17,18 +18,44 @@ class IngredientBasedSearch extends React.Component {
         this.ingredientId = null;
         this.timeTo = null;
         this.isVegetarian = null;
+        this.state = {selectedIngredients: []};
+    }
+
+    _ingredientAdded(id, name) {
+        var selectedIngredients = this.state.selectedIngredients;
+        selectedIngredients.push({id, name});
+        this.setState({selectedIngredients})
+    }
+
+    _ingredientRemoved(id) {
+        var selectedIngredients = this.state.selectedIngredients;
+        selectedIngredients = selectedIngredients.filter((ingredient) => ingredient.id !== id);
+        this.setState({selectedIngredients})
     }
 
     render() {
+        const selectedIngredients = this.state.selectedIngredients.map((ingredient, index) => (
+            <span className="label label-default search-by-ingredients--selected-ingredients__ingredient" key={index}>
+                {ingredient.name}
+                &nbsp;<i className="glyphicon glyphicon-remove" onClick={() => this._ingredientRemoved(ingredient.id)}></i>
+            </span>)
+        );
+
         return (
             <div className="row ingredient-based-search">
                 <form className="form-horizontal">
                     <div className="form-group">
                         <label htmlFor="ingredient" className="col-sm-2 control-label">Ingredient</label>
                         <div className="col-sm-10">
-                            <IngredientSearchAutocompleteWrapper onIngredientSelected={id => this.ingredientId = id} />
+                            <IngredientSearchAutocompleteWrapper onIngredientSelected={(id, name) => this._ingredientAdded(id, name)} />
                         </div>
                     </div>
+                    <div className="col-sm-12 col-md-offset-2 col-md-10">
+                        <div className="search-by-ingredients--selected-ingredients ">
+                            {selectedIngredients}
+                        </div>
+                    </div>
+
                     <div className="form-group">
                         <label htmlFor="availableTimeTo" className="col-sm-2 control-label">Max cooking time</label>
                         <div className="col-sm-10 controls">
@@ -69,8 +96,8 @@ class IngredientBasedSearch extends React.Component {
 
     submit(event) {
         event.preventDefault();
-        if(!this.ingredientId) {
-            window.alert('Please, select an ingredient. If no autocomplete is provided, try refreshing the page.');
+        if(isNullOrEmpty(this.state.selectedIngredients)) {
+            window.alert('Please, select some ingredients. If no autocomplete is provided, try refreshing the page.');
             return;
         }
 
@@ -81,7 +108,7 @@ class IngredientBasedSearch extends React.Component {
         }
 
         var query = {
-            ingredientIds: [this.ingredientId],
+            ingredientIds: this.state.selectedIngredients.map(ingredient => ingredient.id),
             totalTimeTo: time,
             isVegetarian: this.isVegetarian.checked,
             pageSize: 10
