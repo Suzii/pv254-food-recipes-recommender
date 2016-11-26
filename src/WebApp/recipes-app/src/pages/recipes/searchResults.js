@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 
 import Div from '../../components/Div';
@@ -6,10 +7,25 @@ import RecipeOverview from '../../components/RecipeOverview.js';
 import {isNullOrEmpty} from '../../utils/arrays.js';
 
 class SearchResults extends React.Component {
-
     static propTpyes = {
         results: React.PropTypes.array,
         isFetching: React.PropTypes.bool,
+    };
+
+    componentDidMount() {
+        this.interval = window.setTimeout(() => {
+            if(!this.props.isFetching && isNullOrEmpty(this.props.results)) {
+                if (window.confirm('Something probably went wrong. Do you want to return to homepage?')) {
+                    browserHistory.push('/');
+                }
+            } else {
+                window.clearInterval(this.interval);
+            }
+        }, 5000);
+    }
+
+    componentWillUnmount() {
+        window.clearInterval(this.interval);
     }
 
     render() {

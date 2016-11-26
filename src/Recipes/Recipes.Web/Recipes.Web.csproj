@@ -223,7 +223,7 @@
     <Content Include="img\veggie-small.png" />
     <Content Include="img\veggie.png" />
     <Content Include="static\css\main.0cbe79db.css" />
-    <Content Include="static\js\main.81892822.js" />
+    <Content Include="static\js\main.256f346a.js" />
     <Content Include="static\media\glyphicons-halflings-regular.89889688.svg" />
     <Content Include="static\media\homepage-cover.46344400.jpg" />
     <Content Include="static\media\logo-inversed.5f3bbf19.png" />
@@ -259,7 +259,7 @@
     <Content Include="img\veggie-small.png.uid-zps" />
     <None Include="Properties\PublishProfiles\recipes-recommender - Web Deploy.pubxml" />
     <Content Include="static\css\main.0cbe79db.css.map" />
-    <Content Include="static\js\main.81892822.js.map" />
+    <Content Include="static\js\main.256f346a.js.map" />
     <Content Include="static\media\glyphicons-halflings-regular.448c34a5.woff2" />
     <Content Include="static\media\glyphicons-halflings-regular.e18bbf61.ttf" />
     <Content Include="static\media\glyphicons-halflings-regular.f4769f9b.eot" />

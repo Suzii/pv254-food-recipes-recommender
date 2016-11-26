@@ -59,6 +59,11 @@ class IngredientBasedSearch extends React.Component {
 
     submit(event) {
         event.preventDefault();
+        if(!this.ingredientId) {
+            window.alert('Please, select an ingredient. If no autocomplete is provided, try refreshing the page.');
+            return;
+        }
+
         var query = {
             ingredientIds: [this.ingredientId],
             totalTimeTo: this.timeTo.value,

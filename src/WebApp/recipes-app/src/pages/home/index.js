@@ -35,7 +35,7 @@ const Index = (props) => {
                 <div className="row">
                     <div className="col-xs-12 col-sm-8 col-md-8">
                         <h2 className="text-center text-capitalize">You can help us finish the semester</h2>
-                        <p className="lead"><b>This app for suggesting food recipes was created as a school project for course PV245 Recommender Systems (Masaryk University).</b></p>
+                        <p className="lead"><b>This app for suggesting food recipes was created as a school project for course PV254 Recommender Systems (Masaryk University).</b></p>
                         <p className="lead">
                           As we need to to evaluate the quality of our recommender system, we collect and process data about your activity on this web page.
                           No worries, everything is completely anonymous and we only store info about what links were clicked, nothing about who did it.
