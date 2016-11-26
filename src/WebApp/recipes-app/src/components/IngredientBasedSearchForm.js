@@ -31,9 +31,19 @@ class IngredientBasedSearch extends React.Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="availableTimeTo" className="col-sm-2 control-label">Max cooking time</label>
-                        <div className="col-sm-10">
-                            <input type="number" className="form-control" id="availableTimeTo" placeholder="10 minutes"
-                                    ref={ (node) => this.timeTo = node }/>
+                        <div className="col-sm-10 controls">
+                            <div className="input-group">
+                            <input
+                                type="number"
+                                step="5"
+                                min="10"
+                                max="240"
+                                className="form-control"
+                                id="availableTimeTo"
+                                placeholder="10 minutes"
+                                ref={ (node) => this.timeTo = node }/>
+                                <span className="input-group-addon">min</span>
+                            </div>
                         </div>
                     </div>
                     <div className="form-group">
@@ -64,9 +74,15 @@ class IngredientBasedSearch extends React.Component {
             return;
         }
 
+        var time = this.timeTo.value;
+        if(time && (time < 5 || time > 240)) {
+            window.alert('Come on, give us a reasonable time...');
+            return;
+        }
+
         var query = {
             ingredientIds: [this.ingredientId],
-            totalTimeTo: this.timeTo.value,
+            totalTimeTo: time,
             isVegetarian: this.isVegetarian.checked,
             pageSize: 10
         };

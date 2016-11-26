@@ -33,14 +33,14 @@ class SearchResults extends React.Component {
             return <Div isLoading={true} loadingOffset="150px"/>;
         }
 
-        const results = this.props.results.map((recipe, index) => <RecipeOverview key={index} {...recipe} recommendedBy={[recipe.recommenderType]} displayedRecipeId={null} />);
+        const results = this.props.results.map((recipe, index) => <RecipeOverview showImage={true} key={index} {...recipe} recommendedBy={[recipe.recommenderType]} displayedRecipeId={null} />);
 
         return (
             <Div isLoading={ this.props.isFetching } loadingOffset="150px" className="container-fluid results" id="results">
-                <h1 className="text-center text-capitalize">SearchResults</h1>
+                <h1 className="text-center text-capitalize">Search Results</h1>
 
                 <div className="row">
-                    <div className="col-xs-12 col-sm-12 col-md-12">
+                    <div className="col-xs-12 col-sm-12 col-md-offset-4 col-md-6">
                         {results}
                     </div>
                 </div>
