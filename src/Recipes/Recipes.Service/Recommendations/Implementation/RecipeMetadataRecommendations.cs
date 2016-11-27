@@ -56,8 +56,8 @@ namespace Recipes.Service.Recommendations.Implementation
             //NOTE: here we could use some threshold, that is the dictionary for (but we do not at the moment)
             var recipeTFIDFValuesWithThreshold = recipeTFIDFValues.Where(x => x.Value >= THRESHOLD).Select(x => x.Key).ToList();
             IList<DAL.Entities.Recipe> recipes = new List<DAL.Entities.Recipe>();
-            //if threshold is too high, we take first 5 (no option for random)
-            if (recipeTFIDFValuesWithThreshold.Count < 5)
+            //if threshold is too high, we take first CANDIDATES_COUNT (no option for random)
+            if (recipeTFIDFValuesWithThreshold.Count < CANDIDATES_COUNT)
             {
                 recipes = await RecipesRepository.GetRecipesAsync(recipeTFIDFValues.Take(CANDIDATES_COUNT).Select(x => x.Key).ToList());
             }
