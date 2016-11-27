@@ -183,33 +183,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\CastleInstallers\ControllerInstaller.cs" />
     <Compile Include="App_Start\CastleInstallers\RepositoriesInstaller.cs" />
     <Compile Include="App_Start\CastleInstallers\ServicesInstaller.cs" />
     <Compile Include="App_Start\CastleInstallers\WindsorDependencyScope.cs" />
     <Compile Include="App_Start\CastleInstallers\WindsorHttpDependencyResolver.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\JsonFormattingConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\ActivityLog\RecommendationUsedController.cs" />
-    <Compile Include="Controllers\Api\Recommendations\IngredientsController.cs" />
+    <Compile Include="Controllers\Api\Recommendations\UserContextController - Copy.cs" />
+    <Compile Include="Controllers\Api\Search\IngredientSearchController.cs" />
     <Compile Include="Controllers\Api\Recommendations\IngredientBasedController.cs" />
     <Compile Include="Controllers\Api\Recommendations\SimilarRecipesController.cs" />
     <Compile Include="Controllers\Api\Recommendations\UserContextController.cs" />
     <Compile Include="Controllers\Api\RecipesController.cs" />
+    <Compile Include="Controllers\Api\Search\RecipeSearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -218,27 +212,27 @@
     <Content Include="App_Data\RecipesDB_log.ldf">
       <DependentUpon>RecipesDB.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="img\homepage-cover.jpg" />
+    <Content Include="img\logo-inversed.png" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\logo2.png" />
+    <Content Include="img\no-image.png" />
+    <Content Include="img\search-by-ingredients-cover.png" />
+    <Content Include="img\veggie-small.png" />
+    <Content Include="img\veggie.png" />
+    <Content Include="static\css\main.0cbe79db.css" />
+    <Content Include="static\js\main.553bd4fb.js" />
+    <Content Include="static\media\glyphicons-halflings-regular.89889688.svg" />
+    <Content Include="static\media\homepage-cover.46344400.jpg" />
+    <Content Include="static\media\logo-inversed.5f3bbf19.png" />
+    <Content Include="static\media\no-image.ca6805af.png" />
+    <Content Include="static\media\search-by-ingredients-cover.edff9a4e.png" />
+    <Content Include="static\media\veggie-small.7c07bdd2.png" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -246,41 +240,10 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Recipes.Core\Recipes.Core.csproj">
@@ -291,6 +254,16 @@
       <Project>{7d1b72ea-3e03-4324-8cc4-ef419718c870}</Project>
       <Name>Recipes.Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="img\veggie-small.png.uid-zps" />
+    <None Include="Properties\PublishProfiles\recipes-recommender - Web Deploy.pubxml" />
+    <Content Include="static\css\main.0cbe79db.css.map" />
+    <Content Include="static\js\main.553bd4fb.js.map" />
+    <Content Include="static\media\glyphicons-halflings-regular.448c34a5.woff2" />
+    <Content Include="static\media\glyphicons-halflings-regular.e18bbf61.ttf" />
+    <Content Include="static\media\glyphicons-halflings-regular.f4769f9b.eot" />
+    <Content Include="static\media\glyphicons-halflings-regular.fa277232.woff" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

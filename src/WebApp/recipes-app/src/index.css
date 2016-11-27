@@ -43,9 +43,10 @@ body {
 
 }
 .recommendation .teaser-image {
-  max-height: 50px;
+  max-height: 80px;
+  max-width: 100px;
   background-image: url('../public/img/no-image.png');
-  /*border-radius: 50%;*/
+  clip-path: circle(30px at center);
 }
 
 .recommendation .title {
@@ -58,23 +59,24 @@ body {
   padding: 0px 0px 0px 0px;
 }
 
-/* Recommendations on top*/
+/* Recommendations*/
 .you-may-like__recommendations {
   padding-bottom: 8px;
-  background: rgba(240,240,240,0.95);
+  /*background: rgba(240,240,240,0.95);*/
 }
 
 .you-may-like__recommendation {
   padding: 0px;
 }
 .you-may-like__recommendation:hover {
-  background: rgba(255,255,255,0.95);
-
+  background: rgba(240,240,240,0.95);
 }
+
 .you-may-like__recommendation .teaser-image {
-  max-height: 50px;
+  max-height: 80px;
+  max-width: 100px;
   background-image: url('../public/img/no-image.png');
-  /*border-radius: 50%;*/
+  clip-path: circle(30px at center);
 }
 
 .you-may-like__recommendation .title {
@@ -103,4 +105,37 @@ body {
   /*height: 100%;*/
 }
 
+.recommender-type {
+  float: left;
+  width: 5px; /* must never add up to more than 100% */
+}
 
+
+/*!*IngredientBased = 0,*!*/
+/*.recommender-type-0 {*/
+  /*background-color: red;*/
+/*}*/
+
+/*!*TfIdf = 1,*!*/
+/*.recommender-type-1 {*/
+  /*background-color: blue;*/
+/*}*/
+
+/*.recommender-type-0.recommender-type-1 {*/
+  /*background-color: purple;*/
+/*}*/
+
+/*!*UserContext = 2,*!*/
+/*.recommender-type-2 {*/
+  /*background-color: green;*/
+/*}*/
+
+/*!*RecipeSearch = 3,*!*/
+/*.recommender-type-3 {*/
+  /*background-color: yellow;*/
+/*}*/
+
+/*!*IngredientSearch = 4,*!*/
+/*.recommender-type-4 {*/
+  /*background-color: orange;*/
+/*}*/

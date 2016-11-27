@@ -17,6 +17,11 @@ namespace Recipes.Web.CastleInstallers
             container.Register(Classes.FromAssemblyNamed("Recipes.Service")
                 .InNamespace("Recipes.Service.Recommendations.Implementation")
                 .WithService.DefaultInterfaces().LifestylePerWebRequest());
+
+            // configuration for Recipes.Service.Search
+            container.Register(Classes.FromAssemblyNamed("Recipes.Service")
+                .InNamespace("Recipes.Service.Search.Implementation")
+                .WithService.DefaultInterfaces().LifestylePerWebRequest());
         }
     }
 }

@@ -1,25 +1,28 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import Div from '../../../components/div';
-import Recipe from './recipe';
-import RecommendationByIngredients from './recommendations/recommendation-by-ingredients';
-import SimilarRecipes from './recommendations/similar-recipes';
-import YouMayLike from './recommendations/you-may-like';
-import Critique from './recommendations/critiquing';
+import Div from '../../../components/Div';
+import Recipe from './Recipe';
+import SimilarRecipes from './recommendations/SimilarRecipes';
+import YouMayLike from './recommendations/YouMayLike';
 import PureComponent from '../../../components/PureComponent.js';
 
-import { fetchRecipeIfNeeded, fetchIngredientBased, fetchSimilarRecipes, fetchYouMayLike } from './../../../redux/actionCreators';
+import {
+    fetchRecipeIfNeeded,
+    fetchIngredientBased,
+    fetchSimilarRecipes,
+    fetchYouMayLike
+} from './../../../redux/actionCreators';
 
 class Index extends React.Component {
 
     static propTypes = {
-        params: React.PropTypes.shape({ recipeId: React.PropTypes.string }),
+        params: React.PropTypes.shape({recipeId: React.PropTypes.string}),
         isFetching: React.PropTypes.bool.isRequired,
         recipe: React.PropTypes.any,
-        youMayLike: React.PropTypes.any.isRequired,
-        similarRecipes: React.PropTypes.any.isRequired,
-        ingredientBased: React.PropTypes.any.isRequired,
+        youMayLikeRecommendations: React.PropTypes.any.isRequired,
+        similarRecipesRecommendations: React.PropTypes.any.isRequired,
+        ingredientBasedRecommendations: React.PropTypes.any.isRequired,
         fetchRecipe: React.PropTypes.func.isRequired,
         fetchAllRecommendations: React.PropTypes.func.isRequired
     };
@@ -32,7 +35,7 @@ class Index extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(this.props.params.recipeId !== nextProps.params.recipeId) {
+        if (this.props.params.recipeId !== nextProps.params.recipeId) {
             nextProps.fetchRecipe(nextProps.params.recipeId);
             nextProps.fetchAllRecommendations(nextProps.params.recipeId);
         }
@@ -41,33 +44,30 @@ class Index extends React.Component {
     render() {
         var recipeId = parseInt(this.props.params.recipeId, 10);
         return (
-            <Div>
-                <YouMayLike currentRecipeId={ recipeId } recipes={ this.props.youMayLike } />
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-xs-12 col-sm-10 col-md-8">
-                            <Recipe { ...this.props }/>
-                        </div>
-                        <div className="col-xs-12 col-sm-2 col-md-4">
-                            <div className="row">
-                                <div className="col-xs-12">
-                                    <RecommendationByIngredients currentRecipeId={ recipeId } recipes={ this.props.ingredientBased } />
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-xs-12">
-                                    <SimilarRecipes currentRecipeId={ recipeId }  recipes={ this.props.similarRecipes } />
-                                </div>
+            <Div className="container">
+                <div className="row">
+                    <div className="col-xs-12 col-sm-10 col-md-8">
+                        <Recipe { ...this.props }/>
+                    </div>
+                    <div className="col-xs-12 col-sm-2 col-md-4">
+                        <div className="row">
+                            <div className="col-xs-12">
+                                <SimilarRecipes
+                                    currentRecipeId={ recipeId }
+                                    similarRecipesRecommendations={ this.props.similarRecipesRecommendations }
+                                    ingredientBasedRecommendations={ this.props.ingredientBasedRecommendations }
+                                />
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <hr/>
-                    <div className="row">
-                        <div className="col-xs-12">
-                            <Critique/>
-                        </div>
+                <hr/>
+                <div className="row">
+                    <div className="col-xs-12">
+                        <YouMayLike
+                            currentRecipeId={ recipeId }
+                            recipes={ this.props.youMayLikeRecommendations }/>
                     </div>
                 </div>
             </Div>);
@@ -89,9 +89,9 @@ const mapStateToProps = (store) => {
     return {
         isFetching: store.currentRecipe.isFetching,
         recipe: store.recipes[store.currentRecipe.id],
-        youMayLike: store.youMayLike,
-        similarRecipes: store.similarRecipes,
-        ingredientBased: store.ingredientBased
+        youMayLikeRecommendations: store.youMayLike,
+        similarRecipesRecommendations: store.similarRecipes,
+        ingredientBasedRecommendations: store.ingredientBased
     }
 };
 

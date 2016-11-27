@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -112,6 +113,34 @@ namespace Recipes.DAL.Repositories.Implementation
                     .ToListAsync();
 
                 return await result;
+            }
+        }
+
+        public async Task<IList<RecipeName>> GetAllNamesAsync()
+        {
+            using (var dbContext = new AppContext())
+            {
+                var result = dbContext.Recipes
+                    .Select(r => new RecipeName
+                    {
+                        Id = r.Id,
+                        Name = r.Title
+                    })
+                    .ToListAsync();
+
+                return await result;
+            }
+        }
+
+        public async Task<IList<Recipe>> SearchByNameAsync(string name)
+        {
+            using (var dbContext = new AppContext())
+            {
+                var result = await dbContext.Recipes
+                    .Where(r => r.Title.Contains(name))
+                    .ToListAsync();
+
+                return result;
             }
         }
 

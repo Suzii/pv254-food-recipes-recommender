@@ -22,5 +22,12 @@ namespace Recipes.DAL.Repositories
         /// <param name="recipeId">Id of recipe that should be looked for</param>
         /// <returns>List of recommendations used with <c>DisplayedRecipeId</c> equal to <param name="recipeId"></param></returns>
         Task<RecommendationUsed> GetRecommendationsUsedForRecipe(int recipeId);
+
+        /// <summary>
+        /// Retrieves top <param name="count"></param> recipe ids that have most clicks.
+        /// </summary>
+        /// <param name="count">Number of ids to be returned</param>
+        /// <returns>Ids of most popular recipes</returns>
+        Task<IList<int>> GetMostClickedRecipesIds(int count);
     }
 }

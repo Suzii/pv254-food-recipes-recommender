@@ -2,6 +2,7 @@ import * as Actions from './actions';
 import fetch from 'isomorphic-fetch';
 import * as AjaxUtils from './../utils/ajax';
 import {getVisitedRecipeIds} from '../utils/cookies.js';
+import {isNullOrEmpty} from './../utils/arrays';
 
 // --------------------------------- RECIPE ------------------------------------
 function requestRecipe(id) {
@@ -33,12 +34,8 @@ function fetchRecipe(id) {
         fetch(`/api/recipes/${id}`, {accept: 'application/json'})
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
-            .then(data => {
-                setTimeout(() => {
-                    dispatch(receiveRecipe(data));
-                }, 1100);
-            })
-            .catch(recipesFailed);
+            .then(data => dispatch(receiveRecipe(data)))
+            .catch((e => dispatch(recipesFailed(e))));
     }
 }
 
@@ -87,12 +84,8 @@ export function fetchSimilarRecipes(id) {
         fetch(`/api/recommendations/SimilarRecipes?${getRecommendationsQueryString(id)}`, {accept: 'application/json'})
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
-            .then(data => {
-                setTimeout(() => {
-                    dispatch(receiveSimilarRecipes(data));
-                }, 1100);
-            })
-            .catch(similarRecipesFailed);
+            .then(data => dispatch(receiveSimilarRecipes(data)))
+            .catch((e => dispatch(similarRecipesFailed(e))));
     }
 }
 
@@ -134,12 +127,8 @@ export function fetchYouMayLike(id) {
         fetch(`/api/recommendations/UserContext?${paramsString1}&${paramsString2}`, {accept: 'application/json'})
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
-            .then(data => {
-                setTimeout(() => {
-                    dispatch(receiveYouMayLike(data));
-                }, 1100);
-            })
-            .catch(youMayLikeFailed);
+            .then(data => dispatch(receiveYouMayLike(data)))
+            .catch((e => dispatch(youMayLikeFailed(e))));
     }
 }
 
@@ -172,21 +161,195 @@ export function fetchIngredientBased(id) {
         fetch(`/api/recommendations/IngredientBased?${getRecommendationsQueryString(id)}`, {accept: 'application/json'})
             .then(AjaxUtils.processStatus)
             .then(AjaxUtils.parseJson)
-            .then(data => {
-                setTimeout(() => {
-                    dispatch(receiveIngredientBased(data));
-                }, 1100);
-            })
-            .catch(ingredientBasedFailed);
+            .then(data => dispatch(receiveIngredientBased(data)))
+            .catch(e => dispatch(ingredientBasedFailed(e)));
     }
 }
 
+// --------------------------- INGREDIENT-SEARCH ----------------------------------
+function requestIngredientDatabase() {
+    return {
+        type: Actions.INGREDIENT_SEARCH_REQUEST,
+    }
+}
+
+function receiveIngredientDatabase(response) {
+    return {
+        type: Actions.INGREDIENT_SEARCH_SUCCESS,
+        response: response
+    }
+}
+
+function ingredientDatabaseFailed(e) {
+    return {
+        type: Actions.INGREDIENT_SEARCH_FAILURE,
+        error: e
+    }
+}
+
+function fetchIngredientDatabase() {
+    return function (dispatch) {
+        dispatch(requestIngredientDatabase());
+
+        fetch(`/api/search/IngredientSearch`, {accept: 'application/json'})
+            .then(AjaxUtils.processStatus)
+            .then(AjaxUtils.parseJson)
+            .then(data => dispatch(receiveIngredientDatabase(data)))
+            .catch(e => dispatch(ingredientDatabaseFailed(e)));
+    }
+}
+
+export function fetchIngredientDatabaseIfNeeded() {
+    return function (dispatch, getState) {
+        var state = getState();
+        var ingredientDatabase = state.ingredientDatabase;
+        var shouldFetch = isNullOrEmpty(ingredientDatabase);
+
+        if (shouldFetch) {
+            return dispatch(fetchIngredientDatabase());
+        } else {
+            return Promise.resolve();
+        }
+    }
+}
+
+// --------------------------- RECIPES-SEARCH ----------------------------------
+function requestRecipeDatabase() {
+    return {
+        type: Actions.RECIPES_SEARCH_REQUEST,
+    }
+}
+
+function receiveRecipeDatabase(response) {
+    return {
+        type: Actions.RECIPES_SEARCH_SUCCESS,
+        response: response
+    }
+}
+
+function recipeDatabaseFailed(e) {
+    return {
+        type: Actions.RECIPES_SEARCH_FAILURE,
+        error: e
+    }
+}
+
+function fetchRecipeDatabase() {
+    return function (dispatch) {
+        dispatch(requestRecipeDatabase());
+
+        fetch(`/api/search/RecipeSearch`, {accept: 'application/json'})
+            .then(AjaxUtils.processStatus)
+            .then(AjaxUtils.parseJson)
+            .then(data => dispatch(receiveRecipeDatabase(data)))
+            .catch(e => dispatch(recipeDatabaseFailed()));
+    }
+}
+
+export function fetchRecipeDatabaseIfNeeded() {
+    return function (dispatch, getState) {
+        var state = getState();
+        var recipeDatabase = state.recipeDatabase;
+        var shouldFetch = isNullOrEmpty(recipeDatabase);
+
+        if (shouldFetch) {
+            return dispatch(fetchRecipeDatabase());
+        } else {
+            return Promise.resolve();
+        }
+    }
+}
+
+// --------------------------- SEARCH ----------------------------------
+function searchRequest() {
+    return {
+        type: Actions.SEARCH_REQUEST,
+    }
+}
+
+function searchReceived(response) {
+    return {
+        type: Actions.SEARCH_SUCCESS,
+        response: response
+    }
+}
+
+function searchFailed(e) {
+    return {
+        type: Actions.SEARCH_FAILURE,
+        error: e
+    }
+}
+
+export function searchByRecipeName(q) {
+    return function (dispatch) {
+        dispatch(searchRequest());
+
+        fetch(`/api/search/RecipeSearch?q=${q}`, {accept: 'application/json'})
+            .then(AjaxUtils.processStatus)
+            .then(AjaxUtils.parseJson)
+            .then(data => dispatch(searchReceived(data)))
+            .catch(searchFailed);
+    }
+}
+
+export function searchByIngredientFilter(formData) {
+    return function (dispatch) {
+        dispatch(searchRequest());
+
+        fetch(`/api/recommendations/IngredientBased`, {
+            accept: 'application/json',
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(AjaxUtils.processStatus)
+            .then(AjaxUtils.parseJson)
+            .then(data => dispatch(searchReceived(data)))
+            .catch(e => dispatch(searchFailed(e)));
+    }
+}
+
+// --------------------------- MOST-POPULAR ----------------------------------
+function mostPopularRequest() {
+    return {
+        type: Actions.MOST_POPULAR_REQUEST,
+    }
+}
+
+function mostPopularReceived(response) {
+    return {
+        type: Actions.MOST_POPULAR_SUCCESS,
+        response: response
+    }
+}
+
+function mostPopularFailed(e) {
+    return {
+        type: Actions.MOST_POPULAR_FAILURE,
+        error: e
+    }
+}
+
+export function mostPopularRecipesFetch(count) {
+    return function (dispatch) {
+        dispatch(mostPopularRequest());
+
+        fetch(`/api/recommendations/MostPopular?count=${count}`, {accept: 'application/json'})
+            .then(AjaxUtils.processStatus)
+            .then(AjaxUtils.parseJson)
+            .then(data => dispatch(mostPopularReceived(data)))
+            .catch(e => dispatch(mostPopularFailed(e)));
+    }
+}
 
 // ------- utils ------
 function getRecommendationsQueryString(id) {
     let params = {
         currentRecipeId: id,
-        pageSize: 5
+        pageSize: 10
     };
 
     let paramsString = AjaxUtils.getQueryParameters(params);

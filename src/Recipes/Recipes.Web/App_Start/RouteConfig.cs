@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace Recipes.Web
@@ -13,10 +9,11 @@ namespace Recipes.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // Maps all routes to Home controller and Index action which serves a Single Page ReactJS application
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{*.}",
+                defaults: new { controller = "Home", action = "Index" }
             );
         }
     }

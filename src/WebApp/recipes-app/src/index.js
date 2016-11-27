@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'babel-polyfill';
 import './index.css';
 import './sticky-footer.css';
+import './autosuggest.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -9,21 +10,22 @@ import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import createLogger from 'redux-logger';
+// import createLogger from 'redux-logger';
 import { Provider } from 'react-redux';
 import rootReducer from './redux/reducers';
 
 import App from './App';
-import {default as Home} from './pages/home/index';
-import Recipes from './pages/recipes/recipes';
-import Index from './pages/recipes/index';
-import {default as RecipeIndex} from './pages/recipes/recipe/index';
-import {default as Contact} from './pages/contact/index';
+import {default as Home} from './pages/home/Index';
+import Recipes from './pages/recipes/Recipes';
+import Index from './pages/recipes/Index';
+import Search from './pages/recipes/SearchResults';
+import {default as RecipeIndex} from './pages/recipes/recipe/Index';
+import {default as Contact} from './pages/contact/Index';
 import _404 from './pages/404';
 
 import { appendRecipeIdToCookies } from './utils/cookies.js';
 
-var store = createStore(rootReducer, applyMiddleware(thunk, createLogger()));
+var store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
     <Provider store={store}>
@@ -33,8 +35,8 @@ ReactDOM.render(
                 <Route path="home" component={Home}/>
                 <Route path="recipes" component={Recipes}>
                     <IndexRoute component={Index}/>
+                    <Route path="/search" component={Search}/>
                     <Route path="/recipes/:recipeId" component={RecipeIndex} onEnter={(nextState, replace, callback) => {
-                        console.log(nextState);
                         var nextRecipeId = nextState.params.recipeId;
                         appendRecipeIdToCookies(nextRecipeId);
                         callback();

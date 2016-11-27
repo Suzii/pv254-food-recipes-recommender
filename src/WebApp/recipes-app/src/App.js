@@ -1,5 +1,5 @@
 import React from 'react';
-import NavTab from './components/nav-tab';
+import NavTab from './components/NavTab';
 
 const App = (props) => {
     return (
@@ -8,15 +8,19 @@ const App = (props) => {
                 <NavTab/>
             </header>
 
-            <div className="container-fluid">
+            <section id="content">
                 {props.children}
-            </div>
+            </section>
 
             <footer className="footer">
                 <div className="container">
-                    <p className="text-muted">
-                        Lorem ipsum
-                    </p>
+                    <div className="row">
+                        <div className="col-xs-12">
+                            <p className="text-muted text-center">
+                                Powered by <a href="http://www.bbc.co.uk/food/recipes/">BBC Food.</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </footer>
         </div>

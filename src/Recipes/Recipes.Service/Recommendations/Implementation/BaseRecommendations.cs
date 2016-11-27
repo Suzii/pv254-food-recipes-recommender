@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Recipes.DAL.Repositories;
-using Recipes.Service.Constants;
 using Recipes.Service.DTOs;
 
 namespace Recipes.Service.Recommendations.Implementation
@@ -15,7 +14,13 @@ namespace Recipes.Service.Recommendations.Implementation
 
         protected readonly IMapper Mapper;
 
-        protected const int candidatesSize = 50;
+        /// <summary>
+        /// This constant means how many results are to be send to post-filtering process.
+        /// Since most common use case is that we will return 10 recommendations total, and of those 
+        /// typically only first 5 are used (merging of 2 lists for A/B testing),
+        /// 15 seems as a good trade-off between on randomness and relevance of provided recommendations.
+        /// </summary>
+        protected const int CANDIDATES_COUNT = 15;
 
 
         public BaseRecommendations(IRecipesRepository recipesRepository, IMapper mapper)

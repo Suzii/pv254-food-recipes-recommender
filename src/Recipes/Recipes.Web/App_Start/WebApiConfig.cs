@@ -29,6 +29,11 @@ namespace Recipes.Web
             );
 
             config.Routes.MapHttpRoute(
+                name: "Search",
+                routeTemplate: "api/Search/{controller}"
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "ActivityLog",
                 routeTemplate: "api/ActivityLog/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
@@ -39,6 +44,8 @@ namespace Recipes.Web
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // Note, that search has its own configuration in controllers
         }
     }
 }

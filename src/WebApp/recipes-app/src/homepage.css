@@ -1,0 +1,38 @@
+.navbar {
+  margin-bottom: 0px !important;
+}
+
+.homepage--cover  {
+  background: linear-gradient(
+          rgba(250,250,250, .4),
+          rgba(255,255,255, .85)), url(../public/img/homepage-cover.jpg) no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100%;
+  height: 500px;
+  padding: 0px !important;
+}
+
+.homepage--cover__content {
+  padding-top: 6em;
+  text-align: center;
+
+}
+
+.homepage--cover__heading {
+}
+
+.homepage--cover__search {
+  padding-top: 2em;
+  padding-botton: 2em;
+}
+
+.homepage--cover__alternative {
+  padding-top: 4em;
+  font-weight: bold;
+}
+
+.homepage--cover__button {
+  padding: 2em;
+}

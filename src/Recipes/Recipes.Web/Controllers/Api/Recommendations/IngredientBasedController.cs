@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Recipes.Service.Constants;
 using Recipes.Service.DTOs;
 using Recipes.Service.DTOs.Filters;
 using Recipes.Service.Recommendations;
@@ -18,23 +19,14 @@ namespace Recipes.Web.Controllers.Api.Recommendations
         }
 
         // POST: api/Recommendations/IngredientBased?ingredientIds=1&ingredientIds=2
-        public async Task<RecipeRecommendation[]> Post(int[] ingredientIds, bool isVegetarian = false, int? totalTimeTo = null, int pageSize = 10, int pageNumber = 1)
+        public async Task<RecipeRecommendation[]> Post(IngredientBasedFilter filter)
         {
-            if (ingredientIds == null || ingredientIds.Length == 0)
-            {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
-            }
-
-            var filter = new IngredientBasedFilter
-            {
-                IngredientIds = ingredientIds,
-                IsVegetarian = isVegetarian,
-                TotalTimeTo = totalTimeTo,
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
-
             var result = await _ingredientRecommendations.Get(filter);
+            foreach (var recipeRecommendation in result)
+            {
+                // I know this is a bit of a hack, sorry...
+                recipeRecommendation.RecommenderType = RecommenderType.IngredientSearch;
+            }
 
             return result.ToArray();
         }

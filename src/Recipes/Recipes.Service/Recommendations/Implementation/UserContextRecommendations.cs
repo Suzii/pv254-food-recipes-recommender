@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using BugHunter.Core.Extensions;
 using Recipes.Core.Models;
 using Recipes.DAL.Helpers;
 using Recipes.DAL.Repositories;
@@ -17,7 +18,7 @@ namespace Recipes.Service.Recommendations.Implementation
     {
         // Completely random, empirically selected constants
         private const int NumberOfVisitedRecipesForStatisticalSignificance = 4;
-        private const double VegetarianThreshold = 0.65;
+        private const double VegetarianThreshold = 0.79;
         private const double IntervalThreshold = 0.6;
         private const double ChefsThreshold = 0.6;
 
@@ -61,7 +62,12 @@ namespace Recipes.Service.Recommendations.Implementation
 
         private IList<string> GetSignificantChefs(IList<Recipe> visitedRecipes)
         {
-            var chefsCount = visitedRecipes.GroupBy(r => r.Chef).OrderByDescending(gr => gr.Count()).ToDictionary(gr => gr.Key, gr => gr.Count());
+
+            var chefsCount = visitedRecipes
+                .Where(r => !r.Chef.IsNullOrEmpty())
+                .GroupBy(r => r.Chef)
+                .OrderByDescending(gr => gr.Count())
+                .ToDictionary(gr => gr.Key, gr => gr.Count());
 
             var totalCount = visitedRecipes.Count;
             var significantCount = Math.Ceiling(totalCount*ChefsThreshold);

@@ -1,14 +1,13 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Recipes.Web.Startup))]
+[assembly: OwinStartup(typeof(Recipes.Web.Startup))]
 namespace Recipes.Web
 {
     public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
         }
     }
 }

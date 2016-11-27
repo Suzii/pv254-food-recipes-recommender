@@ -1,0 +1,33 @@
+.navbar {
+  margin-bottom: 0px !important;
+}
+
+.page-not-found--cover  {
+  background-size: 100%;
+  height: 500px;
+  padding: 0px !important;
+}
+
+.page-not-found--cover__content {
+  padding-top: 6em;
+  text-align: center;
+
+}
+
+.page-not-found--cover__heading {
+  padding: 1em;
+}
+
+.page-not-found--cover__search {
+  padding-top: 2em;
+  padding-botton: 2em;
+}
+
+.page-not-found--cover__alternative {
+  padding-top: 4em;
+  font-weight: bold;
+}
+
+.page-not-found--cover__button {
+  padding: 2em;
+}

@@ -59,12 +59,66 @@ function ingredientBased(state = [], action) {
     }
 }
 
- const rootReducer = combineReducers({
+function recipeDatabase(state = [], action) {
+    switch(action.type) {
+        case actions.RECIPES_SEARCH_REQUEST:
+        case actions.RECIPES_SEARCH_FAILURE:
+            return [];
+        case actions.RECIPES_SEARCH_SUCCESS:
+            return action.response;
+        default:
+            return state;
+    }
+}
+
+function ingredientDatabase(state = [], action) {
+    switch(action.type) {
+        case actions.INGREDIENT_SEARCH_REQUEST:
+        case actions.INGREDIENT_SEARCH_FAILURE:
+            return [];
+        case actions.INGREDIENT_SEARCH_SUCCESS:
+            return action.response;
+        default:
+            return state;
+    }
+}
+
+function search(state = {isFetching: false, results: []}, action) {
+    switch(action.type) {
+        case actions.SEARCH_REQUEST:
+            return {isFetching: true, results: []}
+        case actions.SEARCH_FAILURE:
+            return {isFetching: false, results: []}
+        case actions.SEARCH_SUCCESS:
+            return {isFetching: false, results: action.response}
+        default:
+            return state;
+    }
+}
+
+function mostPopular(state = {isFetching: false, results: []}, action) {
+    switch(action.type) {
+        case actions.MOST_POPULAR_REQUEST:
+            return {isFetching: true, results: []}
+        case actions.MOST_POPULAR_FAILURE:
+            return {isFetching: false, results: []}
+        case actions.MOST_POPULAR_SUCCESS:
+            return {isFetching: false, results: action.response}
+        default:
+            return state;
+    }
+}
+
+const rootReducer = combineReducers({
      currentRecipe,
      recipes,
      youMayLike,
      similarRecipes,
-     ingredientBased
+     ingredientBased,
+     recipeDatabase,
+     ingredientDatabase,
+     search,
+     mostPopular,
  });
 
 export default rootReducer;
