@@ -59,7 +59,7 @@ namespace Recipes.Service.Recommendations.Implementation
             //if threshold is too high, we take first 5 (no option for random)
             if (recipeTFIDFValuesWithThreshold.Count < 5)
             {
-                recipes = await RecipesRepository.GetRecipesAsync(recipeTFIDFValues.Take(5).Select(x => x.Key).ToList());
+                recipes = await RecipesRepository.GetRecipesAsync(recipeTFIDFValues.Take(CANDIDATES_COUNT).Select(x => x.Key).ToList());
             }
             else
             {
