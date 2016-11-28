@@ -22,6 +22,10 @@ namespace Recipes.Service.Recommendations.Implementation
         /// </summary>
         protected const int CANDIDATES_COUNT = 15;
 
+        /// <summary>
+        /// Minimum number of recipes for one recommendation
+        /// </summary>
+        protected const int MINIMUM_COUNT = 10;
 
         public BaseRecommendations(IRecipesRepository recipesRepository, IMapper mapper)
         {

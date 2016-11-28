@@ -56,10 +56,10 @@ namespace Recipes.Service.Recommendations.Implementation
             //NOTE: here we could use some threshold, that is the dictionary for (but we do not at the moment)
             var recipeTFIDFValuesWithThreshold = recipeTFIDFValues.Where(x => x.Value >= THRESHOLD).Select(x => x.Key).ToList();
             IList<DAL.Entities.Recipe> recipes = new List<DAL.Entities.Recipe>();
-            //if threshold is too high, we take first CANDIDATES_COUNT (no option for random)
-            if (recipeTFIDFValuesWithThreshold.Count < CANDIDATES_COUNT)
+            //if threshold is too high, we take first MINIMUM_COUNT (no option for random)
+            if (recipeTFIDFValuesWithThreshold.Count < MINIMUM_COUNT)
             {
-                recipes = await RecipesRepository.GetRecipesAsync(recipeTFIDFValues.Take(CANDIDATES_COUNT).Select(x => x.Key).ToList());
+                recipes = await RecipesRepository.GetRecipesAsync(recipeTFIDFValues.Take(MINIMUM_COUNT).Select(x => x.Key).ToList());
             }
             else
             {
@@ -73,7 +73,7 @@ namespace Recipes.Service.Recommendations.Implementation
 
             candidates.ForEach(recommendation => recommendation.RecommenderType = RecommenderType.TfIdf);
 
-            return SelectRecommendationsRandomly(candidates, filter.PageSize.GetValueOrDefault(10));
+            return SelectRecommendationsRandomly(candidates, filter.PageSize.GetValueOrDefault(MINIMUM_COUNT));
 
         }
     }
