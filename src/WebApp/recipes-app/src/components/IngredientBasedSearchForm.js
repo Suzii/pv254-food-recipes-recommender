@@ -23,8 +23,12 @@ class IngredientBasedSearch extends React.Component {
 
     _ingredientAdded(id, name) {
         var selectedIngredients = this.state.selectedIngredients;
-        selectedIngredients.push({id, name});
-        this.setState({selectedIngredients})
+        if(isNullOrEmpty(selectedIngredients.filter(ingredient => ingredient.id === id))) {
+            selectedIngredients.push({id, name});
+            this.setState({selectedIngredients})
+        } else {
+            window.alert('Come on, this one is already in...');
+        }
     }
 
     _ingredientRemoved(id) {

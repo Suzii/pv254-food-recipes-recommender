@@ -22,7 +22,6 @@ namespace Recipes.Service.Recommendations.Implementation
         private const double IntervalThreshold = 0.6;
         private const double ChefsThreshold = 0.6;
 
-
         public UserContextRecommendations(IRecipesRepository recipesRepository, IMapper mapper)
             : base(recipesRepository, mapper)
         {
