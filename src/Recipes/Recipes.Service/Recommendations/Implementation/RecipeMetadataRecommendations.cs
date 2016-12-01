@@ -12,6 +12,8 @@ namespace Recipes.Service.Recommendations.Implementation
 {
     public class RecipeMetadataRecommendations : BaseRecommendations, IRecipeMetadataRecommendations
     {
+        public const double THRESHOLD = 0.2f;
+
         private readonly IRecipesTFIDFRepository _recipesTFIDFRepository;
         public RecipeMetadataRecommendations(IRecipesRepository recipesRepository, IRecipesTFIDFRepository recipesTFIDFRepository, IMapper mapper)
             : base(recipesRepository, mapper)
@@ -52,8 +54,18 @@ namespace Recipes.Service.Recommendations.Implementation
             }
 
             //NOTE: here we could use some threshold, that is the dictionary for (but we do not at the moment)
+            var recipeTFIDFValuesWithThreshold = recipeTFIDFValues.Where(x => x.Value >= THRESHOLD).Select(x => x.Key).ToList();
+            IList<DAL.Entities.Recipe> recipes = new List<DAL.Entities.Recipe>();
+            //if threshold is too high, we take first MINIMUM_COUNT (no option for random)
+            if (recipeTFIDFValuesWithThreshold.Count < MINIMUM_COUNT)
+            {
+                recipes = await RecipesRepository.GetRecipesAsync(recipeTFIDFValues.Take(MINIMUM_COUNT).Select(x => x.Key).ToList());
+            }
+            else
+            {
+               recipes = await RecipesRepository.GetRecipesAsync(recipeTFIDFValuesWithThreshold);
+            }
 
-            var recipes = await RecipesRepository.GetRecipesAsync(recipeTFIDFValues.Keys.ToList());
             var candidates = recipes
                 .Select(r => Mapper.Map<RecipeRecommendation>(r))
                 .Take(CANDIDATES_COUNT)
@@ -61,7 +73,7 @@ namespace Recipes.Service.Recommendations.Implementation
 
             candidates.ForEach(recommendation => recommendation.RecommenderType = RecommenderType.TfIdf);
 
-            return SelectRecommendationsRandomly(candidates, filter.PageSize.GetValueOrDefault(10));
+            return SelectRecommendationsRandomly(candidates, filter.PageSize.GetValueOrDefault(MINIMUM_COUNT));
 
         }
     }
